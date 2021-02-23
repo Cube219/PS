@@ -48,13 +48,15 @@ int main(void)
         s2[one + zero - 1] = '1';
         int cnt = zero;
 
-        for(int i = one - 2; i >= 1; i--) {
-            cnt++;
-            s2[i] = '0';
-            s2[i + 1] = '1';
-            if(cnt == k) {
-                pos = true;
-                break;
+        if(zero > 0) {
+            for(int i = one - 2; i >= 1; i--) {
+                cnt++;
+                s2[i] = '0';
+                s2[i + 1] = '1';
+                if(cnt == k) {
+                    pos = true;
+                    break;
+                }
             }
         }
     }
