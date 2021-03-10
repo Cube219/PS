@@ -48,7 +48,7 @@ int main(void)
                 res = 0;
             }
         } else {
-            if(len > maxL) {
+            if(len >= maxL) {
                 maxL = len;
                 res = 0;
             }
