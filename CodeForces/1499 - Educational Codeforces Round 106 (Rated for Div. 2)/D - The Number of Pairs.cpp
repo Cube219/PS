@@ -10,9 +10,9 @@ using namespace std;
 using ll = long long int;
  
 int tNum;
-ll c, d, x;
+int c, d, x;
  
-constexpr int MAXN = 20000001;
+constexpr int MAXN = 21000001;
 int min_factor[MAXN + 1];
 vector<pair<int, int>> fPrimes;
  
@@ -48,23 +48,24 @@ void get_f_primes(int v)
 }
  
  
-ll process(ll factor)
+int process(int factor)
 {
-    ll cn = factor + d;
+    int cn = factor + d;
     if(cn % c != 0) return 0;
  
-    ll n = cn / c;
+    int n = cn / c;
  
-    ll g = x / (c * n - d);
-    ll l = (d * g + x) / c;
-    ll t = l / g;
- 
-    get_f_primes(t);
- 
-    ll ret = 1;
-    for(int i = 0; i < fPrimes.size(); ++i) {
-        ret *= 2;
+    int cnt = 0, last = 0;
+    while(n > 1) {
+        int f = min_factor[n];
+        if(last != f) {
+            last = f;
+            cnt++;
+        }
+        n /= f;
     }
+ 
+    int ret = (1 << cnt);
     return ret;
 }
  
@@ -79,12 +80,12 @@ int main(void)
     cin >> tNum;
     for(int tt = 1; tt <= tNum; tt++) {
         cin >> c >> d >> x;
-        ll res = 0;
+        int res = 0;
  
-        for(ll i = 1; i*i <= x; ++i) {
+        for(int i = 1; i*i <= x; ++i) {
             if(x % i != 0) continue;
  
-            ll f = i;
+            int f = i;
             res += process(f);
             if(f != x / f) {
                 res += process(x / f);
