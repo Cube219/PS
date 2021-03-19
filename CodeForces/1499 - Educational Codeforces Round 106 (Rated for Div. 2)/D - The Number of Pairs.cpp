@@ -12,34 +12,41 @@ using ll = long long int;
 int tNum;
 ll c, d, x;
  
+constexpr int MAXN = 20000001;
+int min_factor[MAXN + 1];
 vector<pair<int, int>> fPrimes;
  
-void get_f_primes(ll v)
+void init_primes()
+{
+    for(int i = 2; i <= MAXN; i++) {
+        min_factor[i] = i;
+    }
+ 
+    for(int i = 2; i * i <= MAXN; i++) {
+        if(min_factor[i] == i) {
+            for(int j = i * i; j <= MAXN; j += i) {
+                if(min_factor[j] == j) {
+                    min_factor[j] = i;
+                }
+            }
+        }
+    }
+}
+ 
+void get_f_primes(int v)
 {
     fPrimes.clear();
  
-    if(v % 2 == 0) {
-        int cnt = 0;
-        while(v % 2 == 0) {
-            cnt++;
-            v /= 2;
+    while(v > 1) {
+        int f = min_factor[v];
+        if(fPrimes.size() == 0 || fPrimes.back().first != f) {
+            fPrimes.push_back(make_pair(f, 0));
         }
-        fPrimes.push_back({ 2, cnt });
-    }
-    for(int i = 3; i * i <= v; i += 2) {
-        if(v % i == 0) {
-            int cnt = 0;
-            while(v % i == 0) {
-                cnt++;
-                v /= i;
-            }
-            fPrimes.push_back({ i, cnt });
-        }
-    }
-    if(v > 1) {
-        fPrimes.push_back({ v, 1 });
+        fPrimes.back().second++;
+        v /= f;
     }
 }
+ 
  
 ll process(ll factor)
 {
@@ -66,6 +73,8 @@ int main(void)
     // freopen("input.txt", "r", stdin);
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+ 
+    init_primes();
  
     cin >> tNum;
     for(int tt = 1; tt <= tNum; tt++) {
