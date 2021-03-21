@@ -53,8 +53,8 @@ int main(void)
                 }
             } else {
                 if(ndt == 1) {
-                    ndt = a[i] - a[i + 1];
-                } else if(ndt != a[i] - a[i + 1]) {
+                    ndt = a[i + 1] - a[i];
+                } else if(ndt != a[i + 1] - a[i]) {
                     pos = false;
                     break;
                 }
