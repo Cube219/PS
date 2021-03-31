@@ -182,7 +182,7 @@ int main(void)
     ck();
 
     if(isPos == true) {
-        st = (n + 2) * (m + 2);
+        st = (n + 2) * (m + 2) * 2 + 1;
         ed = (n + 2) * (m + 2) * 2 + 2;
         f.init((n + 2) * (m + 2) * 2 + 3);
 
@@ -194,7 +194,9 @@ int main(void)
                     f.addEdge(num * 2, num * 2 + 1, INF);
                     f.addEdge(num * 2 + 1, ed, INF);
                 } else {
-                    if(map[i][j] == -1) st = num * 2 + 1;
+                    if(map[i][j] == -1) {
+                        f.addEdge(st, num * 2, INF);
+                    }
                     ll cost = map[i][j];
                     if(cost == -1 || cost == 0) cost = INF;
                     else  cost = c[cost];
