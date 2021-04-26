@@ -12,44 +12,47 @@ using ll = long long int;
 
 int n;
 int d[101];
-bool has[200001];
-int idx[200001], idx2[200001];
+bool dp[200001];
+int idx[200001], idx2[200001], lea[200001];
 int sum;
-int lea[2001];
 
 void solve()
 {
     int s2 = sum / 2;
     int t = -1;
-    int minf = 987654321;
     sort(d, d + n);
-    for(int i = 0; i < n; ++i) {
-        for(int j = 200000; j >= 0; --j) {
-            if(has[j] == false) continue;
 
-            has[j + d[i]] = true;
-            if(j + d[i] == s2) {
-                minf = min(minf, idx[j]);
+    dp[0] = true;
+    for(int i = 0; i < n; ++i) {
+        for(int j = s2; j >= d[i]; --j) {
+            if(dp[j - d[i]] == true) {
+                dp[j] = true;
+                idx[j] = d[i];
+                idx2[j] = i;
             }
-            idx[j + d[i]] = idx[j];
-        }
-        if(has[d[i]] == false) {
-            has[d[i]] = true;
-            idx[d[i]] = d[i];
-            if(d[i] == s2) minf = min(minf, d[i]);
         }
     }
-    if(has[s2] == false) {
+    if(dp[s2] == false) {
         cout << "0";
         return;
     }
-    if(minf == s2) {
-        cout << "1\n";
-        cout << lea[d[0]];
-    } else {
-        cout << "1\n";
-        cout << lea[minf];
+
+    int mincnt = 9876542, minv = 0;
+    for(int i = 0; i < n; ++i) {
+        int dd = d[i];
+        int curcnt = 0;
+        while(dd % 2 == 0) {
+            curcnt++;
+            dd /= 2;
+        }
+        if(mincnt > curcnt) {
+            mincnt = curcnt;
+            minv = d[i];
+        }
     }
+
+    cout << "1\n";
+    cout << lea[minv];
 }
 
 int main(void)
