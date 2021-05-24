@@ -27,6 +27,7 @@ ll d[300001];
 vector<pair<int, int>> g[300001];
 int par[300001], sz[300001];
 priority_queue<Edge> pq;
+priority_queue<pair<ll, int>> pq2;
 vector<int> res;
 
 int find(int v)
@@ -46,27 +47,27 @@ bool uni(int a, int b)
     int ra = find(a);
     int rb = find(b);
     if(ra == rb) return false;
-    if(sz[ra] < sz[rb]) swap(ra, rb);
 
     par[rb] = ra;
+    return true;
+}
+
+bool uni2(int a, int b)
+{
+    int rb = find(b);
+    int ra = find(a);
+    if(ra == rb) return false;
+    if(g[ra].size() < g[rb].size()) swap(ra, rb);
+    par[rb] = ra;
     d[ra] += d[rb] - x;
-    sz[ra] += sz[rb];
-    for(auto nx : g[ra]) {
-        int nxt = nx.first;
-        int idx = nx.second;
-        if(par[nxt] != nxt || nxt == rb) continue;
-        pq.push({ ra, nxt, d[ra] + d[nxt], idx });
-    }
+    pq2.push({ d[ra], ra });
+
     for(auto nx : g[rb]) {
         int nxt = nx.first;
         int idx = nx.second;
-        if(par[nxt] != nxt || nxt == ra) continue;
         g[ra].push_back({ nxt, idx });
-        g[nxt].push_back({ ra, idx });
-        pq.push({ ra, nxt, d[ra] + d[nxt], idx });
     }
-    d[rb] = -99999999999999;
-    sz[rb] = 0;
+    g[rb].clear();
     return true;
 }
 
@@ -78,32 +79,54 @@ int main(void)
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
+    ll sum = 0;
     cin >> n >> m >> x;
     for(int i = 1; i <= n; ++i) {
         cin >> d[i];
+        sum += d[i];
         par[i] = i;
         sz[i] = 1;
+        pq2.push({ d[i], i });
     }
     for(int i = 0; i < m; ++i) {
         int u, v;
         cin >> u >> v;
-        g[u].push_back({ v, i });
-        g[v].push_back({ u, i });
-        pq.push({ u, v, d[u] + d[v], i });
+        if(uni(u, v) == true) {
+            g[u].push_back({ v, i });
+            g[v].push_back({ u, i });
+        }
     }
 
-    while(pq.size() > 0 && res.size() < n - 1) {
-        Edge cur = pq.top();
-        pq.pop();
-        if(par[cur.u] != cur.u || par[cur.v] != cur.v) continue;
-        if(cur.u == cur.v) continue;
-        if(cur.cost != d[cur.u] + d[cur.v]) continue;
-        if(cur.cost < x) {
-            res.clear();
+    for(int i = 1; i <= n; ++i) {
+        par[i] = i;
+    }
+
+    while(pq2.size() > 0 && res.size() < n - 1) {
+        int cur = pq2.top().second;
+        ll cost = pq2.top().first;
+        pq2.pop();
+        if(par[cur] != cur || d[cur] != cost) continue;
+
+        while(1) {
+            if(g[cur].size() == 0) {
+                break;
+            }
+            int nxt = g[cur].back().first;
+            int idx = g[cur].back().second;
+            nxt = find(nxt);
+            if(cur == nxt) {
+                g[cur].pop_back();
+                continue;
+            }
+            g[cur].pop_back();
+            res.push_back(idx);
+            uni2(cur, nxt);
             break;
         }
-        bool r = uni(cur.u, cur.v);
-        if(r == true) res.push_back(cur.idx);
+    }
+
+    if((ll)x * (ll)(n-1) > sum) {
+        res.clear();
     }
 
     if(res.size() != n - 1) {
