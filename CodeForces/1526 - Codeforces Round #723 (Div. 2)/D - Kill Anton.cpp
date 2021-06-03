@@ -12,6 +12,51 @@ using namespace std;
 
 using ll = long long int;
 
+template <int N>
+class SegTree
+{
+public:
+    int t[N * 3];
+    int stLeaf, n;
+
+    void init(int n)
+    {
+        stLeaf = 1;
+        while(stLeaf < n) stLeaf *= 2;
+    }
+    void clear()
+    {
+        for(int i = 1; i <= stLeaf * 2; ++i) {
+            t[i] = 0;
+        }
+    }
+
+    int findImpl(int cl, int cr, int l, int r, int node)
+    {
+        if(l <= cl && cr <= r) return t[node];
+        else if(cr < l || r < cl) return 0;
+        int m = (cl + cr) / 2;
+        return findImpl(cl, m, l, r, node * 2) + findImpl(m + 1, cr, l, r, node * 2 + 1);
+    }
+
+    int find(int l, int r)
+    {
+        return findImpl(0, stLeaf - 1, l, r, 1);
+    }
+
+    void add(int idx)
+    {
+        int node = stLeaf + idx;
+        t[node]++;
+        node /= 2;
+        while(node > 0) {
+            t[node] = t[node * 2] + t[node * 2 + 1];
+            node /= 2;
+        }
+    }
+};
+
+SegTree<100001> sg;
 int tNum;
 string str;
 int nums[4];
@@ -42,37 +87,23 @@ int getchidx(char ch)
 
 ll getnum(string& ss)
 {
-    string ss2 = ss;
-    ll ret = 0;
-    for(int i = 0; i < ss.size(); ++i) {
-        int idx = i;
-        for(int j = i; j < ss.size(); ++j) {
-            if(str[i] == ss[j]) {
-                idx = j;
-                break;
-            }
-        }
-        for(int j = idx - 1; j >= i; --j) {
-            ret++;
-            swap(ss[j], ss[j + 1]);
-        }
+    vector<int> idxs[4];
+    for(int i = str.size() - 1; i >= 0; --i) {
+        int chidx = getchidx(str[i]);
+        idxs[chidx].push_back(i);
     }
-    ll ret2 = 0;
-    for(int i = ss2.size() - 1; i >= 0; --i) {
-        int idx = i;
-        for(int j = i; j >= 0; --j) {
-            if(str[i] == ss2[j]) {
-                idx = j;
-                break;
-            }
-        }
-        for(int j = idx + 1; j <= i; ++j) {
-            ret2++;
-            swap(ss2[j - 1], ss2[j]);
-        }
+    sg.clear();
+
+    ll ret = 0;
+    int n = ss.size();
+    for(int i = 0; i < ss.size(); ++i) {
+        int chidx = getchidx(ss[i]);
+        ret += sg.find(idxs[chidx].back(), n);
+        sg.add(idxs[chidx].back());
+        idxs[chidx].pop_back();
     }
 
-    return min(ret, ret2);
+    return ret;
 }
 
 int main(void)
@@ -89,6 +120,7 @@ int main(void)
         for(int i = 0; i < 4; ++i) {
             nums[i] = 0;
         }
+        sg.init(str.size());
         for(int i = 0; i < str.size(); ++i) {
             if(str[i] == 'A') nums[0]++;
             else if(str[i] == 'N') nums[1]++;
@@ -100,7 +132,7 @@ int main(void)
             per[i] = i;
         }
         string cur;
-        res = 0;
+        res = -1;
         for(int i = 0; i < 24; ++i) {
             cur.clear();
             for(int j = 0; j < 4; ++j) {
