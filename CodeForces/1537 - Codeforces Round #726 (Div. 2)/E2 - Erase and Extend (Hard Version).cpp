@@ -10,7 +10,7 @@
 using namespace std;
 
 using ll = long long int;
-constexpr int MAXN = 500001;
+constexpr int MAXN = 1001001;
 
 struct SANode
 {
@@ -91,6 +91,8 @@ void get_sa()
     }
 }
 
+string strt;
+
 int main(void)
 {
 #ifdef CUBE_PS
@@ -99,7 +101,11 @@ int main(void)
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    cin >> n >> m >> str;
+    cin >> n >> m >> strt;
+    while(str.size() < m) {
+        str.append(strt);
+    }
+    n = str.size();
     get_sa();
 
     int st = 0;
