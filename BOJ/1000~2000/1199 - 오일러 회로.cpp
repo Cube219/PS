@@ -1,4 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS 1
+#define _CRT_DECLARE_NONSTDC_NAMES 0 // for using y1 as variable name
 
 #include <iostream>
 #include <cstdio>
@@ -9,67 +10,83 @@ using namespace std;
 
 using ll = long long int;
 
-int n;
-vector<int> g[1001];
-int d[1001][1001];
-int dNum[1001];
-ll eNum;
-bool visit[1001];
+struct Edge
+{
+    int nxt, revidx;
+    int use;
+};
 
-vector<int> res;
+int n;
+vector<Edge> g[1001];
+vector<int> path;
+bool comp[1001];
+int cidx[1001];
+
+void addEdge(int u, int v, int cost)
+{
+    Edge e1 = { v, -1, cost };
+    Edge e2 = { u, -1, cost };
+    e1.revidx = g[v].size();
+    e2.revidx = g[u].size();
+    g[u].push_back(e1);
+    g[v].push_back(e2);
+}
 
 void dfs(int cur)
 {
-    visit[cur] = true;
-    for(int nxt : g[cur]) {
-        if(d[cur][nxt] >= 1 && dNum[nxt] > 0) {
-            d[cur][nxt]--;
-            d[nxt][cur]--;
-            dNum[nxt]--;
-            dNum[cur]--;
-            dfs(nxt);
+    comp[cur] = true;
+    int& i = cidx[cur];
+    for(; i < g[cur].size();) {
+        Edge& e = g[cur][i];
+        if(e.use == 0) {
+            i++;
+            continue;
         }
+
+        e.use--;
+        g[e.nxt][e.revidx].use--;
+        dfs(e.nxt);
     }
-    res.push_back(cur);
+    path.push_back(cur);
 }
 
 int main(void)
 {
-    // freopen("input.txt", "r", stdin);
+#ifdef CUBE_PS
+    freopen("input.txt", "r", stdin);
+#endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
     cin >> n;
-    for(int i = 1; i <= n; ++i) {
-        for(int j = 1; j <= n; ++j) {
-            int a;
-            cin >> a;
-            d[i][j] = a;
-            if(i > j && a >= 1) {
-                g[i].push_back(j);
-                g[j].push_back(i);
-                eNum += a;
-                dNum[i] += a;
-                dNum[j] += a;
-            }
+    for(int i = 0; i < n; ++i) {
+        for(int j = 0; j < n; ++j) {
+            int v;
+            cin >> v;
+            if(i >= j) continue;
+            if(v > 0) addEdge(i, j, v);
         }
     }
 
-    for(int i = 1; i <= n; ++i) {
-        if(visit[i] == false) {
-            res.clear();
+    for(int i = 0; i < n; ++i) {
+        int sum = 0;
+        for(auto& e : g[i]) {
+            sum += e.use;
+        }
+        if((sum & 1) == 1) {
+            cout << "-1";
+            return 0;
+        }
+    }
 
+    for(int i = 0; i < n; ++i) {
+        if(comp[i] == false) {
             dfs(i);
-            if(res.size() > 1) break;
         }
     }
 
-    if(res.size() == eNum + 1 && res.front() == res.back()) {
-        for(int i = 0; i < res.size(); ++i) {
-            cout << res[i] << " ";
-        }
-    } else {
-        cout << "-1";
+    for(int i = 0; i < path.size(); ++i) {
+        cout << path[i] + 1 << " ";
     }
 
     return 0;
