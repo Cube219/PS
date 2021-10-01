@@ -85,11 +85,10 @@ int tNum;
 bool isinter(vector<Node>& tri, Node p1, Node p2)
 {
     if((p1.z < 0 && p2.z < 0) || (p1.z > 0 && p2.z > 0)) return false;
-    if(abs(p1.z) < leps || abs(p2.z) < leps) return false;
     if(p1.z > 0) swap(p1, p2);
 
     double c = p2.z / (p2.z - p1.z);
-    if((p2.z - p1.z) < leps) return false;
+    if(abs(p2.z - p1.z) < leps) return false;
     Node n = p1 - p2;
     p2.x += n.x * c;
     p2.y += n.y * c;
@@ -185,7 +184,7 @@ int main(void)
         bool res = false;
         if(r1 == 1 || r2 == 1) res = true;
         else if(r1 == 2 && r2 == 2) res = true;
-        //cout << r1 << " " << r2 << "\n";
+        // cout << r1 << " " << r2 << "\n";
         if(res == true) cout << "YES\n";
         else cout << "NO\n";
     }
