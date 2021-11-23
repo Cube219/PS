@@ -76,31 +76,16 @@ int main(void)
         return (double)res / num;
     };
 
-    auto tsearch = [&]() {
-        ll l = 1, r = d2.size();
-        while(l + 2 < r) {
-            ll p = (l * 2 + r) / 3;
-            ll q = (l + r * 2) / 3;
-
-            double pv = ck(p);
-            double qv = ck(q);
-            if(pv >= qv) r = q;
-            else l = p;
+    double mx = 0.0;
+    int res = 0;
+    for(int i = 1; i <= min(20, (int)mm.size()); ++i) {
+        double tmp = ck(i);
+        if(mx < tmp) {
+            mx = tmp;
+            res = i;
         }
+    }
 
-        double res = ck(l);
-        ll rr = l;
-        for(ll i = l + 1; i <= r; ++i) {
-            double tmp = ck(i);
-            if(res < tmp) {
-                res = tmp;
-                rr = i;
-            }
-        }
-        return rr;
-    };
-
-    int res = tsearch();
     for(auto& v : d2) {
         v.tmp = 0;
         for(int k : v.k) {
