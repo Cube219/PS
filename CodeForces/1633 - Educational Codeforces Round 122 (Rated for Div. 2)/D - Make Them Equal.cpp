@@ -31,6 +31,7 @@ void solve()
         cnt[i] = dp2[b[i]];
     }
 
+    k = min(k, n * 20);
     vector<ll> dp(k + 1, -1);
     dp[0] = 0;
     ll res = 0;
