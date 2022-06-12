@@ -1,4 +1,48 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Shortcut/@EntryValue">psbicoeff</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Description/@EntryValue">Binomial Coefficient</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Text/@EntryValue">template &lt;int mod&gt;&#xD;
+struct BiCoeff&#xD;
+{&#xD;
+    vector&lt;ll&gt; fact, invfact;&#xD;
+&#xD;
+    ll pw(ll a, ll b)&#xD;
+    {&#xD;
+        ll res = 1;&#xD;
+        while(b &gt; 0) {&#xD;
+            if(b &amp; 1) {&#xD;
+                res = res * a % mod;&#xD;
+            }&#xD;
+            a = a * a % mod;&#xD;
+            b &gt;&gt;= 1;&#xD;
+        }&#xD;
+        return res;&#xD;
+    }&#xD;
+&#xD;
+    void init(int n)&#xD;
+    {&#xD;
+        fact.resize(n + 1);&#xD;
+        invfact.resize(n + 1);&#xD;
+&#xD;
+        fact[0] = 1;&#xD;
+        for(int i = 1; i &lt;= n; ++i) fact[i] = fact[i - 1] * i % mod;&#xD;
+        invfact[n] = pw(fact[n], mod - 2);&#xD;
+        for(int i = n - 1; i &gt;= 0; --i) invfact[i] = invfact[i + 1] * (i + 1) % mod;&#xD;
+    }&#xD;
+&#xD;
+    ll get(int n, int r)&#xD;
+    {&#xD;
+        return fact[n] * (invfact[r] * invfact[n - r] % mod) % mod;&#xD;
+        // return fact[n] * pw(fact[r] * fact[n - r] % mod, mod - 2) % mod;&#xD;
+    }&#xD;
+};&#xD;
+</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/Shortcut/@EntryValue">fori1</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/Description/@EntryValue">for loop pattern with integer index start 1</s:String>
@@ -400,50 +444,6 @@ struct BerlekampMassey&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3FA81499FB103459A143F93EAFDC9AC/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3FA81499FB103459A143F93EAFDC9AC/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3FA81499FB103459A143F93EAFDC9AC/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Shortcut/@EntryValue">psbicoeff</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Description/@EntryValue">Binomial Coefficient</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Text/@EntryValue">template &lt;int mod&gt;&#xD;
-struct BiCoeff&#xD;
-{&#xD;
-    vector&lt;ll&gt; fact, invfact;&#xD;
-&#xD;
-    ll pw(ll a, ll b)&#xD;
-    {&#xD;
-        ll res = 1;&#xD;
-        while(b &gt; 0) {&#xD;
-            if(b &amp; 1) {&#xD;
-                res = res * a % mod;&#xD;
-            }&#xD;
-            a = a * a % mod;&#xD;
-            b &gt;&gt;= 1;&#xD;
-        }&#xD;
-        return res;&#xD;
-    }&#xD;
-&#xD;
-    void init(int n)&#xD;
-    {&#xD;
-        fact.resize(n + 1);&#xD;
-        invfact.resize(n + 1);&#xD;
-&#xD;
-        fact[0] = 1;&#xD;
-        for(int i = 1; i &lt;= n; ++i) fact[i] = fact[i - 1] * i % mod;&#xD;
-        invfact[n] = pw(fact[n], mod - 2);&#xD;
-        for(int i = n - 1; i &gt;= 0; --i) invfact[i] = invfact[i + 1] * (i + 1) % mod;&#xD;
-    }&#xD;
-&#xD;
-    ll get(int n, int r)&#xD;
-    {&#xD;
-        return fact[n] * (invfact[r] * invfact[n - r] % mod) % mod;&#xD;
-        // return fact[n] * pw(fact[r] * fact[n - r] % mod, mod - 2) % mod;&#xD;
-    }&#xD;
-};&#xD;
-</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/Shortcut/@EntryValue">psbicoeff_lucas</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/Description/@EntryValue">Binomial Coefficient - Lucas</s:String>
@@ -3046,6 +3046,75 @@ for(int i = 0; i &lt; n; ++i) {&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CA54F7FA4771A846B9A7470EA3085D55/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CA54F7FA4771A846B9A7470EA3085D55/Shortcut/@EntryValue">psseglist</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CA54F7FA4771A846B9A7470EA3085D55/Description/@EntryValue">Segment List</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CA54F7FA4771A846B9A7470EA3085D55/Text/@EntryValue">struct SegmentList&#xD;
+{&#xD;
+    struct Segment&#xD;
+    {&#xD;
+        ll l, r;&#xD;
+        ll v; // Data&#xD;
+    };&#xD;
+&#xD;
+    map&lt;ll, Segment&gt; list;&#xD;
+&#xD;
+    SegmentList(ll st, ll ed)&#xD;
+    {&#xD;
+        list.insert({ st, {st, ed, 0} });&#xD;
+    }&#xD;
+&#xD;
+    ll query(ll l, ll r, ll v)&#xD;
+    {&#xD;
+        auto stIt = prev(list.upper_bound(l));&#xD;
+        if(stIt-&gt;second.l &lt; l) {&#xD;
+            Segment seg = stIt-&gt;second;&#xD;
+            list.erase(stIt);&#xD;
+&#xD;
+            Segment lSeg = seg;&#xD;
+            lSeg.r = l - 1;&#xD;
+            list.insert({ lSeg.l, lSeg });&#xD;
+            Segment rSeg = seg;&#xD;
+            rSeg.l = l;&#xD;
+            list.insert({ rSeg.l, rSeg }).first;&#xD;
+        }&#xD;
+        auto edIt = prev(list.upper_bound(r));&#xD;
+        if(r &lt; edIt-&gt;second.r) {&#xD;
+            Segment seg = edIt-&gt;second;&#xD;
+            list.erase(edIt);&#xD;
+&#xD;
+            Segment lSeg = seg;&#xD;
+            lSeg.r = r;&#xD;
+            list.insert({ lSeg.l, lSeg }).first;&#xD;
+            Segment rSeg = seg;&#xD;
+            rSeg.l = r + 1;&#xD;
+            list.insert({ rSeg.l, rSeg });&#xD;
+        }&#xD;
+        stIt = list.lower_bound(l);&#xD;
+        edIt = list.upper_bound(r);&#xD;
+&#xD;
+        ll res = 0;&#xD;
+        for(auto it = stIt; it != edIt;) {&#xD;
+            Segment seg = it-&gt;second;&#xD;
+            // Do something&#xD;
+&#xD;
+            it = list.erase(it);&#xD;
+        }&#xD;
+&#xD;
+        Segment seg;&#xD;
+        seg.l = l; seg.r = r;&#xD;
+        // seg.v = v; // Insert new value&#xD;
+        list.insert({ seg.l, seg });&#xD;
+&#xD;
+        return res;&#xD;
+    }&#xD;
+};&#xD;
+</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CA54F7FA4771A846B9A7470EA3085D55/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CA54F7FA4771A846B9A7470EA3085D55/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CA54F7FA4771A846B9A7470EA3085D55/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CA54F7FA4771A846B9A7470EA3085D55/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CA54F7FA4771A846B9A7470EA3085D55/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8B274826E3468847800F795624F1BF92/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8B274826E3468847800F795624F1BF92/Shortcut/@EntryValue">pssegtree</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8B274826E3468847800F795624F1BF92/Description/@EntryValue">Segment Tree</s:String>
