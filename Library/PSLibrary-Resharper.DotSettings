@@ -1,48 +1,29 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Shortcut/@EntryValue">psbicoeff</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Description/@EntryValue">Binomial Coefficient</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Text/@EntryValue">template &lt;int mod&gt;&#xD;
-struct BiCoeff&#xD;
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Shortcut/@EntryValue">psgeo_lineinter</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Description/@EntryValue">Line Interaction</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Text/@EntryValue">// num=0: no inter / num=1: has inter / num=2: inf inter&#xD;
+template &lt;typename P&gt;&#xD;
+P getLineInter(P a1, P a2, P b1, P b2, int&amp; num)&#xD;
 {&#xD;
-    vector&lt;ll&gt; fact, invfact;&#xD;
-&#xD;
-    ll pw(ll a, ll b)&#xD;
-    {&#xD;
-        ll res = 1;&#xD;
-        while(b &gt; 0) {&#xD;
-            if(b &amp; 1) {&#xD;
-                res = res * a % mod;&#xD;
-            }&#xD;
-            a = a * a % mod;&#xD;
-            b &gt;&gt;= 1;&#xD;
-        }&#xD;
-        return res;&#xD;
+    P a = a2 - a1, b = b2 - b1;&#xD;
+    auto d = a.cross(b);&#xD;
+    if(d == 0) {&#xD;
+        if(a.cross(b1 - a1) == 0) num = 2;&#xD;
+        else num = 0;&#xD;
+        return { 0, 0 };&#xD;
     }&#xD;
-&#xD;
-    void init(int n)&#xD;
-    {&#xD;
-        fact.resize(n + 1);&#xD;
-        invfact.resize(n + 1);&#xD;
-&#xD;
-        fact[0] = 1;&#xD;
-        for(int i = 1; i &lt;= n; ++i) fact[i] = fact[i - 1] * i % mod;&#xD;
-        invfact[n] = pw(fact[n], mod - 2);&#xD;
-        for(int i = n - 1; i &gt;= 0; --i) invfact[i] = invfact[i + 1] * (i + 1) % mod;&#xD;
-    }&#xD;
-&#xD;
-    ll get(int n, int r)&#xD;
-    {&#xD;
-        return fact[n] * (invfact[r] * invfact[n - r] % mod) % mod;&#xD;
-        // return fact[n] * pw(fact[r] * fact[n - r] % mod, mod - 2) % mod;&#xD;
-    }&#xD;
-};&#xD;
+    auto p = (a2 - b1).cross(b);&#xD;
+    auto q = b.cross(a1 - b1);&#xD;
+    num = 1;&#xD;
+    return (a1 * p + a2 * q) / d;&#xD;
+}&#xD;
 </s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/Shortcut/@EntryValue">fori1</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/Description/@EntryValue">for loop pattern with integer index start 1</s:String>
@@ -444,6 +425,50 @@ struct BerlekampMassey&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3FA81499FB103459A143F93EAFDC9AC/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3FA81499FB103459A143F93EAFDC9AC/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3FA81499FB103459A143F93EAFDC9AC/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Shortcut/@EntryValue">psbicoeff</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Description/@EntryValue">Binomial Coefficient</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Text/@EntryValue">template &lt;int mod&gt;&#xD;
+struct BiCoeff&#xD;
+{&#xD;
+    vector&lt;ll&gt; fact, invfact;&#xD;
+&#xD;
+    ll pw(ll a, ll b)&#xD;
+    {&#xD;
+        ll res = 1;&#xD;
+        while(b &gt; 0) {&#xD;
+            if(b &amp; 1) {&#xD;
+                res = res * a % mod;&#xD;
+            }&#xD;
+            a = a * a % mod;&#xD;
+            b &gt;&gt;= 1;&#xD;
+        }&#xD;
+        return res;&#xD;
+    }&#xD;
+&#xD;
+    void init(int n)&#xD;
+    {&#xD;
+        fact.resize(n + 1);&#xD;
+        invfact.resize(n + 1);&#xD;
+&#xD;
+        fact[0] = 1;&#xD;
+        for(int i = 1; i &lt;= n; ++i) fact[i] = fact[i - 1] * i % mod;&#xD;
+        invfact[n] = pw(fact[n], mod - 2);&#xD;
+        for(int i = n - 1; i &gt;= 0; --i) invfact[i] = invfact[i + 1] * (i + 1) % mod;&#xD;
+    }&#xD;
+&#xD;
+    ll get(int n, int r)&#xD;
+    {&#xD;
+        return fact[n] * (invfact[r] * invfact[n - r] % mod) % mod;&#xD;
+        // return fact[n] * pw(fact[r] * fact[n - r] % mod, mod - 2) % mod;&#xD;
+    }&#xD;
+};&#xD;
+</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/Shortcut/@EntryValue">psbicoeff_lucas</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/Description/@EntryValue">Binomial Coefficient - Lucas</s:String>
@@ -1750,31 +1775,6 @@ double getLineDis(P a1, P a2, P p)&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2C20FEC0AFD8F9479031C8C5AC98E417/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2C20FEC0AFD8F9479031C8C5AC98E417/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2C20FEC0AFD8F9479031C8C5AC98E417/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Shortcut/@EntryValue">psgeo_lineinter</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Description/@EntryValue">Line Interaction</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Text/@EntryValue">// num=0: no inter / num=1: has inter / num=2: inf inter&#xD;
-template &lt;typename P&gt;&#xD;
-P getLineInter(P a1, P a2, P b1, P b2, int&amp; num)&#xD;
-{&#xD;
-    P a = a2 - a1, b = b2 - b1;&#xD;
-    auto d = a.cross(b);&#xD;
-    if(d == 0) {&#xD;
-        if(a.cross(b1 - a1) == 0) num = 2;&#xD;
-        else num = 0;&#xD;
-        return { 0, 0 };&#xD;
-    }&#xD;
-    auto p = (a2 - b1).cross(b);&#xD;
-    auto q = b.cross(a1 - b1);&#xD;
-    num = 1;&#xD;
-    return (a1 * p + a2 * q) / d;&#xD;
-}&#xD;
-</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E4D9B44B9B02114AA5E103EC6DDCE4D4/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E4D9B44B9B02114AA5E103EC6DDCE4D4/Shortcut/@EntryValue">pshashstr</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E4D9B44B9B02114AA5E103EC6DDCE4D4/Description/@EntryValue">Hash String</s:String>
@@ -3325,6 +3325,84 @@ struct SuffixArray&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FBD18074F053C4AA7F447004D61ADC3/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FBD18074F053C4AA7F447004D61ADC3/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FBD18074F053C4AA7F447004D61ADC3/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=524CB0AEC16B0B40BDB0A4A3E50F5088/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=524CB0AEC16B0B40BDB0A4A3E50F5088/Shortcut/@EntryValue">pstreap</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=524CB0AEC16B0B40BDB0A4A3E50F5088/Description/@EntryValue">Treap</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=524CB0AEC16B0B40BDB0A4A3E50F5088/Text/@EntryValue">struct Treap&#xD;
+{&#xD;
+    Treap* l, * r;&#xD;
+    int pri, sz;&#xD;
+    int v;&#xD;
+&#xD;
+    Treap() = default;&#xD;
+    Treap(int _v)&#xD;
+    {&#xD;
+        l = r = nullptr;&#xD;
+        pri = getRandom();&#xD;
+        v = _v;&#xD;
+        sz = 1;&#xD;
+    }&#xD;
+    ~Treap()&#xD;
+    {&#xD;
+        delete l; delete r;&#xD;
+    }&#xD;
+&#xD;
+    void update()&#xD;
+    {&#xD;
+        sz = 1;&#xD;
+        if(l) sz += l-&gt;sz;&#xD;
+        if(r) sz += r-&gt;sz;&#xD;
+        push();&#xD;
+    }&#xD;
+&#xD;
+    void push()&#xD;
+    {&#xD;
+    }&#xD;
+};&#xD;
+&#xD;
+// sz == left treap size&#xD;
+pair&lt;Treap*, Treap*&gt; split(Treap* rt, int sz)&#xD;
+{&#xD;
+    if(!rt) return { 0, 0 };&#xD;
+&#xD;
+    rt-&gt;push();&#xD;
+&#xD;
+    int lsz = rt-&gt;l ? rt-&gt;l-&gt;sz : 0;&#xD;
+    if(lsz + 1 &lt;= sz) {&#xD;
+        auto [l, r] = split(rt-&gt;r, sz - lsz - 1);&#xD;
+        rt-&gt;r = l;&#xD;
+        rt-&gt;update();&#xD;
+        return { rt, r };&#xD;
+    } else {&#xD;
+        auto [l, r] = split(rt-&gt;l, sz);&#xD;
+        rt-&gt;l = r;&#xD;
+        rt-&gt;update();&#xD;
+        return { l, rt };&#xD;
+    }&#xD;
+}&#xD;
+&#xD;
+Treap* merge(Treap* l, Treap* r)&#xD;
+{&#xD;
+    if(!l) return r; if(!r) return l;&#xD;
+&#xD;
+    l-&gt;push(); r-&gt;push();&#xD;
+&#xD;
+    if(l-&gt;pri &lt; r-&gt;pri) {&#xD;
+        r-&gt;l = merge(l, r-&gt;l);&#xD;
+        r-&gt;update();&#xD;
+        return r;&#xD;
+    } else {&#xD;
+        l-&gt;r = merge(l-&gt;r, r);&#xD;
+        l-&gt;update();&#xD;
+        return l;&#xD;
+    }&#xD;
+}&#xD;
+</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=524CB0AEC16B0B40BDB0A4A3E50F5088/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=524CB0AEC16B0B40BDB0A4A3E50F5088/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=524CB0AEC16B0B40BDB0A4A3E50F5088/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=524CB0AEC16B0B40BDB0A4A3E50F5088/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=524CB0AEC16B0B40BDB0A4A3E50F5088/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FC6CAE90F8FEC46ACCCEDD9538518CF/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FC6CAE90F8FEC46ACCCEDD9538518CF/Shortcut/@EntryValue">pstsearch</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FC6CAE90F8FEC46ACCCEDD9538518CF/Description/@EntryValue">Ternary Search</s:String>
