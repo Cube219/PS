@@ -1,29 +1,53 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Shortcut/@EntryValue">psgeo_lineinter</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Description/@EntryValue">Line Interaction</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Text/@EntryValue">// num=0: no inter / num=1: has inter / num=2: inf inter&#xD;
-template &lt;typename P&gt;&#xD;
-P getLineInter(P a1, P a2, P b1, P b2, int&amp; num)&#xD;
-{&#xD;
-    P a = a2 - a1, b = b2 - b1;&#xD;
-    auto d = a.cross(b);&#xD;
-    if(d == 0) {&#xD;
-        if(a.cross(b1 - a1) == 0) num = 2;&#xD;
-        else num = 0;&#xD;
-        return { 0, 0 };&#xD;
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Shortcut/@EntryValue">psbcc_blockcuttree</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Description/@EntryValue">BCC - BlockCutTree</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Text/@EntryValue">vector&lt;int&gt; idx(n);&#xD;
+vector&lt;vector&lt;int&gt;&gt; g2;&#xD;
+for(int i = 0; i &lt; n; ++i) {&#xD;
+    if(isCut[i]) {&#xD;
+        g2.emplace_back();&#xD;
+        idx[i] = g2.size() - 1;&#xD;
     }&#xD;
-    auto p = (a2 - b1).cross(b);&#xD;
-    auto q = b.cross(a1 - b1);&#xD;
-    num = 1;&#xD;
-    return (a1 * p + a2 * q) / d;&#xD;
+}&#xD;
+unordered_map&lt;ll, int&gt; bridges;&#xD;
+vector&lt;char&gt; isUse(n, 0);&#xD;
+for(auto&amp; b : bcc) {&#xD;
+    g2.emplace_back();&#xD;
+    int cur = g2.size() - 1;&#xD;
+    for(auto&amp; p : b) {&#xD;
+        if(!isUse[p.first]) {&#xD;
+            if(isCut[p.first]) {&#xD;
+                g2[cur].emplace_back(idx[p.first]);&#xD;
+                g2[idx[p.first]].emplace_back(cur);&#xD;
+            } else idx[p.first] = cur;&#xD;
+            isUse[p.first] = true;&#xD;
+        }&#xD;
+        if(!isUse[p.second]) {&#xD;
+            if(isCut[p.second]) {&#xD;
+                g2[cur].emplace_back(idx[p.second]);&#xD;
+                g2[idx[p.second]].emplace_back(cur);&#xD;
+            } else idx[p.second] = cur;&#xD;
+            isUse[p.second] = true;&#xD;
+        }&#xD;
+    }&#xD;
+    if(b.size() == 1) {&#xD;
+        ll u = b[0].first;&#xD;
+        ll v = b[0].second;&#xD;
+        if(u &gt; v) swap(u, v);&#xD;
+        bridges.insert({ u &lt;&lt; 32 | v, cur });&#xD;
+    }&#xD;
+    for(auto&amp; p : b) {&#xD;
+        isUse[p.first] = false;&#xD;
+        isUse[p.second] = false;&#xD;
+    }&#xD;
 }&#xD;
 </s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/Shortcut/@EntryValue">fori1</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/Description/@EntryValue">for loop pattern with integer index start 1</s:String>
@@ -284,55 +308,6 @@ for(int i = 0; i &lt; n; ++i) {&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Shortcut/@EntryValue">psbcc_blockcuttree</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Description/@EntryValue">BCC - BlockCutTree</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Text/@EntryValue">vector&lt;int&gt; idx(n);&#xD;
-vector&lt;vector&lt;int&gt;&gt; g2;&#xD;
-for(int i = 0; i &lt; n; ++i) {&#xD;
-    if(isCut[i]) {&#xD;
-        g2.emplace_back();&#xD;
-        idx[i] = g2.size() - 1;&#xD;
-    }&#xD;
-}&#xD;
-unordered_map&lt;ll, int&gt; bridges;&#xD;
-vector&lt;char&gt; isUse(n, 0);&#xD;
-for(auto&amp; b : bcc) {&#xD;
-    g2.emplace_back();&#xD;
-    int cur = g2.size() - 1;&#xD;
-    for(auto&amp; p : b) {&#xD;
-        if(!isUse[p.first]) {&#xD;
-            if(isCut[p.first]) {&#xD;
-                g2[cur].emplace_back(idx[p.first]);&#xD;
-                g2[idx[p.first]].emplace_back(cur);&#xD;
-            } else idx[p.first] = cur;&#xD;
-            isUse[p.first] = true;&#xD;
-        }&#xD;
-        if(!isUse[p.second]) {&#xD;
-            if(isCut[p.second]) {&#xD;
-                g2[cur].emplace_back(idx[p.second]);&#xD;
-                g2[idx[p.second]].emplace_back(cur);&#xD;
-            } else idx[p.second] = cur;&#xD;
-            isUse[p.second] = true;&#xD;
-        }&#xD;
-    }&#xD;
-    if(b.size() == 1) {&#xD;
-        ll u = b[0].first;&#xD;
-        ll v = b[0].second;&#xD;
-        if(u &gt; v) swap(u, v);&#xD;
-        bridges.insert({ u &lt;&lt; 32 | v, cur });&#xD;
-    }&#xD;
-    for(auto&amp; p : b) {&#xD;
-        isUse[p.first] = false;&#xD;
-        isUse[p.second] = false;&#xD;
-    }&#xD;
-}&#xD;
-</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5D641775FE88B84D9003F79A7AB3D63D/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5D641775FE88B84D9003F79A7AB3D63D/Shortcut/@EntryValue">psbcc_bridgetree</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5D641775FE88B84D9003F79A7AB3D63D/Description/@EntryValue">BCC - Bridge Tree</s:String>
@@ -624,30 +599,44 @@ struct BiCoeff_PrimePower&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAE9C6DCAB176942975887BA1002272B/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAE9C6DCAB176942975887BA1002272B/Shortcut/@EntryValue">psbipartite</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAE9C6DCAB176942975887BA1002272B/Description/@EntryValue">Bipartite Matching</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAE9C6DCAB176942975887BA1002272B/Text/@EntryValue">vector&lt;int&gt; a(n, -1), b(m, -1);&#xD;
-for(int i = 0; i &lt; n; ++i) {&#xD;
-    if(a[i] != -1) continue;&#xD;
-    vector&lt;char&gt; isComp(n, false);&#xD;
-&#xD;
-    auto dfs = [&amp;](auto&amp;&amp; self, int cur) -&gt; bool {&#xD;
-        isComp[cur] = true;&#xD;
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAE9C6DCAB176942975887BA1002272B/Text/@EntryValue">vector&lt;int&gt; a(n, -1), b(m, -1), level(n);&#xD;
+auto initLevel = [&amp;]() {&#xD;
+    queue&lt;int&gt; q;&#xD;
+    for(int i = 0; i &lt; n; ++i) {&#xD;
+        if(a[i] == -1) {&#xD;
+            q.push(i);&#xD;
+            level[i] = 0;&#xD;
+        } else level[i] = -1;&#xD;
+    }&#xD;
+    while(!q.empty()) {&#xD;
+        int cur = q.front(); q.pop();&#xD;
         for(int nxt : g[cur]) {&#xD;
-            if(b[nxt] == -1) {&#xD;
-                a[cur] = nxt;&#xD;
-                b[nxt] = cur;&#xD;
-                return true;&#xD;
-            } else if(isComp[b[nxt]] == false) {&#xD;
-                bool f = self(self, b[nxt]);&#xD;
-                if(f == true) {&#xD;
-                    a[cur] = nxt;&#xD;
-                    b[nxt] = cur;&#xD;
-                    return true;&#xD;
-                }&#xD;
+            if(b[nxt] != -1 &amp;&amp; level[b[nxt]] == -1) {&#xD;
+                level[b[nxt]] = level[cur] + 1;&#xD;
+                q.push(b[nxt]);&#xD;
             }&#xD;
         }&#xD;
-        return false;&#xD;
-    };&#xD;
-    dfs(dfs, i);&#xD;
+    }&#xD;
+};&#xD;
+auto dfs = [&amp;](auto&amp;&amp; self, int cur) -&gt; bool {&#xD;
+    for(int nxt : g[cur]) {&#xD;
+        if(b[nxt] == -1 || (level[b[nxt]] == level[cur] + 1 &amp;&amp; self(self, b[nxt]))) {&#xD;
+            a[cur] = nxt;&#xD;
+            b[nxt] = cur;&#xD;
+            return true;&#xD;
+        }&#xD;
+    }&#xD;
+    return false;&#xD;
+};&#xD;
+int flow = 0;&#xD;
+while(1) {&#xD;
+    initLevel();&#xD;
+    int f = 0;&#xD;
+    for(int i = 0; i &lt; n; ++i) {&#xD;
+        if(a[i] == -1 &amp;&amp; dfs(dfs, i)) f++;&#xD;
+    }&#xD;
+    if(f == 0) break;&#xD;
+    flow += f;&#xD;
 }&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAE9C6DCAB176942975887BA1002272B/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
@@ -1775,6 +1764,31 @@ double getLineDis(P a1, P a2, P p)&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2C20FEC0AFD8F9479031C8C5AC98E417/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2C20FEC0AFD8F9479031C8C5AC98E417/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2C20FEC0AFD8F9479031C8C5AC98E417/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Shortcut/@EntryValue">psgeo_lineinter</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Description/@EntryValue">Line Interaction</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Text/@EntryValue">// num=0: no inter / num=1: has inter / num=2: inf inter&#xD;
+template &lt;typename P&gt;&#xD;
+P getLineInter(P a1, P a2, P b1, P b2, int&amp; num)&#xD;
+{&#xD;
+    P a = a2 - a1, b = b2 - b1;&#xD;
+    auto d = a.cross(b);&#xD;
+    if(d == 0) {&#xD;
+        if(a.cross(b1 - a1) == 0) num = 2;&#xD;
+        else num = 0;&#xD;
+        return { 0, 0 };&#xD;
+    }&#xD;
+    auto p = (a2 - b1).cross(b);&#xD;
+    auto q = b.cross(a1 - b1);&#xD;
+    num = 1;&#xD;
+    return (a1 * p + a2 * q) / d;&#xD;
+}&#xD;
+</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E4D9B44B9B02114AA5E103EC6DDCE4D4/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E4D9B44B9B02114AA5E103EC6DDCE4D4/Shortcut/@EntryValue">pshashstr</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E4D9B44B9B02114AA5E103EC6DDCE4D4/Description/@EntryValue">Hash String</s:String>
