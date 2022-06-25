@@ -36,7 +36,7 @@ struct HashStr
             res -= hv[l - 1] * hpow[r - l + 1];
             res = ((res % m1) + m1) % m1;
         }
-        ll res2 = hv[r];
+        ll res2 = hv2[r];
         if(l > 0) {
             res2 -= hv2[l - 1] * hpow2[r - l + 1];
             res2 = ((res2 % m2) + m2) % m2;
