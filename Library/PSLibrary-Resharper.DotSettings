@@ -1,56 +1,16 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Shortcut/@EntryValue">psbcc</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Description/@EntryValue">BCC</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Text/@EntryValue">vector&lt;vector&lt;pair&lt;int, int&gt;&gt;&gt; bcc;&#xD;
-vector&lt;int&gt; d(n, 0), isCut(n, false);&#xD;
-vector&lt;pair&lt;int, int&gt;&gt; st;&#xD;
-int dNum;&#xD;
-auto dfs = [&amp;](auto&amp;&amp; self, int cur, int pre) -&gt; int {&#xD;
-    d[cur] = ++dNum;&#xD;
-&#xD;
-    int ret = d[cur];&#xD;
-    for(int nxt : g[cur]) {&#xD;
-        if(nxt == pre) continue;&#xD;
-&#xD;
-        if(d[nxt] == 0 || d[cur] &gt; d[nxt]) {&#xD;
-            st.push_back({ cur, nxt });&#xD;
-        }&#xD;
-&#xD;
-        if(d[nxt] == 0) {&#xD;
-            int t = self(self, nxt, cur);&#xD;
-            if(t &gt;= d[cur]) {&#xD;
-                if(d[cur] != 0 || d[nxt] &gt; 1) isCut[cur] = true;&#xD;
-&#xD;
-                bcc.push_back({});&#xD;
-                vector&lt;pair&lt;int, int&gt;&gt;&amp; cbcc = bcc.back();&#xD;
-                while(1) {&#xD;
-                    auto top = st.back();&#xD;
-                    st.pop_back();&#xD;
-&#xD;
-                    cbcc.push_back(top);&#xD;
-                    if(top.first == cur) break;&#xD;
-                }&#xD;
-            }&#xD;
-            ret = min(ret, t);&#xD;
-        } else ret = min(ret, d[nxt]);&#xD;
-    }&#xD;
-&#xD;
-    return ret;&#xD;
-};&#xD;
-for(int i = 0; i &lt; n; ++i) {&#xD;
-    if(d[i] == 0) {&#xD;
-        dNum = 0;&#xD;
-        dfs(dfs, i, -1);&#xD;
-    }&#xD;
-}&#xD;
-// bridges: bcc[i].size() == 1&#xD;
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Shortcut/@EntryValue">psrandom</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Description/@EntryValue">Random</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Text/@EntryValue">mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());&#xD;
+uniform_int_distribution&lt;int&gt; distribution(0, INT_MAX);&#xD;
+int getRandom() { return distribution(rng); }&#xD;
 </s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/Shortcut/@EntryValue">fori1</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/Description/@EntryValue">for loop pattern with integer index start 1</s:String>
@@ -259,6 +219,58 @@ struct TwoSat&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0657C798C8A6324F8C79FC91DB4539FF/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0657C798C8A6324F8C79FC91DB4539FF/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0657C798C8A6324F8C79FC91DB4539FF/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Shortcut/@EntryValue">psbcc</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Description/@EntryValue">BCC</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Text/@EntryValue">vector&lt;vector&lt;pair&lt;int, int&gt;&gt;&gt; bcc;&#xD;
+vector&lt;int&gt; d(n, 0), isCut(n, false);&#xD;
+vector&lt;pair&lt;int, int&gt;&gt; st;&#xD;
+int dNum;&#xD;
+auto dfs = [&amp;](auto&amp;&amp; self, int cur, int pre) -&gt; int {&#xD;
+    d[cur] = ++dNum;&#xD;
+&#xD;
+    int ret = d[cur];&#xD;
+    for(int nxt : g[cur]) {&#xD;
+        if(nxt == pre) continue;&#xD;
+&#xD;
+        if(d[nxt] == 0 || d[cur] &gt; d[nxt]) {&#xD;
+            st.push_back({ cur, nxt });&#xD;
+        }&#xD;
+&#xD;
+        if(d[nxt] == 0) {&#xD;
+            int t = self(self, nxt, cur);&#xD;
+            if(t &gt;= d[cur]) {&#xD;
+                if(d[cur] != 0 || d[nxt] &gt; 1) isCut[cur] = true;&#xD;
+&#xD;
+                bcc.push_back({});&#xD;
+                vector&lt;pair&lt;int, int&gt;&gt;&amp; cbcc = bcc.back();&#xD;
+                while(1) {&#xD;
+                    auto top = st.back();&#xD;
+                    st.pop_back();&#xD;
+&#xD;
+                    cbcc.push_back(top);&#xD;
+                    if(top.first == cur) break;&#xD;
+                }&#xD;
+            }&#xD;
+            ret = min(ret, t);&#xD;
+        } else ret = min(ret, d[nxt]);&#xD;
+    }&#xD;
+&#xD;
+    return ret;&#xD;
+};&#xD;
+for(int i = 0; i &lt; n; ++i) {&#xD;
+    if(d[i] == 0) {&#xD;
+        dNum = 0;&#xD;
+        dfs(dfs, i, -1);&#xD;
+    }&#xD;
+}&#xD;
+// bridges: bcc[i].size() == 1&#xD;
+</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Shortcut/@EntryValue">psbcc_blockcuttree</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Description/@EntryValue">BCC - BlockCutTree</s:String>
@@ -2966,18 +2978,6 @@ struct NTT&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B92B779C1ECA0C49895811493CAD4F84/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B92B779C1ECA0C49895811493CAD4F84/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B92B779C1ECA0C49895811493CAD4F84/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Shortcut/@EntryValue">psrandom</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Description/@EntryValue">Random</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Text/@EntryValue">mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());&#xD;
-uniform_int_distribution&lt;int&gt; distribution(0, INT_MAX);&#xD;
-int getRandom() { return distribution(rng); }&#xD;
-</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E2B44845698FD6438F386A92563E4623/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E2B44845698FD6438F386A92563E4623/Shortcut/@EntryValue">psrotatingcalipers</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E2B44845698FD6438F386A92563E4623/Description/@EntryValue">Rotating Calipers_old</s:String>
@@ -3023,7 +3023,7 @@ int getRandom() { return distribution(rng); }&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/Shortcut/@EntryValue">psscc</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/Description/@EntryValue">SCC</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/Text/@EntryValue">vector&lt;int&gt; d(n, 0), st(n), finish(n, false), sccIdx(n);&#xD;
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/Text/@EntryValue">vector&lt;int&gt; d(n, 0), st, finish(n, false), sccIdx(n);&#xD;
 vector&lt;vector&lt;int&gt;&gt; sccs;&#xD;
 int dNum = 0;&#xD;
 &#xD;

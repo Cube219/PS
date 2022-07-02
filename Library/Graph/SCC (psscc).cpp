@@ -1,4 +1,4 @@
-vector<int> d(n, 0), st(n), finish(n, false), sccIdx(n);
+vector<int> d(n, 0), st, finish(n, false), sccIdx(n);
 vector<vector<int>> sccs;
 int dNum = 0;
 
