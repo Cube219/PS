@@ -1,16 +1,19 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Shortcut/@EntryValue">psrandom</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Description/@EntryValue">Random</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Text/@EntryValue">mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());&#xD;
-uniform_int_distribution&lt;int&gt; distribution(0, INT_MAX);&#xD;
-int getRandom() { return distribution(rng); }&#xD;
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9656E474C888344AAB53046CA2C2BA8/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9656E474C888344AAB53046CA2C2BA8/Shortcut/@EntryValue">psgccinst</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9656E474C888344AAB53046CA2C2BA8/Description/@EntryValue">GCC instructions in MSVC</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9656E474C888344AAB53046CA2C2BA8/Text/@EntryValue">#ifdef _MSC_VER&#xD;
+// GCC instructions in MSVC&#xD;
+#include &lt;intrin.h&gt;&#xD;
+#define __builtin_popcount __popcnt&#xD;
+#endif&#xD;
 </s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9656E474C888344AAB53046CA2C2BA8/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9656E474C888344AAB53046CA2C2BA8/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9656E474C888344AAB53046CA2C2BA8/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9656E474C888344AAB53046CA2C2BA8/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9656E474C888344AAB53046CA2C2BA8/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9656E474C888344AAB53046CA2C2BA8/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/Shortcut/@EntryValue">fori1</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/Description/@EntryValue">for loop pattern with integer index start 1</s:String>
@@ -22,6 +25,7 @@ int getRandom() { return distribution(rng); }&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/IsBlessed/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/Applicability/=Surround/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/Scope/=FB2B1B3627C3074699DE05129AC80274/@KeyIndexDefined">True</s:Boolean>
@@ -40,6 +44,7 @@ int getRandom() { return distribution(rng); }&#xD;
 }</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=811D8C2B390D1140B11AC52E5DB67AD0/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=811D8C2B390D1140B11AC52E5DB67AD0/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=811D8C2B390D1140B11AC52E5DB67AD0/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=811D8C2B390D1140B11AC52E5DB67AD0/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=811D8C2B390D1140B11AC52E5DB67AD0/Applicability/=Surround/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=811D8C2B390D1140B11AC52E5DB67AD0/Scope/=FB2B1B3627C3074699DE05129AC80274/@KeyIndexDefined">True</s:Boolean>
@@ -134,6 +139,7 @@ struct TwoSat&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E36B44F2EB6684409FE3E78825FDA877/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E36B44F2EB6684409FE3E78825FDA877/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E36B44F2EB6684409FE3E78825FDA877/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E36B44F2EB6684409FE3E78825FDA877/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E36B44F2EB6684409FE3E78825FDA877/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E36B44F2EB6684409FE3E78825FDA877/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -216,6 +222,7 @@ struct TwoSat&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0657C798C8A6324F8C79FC91DB4539FF/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0657C798C8A6324F8C79FC91DB4539FF/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0657C798C8A6324F8C79FC91DB4539FF/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0657C798C8A6324F8C79FC91DB4539FF/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0657C798C8A6324F8C79FC91DB4539FF/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0657C798C8A6324F8C79FC91DB4539FF/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -268,6 +275,7 @@ for(int i = 0; i &lt; n; ++i) {&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -317,6 +325,7 @@ for(auto&amp; b : bcc) {&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -356,6 +365,7 @@ for(auto&amp; bc : bcc) {&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5D641775FE88B84D9003F79A7AB3D63D/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5D641775FE88B84D9003F79A7AB3D63D/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5D641775FE88B84D9003F79A7AB3D63D/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5D641775FE88B84D9003F79A7AB3D63D/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5D641775FE88B84D9003F79A7AB3D63D/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5D641775FE88B84D9003F79A7AB3D63D/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -409,6 +419,7 @@ struct BerlekampMassey&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3FA81499FB103459A143F93EAFDC9AC/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3FA81499FB103459A143F93EAFDC9AC/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3FA81499FB103459A143F93EAFDC9AC/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3FA81499FB103459A143F93EAFDC9AC/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3FA81499FB103459A143F93EAFDC9AC/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3FA81499FB103459A143F93EAFDC9AC/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -453,6 +464,7 @@ struct BiCoeff&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -517,6 +529,7 @@ struct BiCoeff_Lucas&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -605,6 +618,7 @@ struct BiCoeff_PrimePower&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C19D3E468F4C894C85CFF270C068F59F/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C19D3E468F4C894C85CFF270C068F59F/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C19D3E468F4C894C85CFF270C068F59F/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C19D3E468F4C894C85CFF270C068F59F/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C19D3E468F4C894C85CFF270C068F59F/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C19D3E468F4C894C85CFF270C068F59F/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -652,6 +666,7 @@ while(1) {&#xD;
 }&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAE9C6DCAB176942975887BA1002272B/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAE9C6DCAB176942975887BA1002272B/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAE9C6DCAB176942975887BA1002272B/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAE9C6DCAB176942975887BA1002272B/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAE9C6DCAB176942975887BA1002272B/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -699,6 +714,7 @@ centroid(centroid, 0, -1);&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=211A9F703BCA304DBCE189BAC7BCB456/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=211A9F703BCA304DBCE189BAC7BCB456/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=211A9F703BCA304DBCE189BAC7BCB456/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=211A9F703BCA304DBCE189BAC7BCB456/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=211A9F703BCA304DBCE189BAC7BCB456/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=211A9F703BCA304DBCE189BAC7BCB456/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -756,6 +772,7 @@ centroid(centroid, 0, -1);&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7558491F8DF7584296829A842423CA6D/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7558491F8DF7584296829A842423CA6D/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7558491F8DF7584296829A842423CA6D/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7558491F8DF7584296829A842423CA6D/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7558491F8DF7584296829A842423CA6D/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7558491F8DF7584296829A842423CA6D/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -838,6 +855,7 @@ centroid(centroid, 0, -1);&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7B94575936767D4FBC1985001233AC50/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7B94575936767D4FBC1985001233AC50/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7B94575936767D4FBC1985001233AC50/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7B94575936767D4FBC1985001233AC50/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7B94575936767D4FBC1985001233AC50/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7B94575936767D4FBC1985001233AC50/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -849,6 +867,7 @@ centroid(centroid, 0, -1);&#xD;
 }</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8BDAA9169A405045ABD958B06156DE0C/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8BDAA9169A405045ABD958B06156DE0C/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8BDAA9169A405045ABD958B06156DE0C/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8BDAA9169A405045ABD958B06156DE0C/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8BDAA9169A405045ABD958B06156DE0C/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8BDAA9169A405045ABD958B06156DE0C/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -926,6 +945,7 @@ centroid(centroid, 0, -1);&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3D5E7E42CEA57C498920BE4FDD8C6BF5/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3D5E7E42CEA57C498920BE4FDD8C6BF5/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3D5E7E42CEA57C498920BE4FDD8C6BF5/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3D5E7E42CEA57C498920BE4FDD8C6BF5/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3D5E7E42CEA57C498920BE4FDD8C6BF5/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3D5E7E42CEA57C498920BE4FDD8C6BF5/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -959,6 +979,7 @@ centroid(centroid, 0, -1);&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=989369DFEC937F4296CED0339028AAA1/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=989369DFEC937F4296CED0339028AAA1/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=989369DFEC937F4296CED0339028AAA1/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=989369DFEC937F4296CED0339028AAA1/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=989369DFEC937F4296CED0339028AAA1/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=989369DFEC937F4296CED0339028AAA1/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -994,6 +1015,7 @@ centroid(centroid, 0, -1);&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EA06F2083424884B9CEDBAC54938650B/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EA06F2083424884B9CEDBAC54938650B/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EA06F2083424884B9CEDBAC54938650B/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EA06F2083424884B9CEDBAC54938650B/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EA06F2083424884B9CEDBAC54938650B/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EA06F2083424884B9CEDBAC54938650B/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -1027,6 +1049,7 @@ centroid(centroid, 0, -1);&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EFF302E973EBD14EB95160F6F04A472B/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EFF302E973EBD14EB95160F6F04A472B/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EFF302E973EBD14EB95160F6F04A472B/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EFF302E973EBD14EB95160F6F04A472B/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EFF302E973EBD14EB95160F6F04A472B/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EFF302E973EBD14EB95160F6F04A472B/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -1056,6 +1079,7 @@ ENode eeuc(ll a, ll b)&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BB64DECFDBA03D4BAECAEF4484F17662/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BB64DECFDBA03D4BAECAEF4484F17662/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BB64DECFDBA03D4BAECAEF4484F17662/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BB64DECFDBA03D4BAECAEF4484F17662/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BB64DECFDBA03D4BAECAEF4484F17662/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BB64DECFDBA03D4BAECAEF4484F17662/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -1102,6 +1126,7 @@ using hash_set = hash_map&lt;K, __gnu_pbds::null_type&gt;;&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=135DE435F5EA5949B938126F21713426/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=135DE435F5EA5949B938126F21713426/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=135DE435F5EA5949B938126F21713426/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=135DE435F5EA5949B938126F21713426/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=135DE435F5EA5949B938126F21713426/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=135DE435F5EA5949B938126F21713426/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -1132,6 +1157,7 @@ using hash_set = hash_map&lt;K, __gnu_pbds::null_type&gt;;&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DDD003E244310A44960EB65E345C55DF/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DDD003E244310A44960EB65E345C55DF/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DDD003E244310A44960EB65E345C55DF/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DDD003E244310A44960EB65E345C55DF/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DDD003E244310A44960EB65E345C55DF/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DDD003E244310A44960EB65E345C55DF/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -1175,6 +1201,7 @@ using hash_set = hash_map&lt;K, __gnu_pbds::null_type&gt;;&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -1285,6 +1312,7 @@ struct FFT&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=58A7278ABA5870459491275FC80B8855/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=58A7278ABA5870459491275FC80B8855/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=58A7278ABA5870459491275FC80B8855/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=58A7278ABA5870459491275FC80B8855/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=58A7278ABA5870459491275FC80B8855/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=58A7278ABA5870459491275FC80B8855/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -1399,6 +1427,7 @@ struct FFT&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F9F4C9342D29A247B834585E7097970C/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F9F4C9342D29A247B834585E7097970C/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F9F4C9342D29A247B834585E7097970C/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F9F4C9342D29A247B834585E7097970C/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F9F4C9342D29A247B834585E7097970C/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F9F4C9342D29A247B834585E7097970C/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -1501,6 +1530,7 @@ public:&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31016F487451944D96B12FBF7A66FA11/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31016F487451944D96B12FBF7A66FA11/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31016F487451944D96B12FBF7A66FA11/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31016F487451944D96B12FBF7A66FA11/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31016F487451944D96B12FBF7A66FA11/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31016F487451944D96B12FBF7A66FA11/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -1532,6 +1562,7 @@ vector&lt;ll&gt; conv(vector&lt;ll&gt; a, vector&lt;ll&gt; b)&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B08A220A3693E540A893ED70DAE5D357/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B08A220A3693E540A893ED70DAE5D357/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B08A220A3693E540A893ED70DAE5D357/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B08A220A3693E540A893ED70DAE5D357/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B08A220A3693E540A893ED70DAE5D357/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B08A220A3693E540A893ED70DAE5D357/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -1589,23 +1620,10 @@ void gauss(vector&lt;vector&lt;double&gt;&gt;&amp; mat, vector&lt;vector&lt;doub
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=40DB49990FF67C4AAED1B377605B2BE6/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=40DB49990FF67C4AAED1B377605B2BE6/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=40DB49990FF67C4AAED1B377605B2BE6/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=40DB49990FF67C4AAED1B377605B2BE6/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=40DB49990FF67C4AAED1B377605B2BE6/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=40DB49990FF67C4AAED1B377605B2BE6/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9656E474C888344AAB53046CA2C2BA8/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9656E474C888344AAB53046CA2C2BA8/Shortcut/@EntryValue">psgccinst</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9656E474C888344AAB53046CA2C2BA8/Description/@EntryValue">GCC instructions in MSVC</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9656E474C888344AAB53046CA2C2BA8/Text/@EntryValue">#ifdef _MSC_VER&#xD;
-// GCC instructions in MSVC&#xD;
-#include &lt;intrin.h&gt;&#xD;
-#define __builtin_popcount __popcnt&#xD;
-#endif&#xD;
-</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9656E474C888344AAB53046CA2C2BA8/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9656E474C888344AAB53046CA2C2BA8/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9656E474C888344AAB53046CA2C2BA8/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9656E474C888344AAB53046CA2C2BA8/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9656E474C888344AAB53046CA2C2BA8/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CFEAC6375F78A644A308CF68E4F8E297/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CFEAC6375F78A644A308CF68E4F8E297/Shortcut/@EntryValue">psgeo</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CFEAC6375F78A644A308CF68E4F8E297/Description/@EntryValue">Geometry</s:String>
@@ -1643,6 +1661,7 @@ void gauss(vector&lt;vector&lt;double&gt;&gt;&amp; mat, vector&lt;vector&lt;doub
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CFEAC6375F78A644A308CF68E4F8E297/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CFEAC6375F78A644A308CF68E4F8E297/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CFEAC6375F78A644A308CF68E4F8E297/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CFEAC6375F78A644A308CF68E4F8E297/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CFEAC6375F78A644A308CF68E4F8E297/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CFEAC6375F78A644A308CF68E4F8E297/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -1680,6 +1699,7 @@ ll lensq(const Point&amp; a, const Point&amp; b)&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3E1C280BFE73CB45AF15DFB22407A669/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3E1C280BFE73CB45AF15DFB22407A669/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3E1C280BFE73CB45AF15DFB22407A669/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3E1C280BFE73CB45AF15DFB22407A669/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3E1C280BFE73CB45AF15DFB22407A669/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3E1C280BFE73CB45AF15DFB22407A669/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -1695,6 +1715,7 @@ P getCircumcircle(P a, P b, P c)&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=70CB9893C97DF34D9B78AB5F202D579D/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=70CB9893C97DF34D9B78AB5F202D579D/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=70CB9893C97DF34D9B78AB5F202D579D/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=70CB9893C97DF34D9B78AB5F202D579D/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=70CB9893C97DF34D9B78AB5F202D579D/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=70CB9893C97DF34D9B78AB5F202D579D/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -1760,6 +1781,7 @@ vector&lt;P&gt; convexHull(vector&lt;P&gt;&amp; poly, bool erase = false)&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA39859238C1C4A86E4C6769764DF7C/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA39859238C1C4A86E4C6769764DF7C/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA39859238C1C4A86E4C6769764DF7C/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA39859238C1C4A86E4C6769764DF7C/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA39859238C1C4A86E4C6769764DF7C/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA39859238C1C4A86E4C6769764DF7C/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -1775,6 +1797,7 @@ double getLineDis(P a1, P a2, P p)&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2C20FEC0AFD8F9479031C8C5AC98E417/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2C20FEC0AFD8F9479031C8C5AC98E417/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2C20FEC0AFD8F9479031C8C5AC98E417/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2C20FEC0AFD8F9479031C8C5AC98E417/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2C20FEC0AFD8F9479031C8C5AC98E417/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2C20FEC0AFD8F9479031C8C5AC98E417/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -1800,6 +1823,7 @@ P getLineInter(P a1, P a2, P b1, P b2, int&amp; num)&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -1855,6 +1879,7 @@ struct HashStr&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E4D9B44B9B02114AA5E103EC6DDCE4D4/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E4D9B44B9B02114AA5E103EC6DDCE4D4/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E4D9B44B9B02114AA5E103EC6DDCE4D4/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E4D9B44B9B02114AA5E103EC6DDCE4D4/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E4D9B44B9B02114AA5E103EC6DDCE4D4/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E4D9B44B9B02114AA5E103EC6DDCE4D4/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -1863,22 +1888,21 @@ struct HashStr&#xD;
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D8964475EF08E640A5CE1D19A30A3D77/Description/@EntryValue">Hilbert Curve</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D8964475EF08E640A5CE1D19A30A3D77/Text/@EntryValue">// https://en.wikipedia.org/wiki/Hilbert_curve&#xD;
 //convert (x,y) to d&#xD;
-int hilbertCurve(int x, int y, int n = (1 &lt;&lt; 21))&#xD;
+ll hilbertCurve(int x, int y, ll n)&#xD;
 {&#xD;
-    n = (1 &lt;&lt; (n - 1));&#xD;
-    int rx, ry, s, d = 0;&#xD;
+    ll rx, ry, s = 1, d = 0;&#xD;
+    while(s &lt; n) s *= 2;&#xD;
+    n = s;&#xD;
     for(s = n / 2; s &gt; 0; s /= 2) {&#xD;
         rx = (x &amp; s) &gt; 0;&#xD;
         ry = (y &amp; s) &gt; 0;&#xD;
         d += s * s * ((3 * rx) ^ ry);&#xD;
-&#xD;
         // rotate&#xD;
         if(ry == 0) {&#xD;
             if(rx == 1) {&#xD;
                 x = n - 1 - x;&#xD;
                 y = n - 1 - y;&#xD;
             }&#xD;
-&#xD;
             swap(x, y);&#xD;
         }&#xD;
     }&#xD;
@@ -1887,6 +1911,7 @@ int hilbertCurve(int x, int y, int n = (1 &lt;&lt; 21))&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D8964475EF08E640A5CE1D19A30A3D77/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D8964475EF08E640A5CE1D19A30A3D77/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D8964475EF08E640A5CE1D19A30A3D77/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D8964475EF08E640A5CE1D19A30A3D77/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D8964475EF08E640A5CE1D19A30A3D77/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D8964475EF08E640A5CE1D19A30A3D77/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -1936,6 +1961,7 @@ hld(hld, 0);&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5F7180B802AE1F42BD81F32D838EF159/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5F7180B802AE1F42BD81F32D838EF159/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5F7180B802AE1F42BD81F32D838EF159/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5F7180B802AE1F42BD81F32D838EF159/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5F7180B802AE1F42BD81F32D838EF159/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5F7180B802AE1F42BD81F32D838EF159/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -2015,6 +2041,7 @@ void answer()&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -2054,6 +2081,7 @@ void answer()&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=298D24E2B0C6D2478A34EB7D5073B7FF/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=298D24E2B0C6D2478A34EB7D5073B7FF/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=298D24E2B0C6D2478A34EB7D5073B7FF/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=298D24E2B0C6D2478A34EB7D5073B7FF/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=298D24E2B0C6D2478A34EB7D5073B7FF/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=298D24E2B0C6D2478A34EB7D5073B7FF/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -2082,6 +2110,7 @@ void answer()&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D611E062E9238340B99A6760DA08B4B8/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D611E062E9238340B99A6760DA08B4B8/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D611E062E9238340B99A6760DA08B4B8/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D611E062E9238340B99A6760DA08B4B8/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D611E062E9238340B99A6760DA08B4B8/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D611E062E9238340B99A6760DA08B4B8/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -2112,6 +2141,7 @@ void answer()&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3846307F524FF4C9569C511D5E848B2/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3846307F524FF4C9569C511D5E848B2/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3846307F524FF4C9569C511D5E848B2/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3846307F524FF4C9569C511D5E848B2/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3846307F524FF4C9569C511D5E848B2/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3846307F524FF4C9569C511D5E848B2/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -2162,6 +2192,7 @@ struct Kitamasa&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -2216,6 +2247,7 @@ struct Kitamasa&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7B99A65AAD0EBA4E913C9CD71F39E15E/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7B99A65AAD0EBA4E913C9CD71F39E15E/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7B99A65AAD0EBA4E913C9CD71F39E15E/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7B99A65AAD0EBA4E913C9CD71F39E15E/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7B99A65AAD0EBA4E913C9CD71F39E15E/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7B99A65AAD0EBA4E913C9CD71F39E15E/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -2242,6 +2274,7 @@ struct Kitamasa&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=876FBE5421BA4244BFA4E8CD124D99AF/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=876FBE5421BA4244BFA4E8CD124D99AF/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=876FBE5421BA4244BFA4E8CD124D99AF/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=876FBE5421BA4244BFA4E8CD124D99AF/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=876FBE5421BA4244BFA4E8CD124D99AF/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=876FBE5421BA4244BFA4E8CD124D99AF/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -2333,6 +2366,7 @@ struct Kitamasa&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7A4071738C621644B33FE9A862C59FFF/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7A4071738C621644B33FE9A862C59FFF/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7A4071738C621644B33FE9A862C59FFF/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7A4071738C621644B33FE9A862C59FFF/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7A4071738C621644B33FE9A862C59FFF/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7A4071738C621644B33FE9A862C59FFF/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -2422,6 +2456,7 @@ struct LiChao&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=88DC135587E70242B4D3329E8DC26576/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=88DC135587E70242B4D3329E8DC26576/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=88DC135587E70242B4D3329E8DC26576/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=88DC135587E70242B4D3329E8DC26576/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=88DC135587E70242B4D3329E8DC26576/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=88DC135587E70242B4D3329E8DC26576/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -2467,6 +2502,7 @@ int main()&#xD;
 }&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F656FC898FA34442832918BDE69EDD8B/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F656FC898FA34442832918BDE69EDD8B/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F656FC898FA34442832918BDE69EDD8B/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F656FC898FA34442832918BDE69EDD8B/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F656FC898FA34442832918BDE69EDD8B/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -2518,6 +2554,7 @@ int main()&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C9B2EBB64AFE7043AE515CF062412AE3/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C9B2EBB64AFE7043AE515CF062412AE3/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C9B2EBB64AFE7043AE515CF062412AE3/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C9B2EBB64AFE7043AE515CF062412AE3/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C9B2EBB64AFE7043AE515CF062412AE3/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C9B2EBB64AFE7043AE515CF062412AE3/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -2586,6 +2623,7 @@ int main()&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0AE6BDED54D3E3439AC40CB2BD089F37/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0AE6BDED54D3E3439AC40CB2BD089F37/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0AE6BDED54D3E3439AC40CB2BD089F37/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0AE6BDED54D3E3439AC40CB2BD089F37/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0AE6BDED54D3E3439AC40CB2BD089F37/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0AE6BDED54D3E3439AC40CB2BD089F37/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -2703,6 +2741,7 @@ int main()&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8E3BF7E55A5A6D4A91216C2F93C0B6A7/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8E3BF7E55A5A6D4A91216C2F93C0B6A7/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8E3BF7E55A5A6D4A91216C2F93C0B6A7/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8E3BF7E55A5A6D4A91216C2F93C0B6A7/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8E3BF7E55A5A6D4A91216C2F93C0B6A7/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8E3BF7E55A5A6D4A91216C2F93C0B6A7/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -2778,6 +2817,7 @@ struct ModInt&#xD;
 using mint = ModInt&lt;MOD&gt;;&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5F717BC61D5B454193F84117A84280E7/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5F717BC61D5B454193F84117A84280E7/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5F717BC61D5B454193F84117A84280E7/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5F717BC61D5B454193F84117A84280E7/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5F717BC61D5B454193F84117A84280E7/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -2865,6 +2905,7 @@ struct NTT&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9B4C3441F23C4F409715D8808E73CEBD/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9B4C3441F23C4F409715D8808E73CEBD/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9B4C3441F23C4F409715D8808E73CEBD/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9B4C3441F23C4F409715D8808E73CEBD/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9B4C3441F23C4F409715D8808E73CEBD/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9B4C3441F23C4F409715D8808E73CEBD/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -2975,9 +3016,23 @@ struct NTT&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B92B779C1ECA0C49895811493CAD4F84/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B92B779C1ECA0C49895811493CAD4F84/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B92B779C1ECA0C49895811493CAD4F84/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B92B779C1ECA0C49895811493CAD4F84/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B92B779C1ECA0C49895811493CAD4F84/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B92B779C1ECA0C49895811493CAD4F84/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Shortcut/@EntryValue">psrandom</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Description/@EntryValue">Random</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Text/@EntryValue">mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());&#xD;
+uniform_int_distribution&lt;int&gt; distribution(0, INT_MAX);&#xD;
+int getRandom() { return distribution(rng); }&#xD;
+</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E22867C2B705074387EE443F6C20722D/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E2B44845698FD6438F386A92563E4623/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E2B44845698FD6438F386A92563E4623/Shortcut/@EntryValue">psrotatingcalipers</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E2B44845698FD6438F386A92563E4623/Description/@EntryValue">Rotating Calipers_old</s:String>
@@ -3017,6 +3072,7 @@ struct NTT&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E2B44845698FD6438F386A92563E4623/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E2B44845698FD6438F386A92563E4623/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E2B44845698FD6438F386A92563E4623/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E2B44845698FD6438F386A92563E4623/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E2B44845698FD6438F386A92563E4623/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E2B44845698FD6438F386A92563E4623/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -3059,6 +3115,7 @@ for(int i = 0; i &lt; n; ++i) {&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -3128,6 +3185,7 @@ for(int i = 0; i &lt; n; ++i) {&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CA54F7FA4771A846B9A7470EA3085D55/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CA54F7FA4771A846B9A7470EA3085D55/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CA54F7FA4771A846B9A7470EA3085D55/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CA54F7FA4771A846B9A7470EA3085D55/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CA54F7FA4771A846B9A7470EA3085D55/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CA54F7FA4771A846B9A7470EA3085D55/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -3195,6 +3253,7 @@ for(int i = 0; i &lt; n; ++i) {&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8B274826E3468847800F795624F1BF92/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8B274826E3468847800F795624F1BF92/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8B274826E3468847800F795624F1BF92/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8B274826E3468847800F795624F1BF92/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8B274826E3468847800F795624F1BF92/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8B274826E3468847800F795624F1BF92/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -3250,6 +3309,7 @@ vector&lt;pair&lt;int, int&gt;&gt; primeFac(int v)&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D4EB688885ECD948821368F12DF92DBF/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D4EB688885ECD948821368F12DF92DBF/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D4EB688885ECD948821368F12DF92DBF/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D4EB688885ECD948821368F12DF92DBF/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D4EB688885ECD948821368F12DF92DBF/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D4EB688885ECD948821368F12DF92DBF/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -3324,6 +3384,7 @@ struct SuffixArray&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2CD98D07D9655445BC26ECADDD18F6F2/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2CD98D07D9655445BC26ECADDD18F6F2/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2CD98D07D9655445BC26ECADDD18F6F2/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2CD98D07D9655445BC26ECADDD18F6F2/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2CD98D07D9655445BC26ECADDD18F6F2/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2CD98D07D9655445BC26ECADDD18F6F2/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -3338,6 +3399,7 @@ struct SuffixArray&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FBD18074F053C4AA7F447004D61ADC3/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FBD18074F053C4AA7F447004D61ADC3/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FBD18074F053C4AA7F447004D61ADC3/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FBD18074F053C4AA7F447004D61ADC3/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FBD18074F053C4AA7F447004D61ADC3/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FBD18074F053C4AA7F447004D61ADC3/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -3416,6 +3478,7 @@ Treap* merge(Treap* l, Treap* r)&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=524CB0AEC16B0B40BDB0A4A3E50F5088/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=524CB0AEC16B0B40BDB0A4A3E50F5088/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=524CB0AEC16B0B40BDB0A4A3E50F5088/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=524CB0AEC16B0B40BDB0A4A3E50F5088/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=524CB0AEC16B0B40BDB0A4A3E50F5088/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=524CB0AEC16B0B40BDB0A4A3E50F5088/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -3451,6 +3514,7 @@ Treap* merge(Treap* l, Treap* r)&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FC6CAE90F8FEC46ACCCEDD9538518CF/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FC6CAE90F8FEC46ACCCEDD9538518CF/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FC6CAE90F8FEC46ACCCEDD9538518CF/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FC6CAE90F8FEC46ACCCEDD9538518CF/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FC6CAE90F8FEC46ACCCEDD9538518CF/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FC6CAE90F8FEC46ACCCEDD9538518CF/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -3481,6 +3545,7 @@ auto cover = [&amp;]() {&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA792FA6933644EBD6F5B4BD6BBB853/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA792FA6933644EBD6F5B4BD6BBB853/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA792FA6933644EBD6F5B4BD6BBB853/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA792FA6933644EBD6F5B4BD6BBB853/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA792FA6933644EBD6F5B4BD6BBB853/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA792FA6933644EBD6F5B4BD6BBB853/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
@@ -3508,6 +3573,7 @@ auto cover = [&amp;]() {&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=AABAA09FA1A81E45A4FB53C2CF28CCCB/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=AABAA09FA1A81E45A4FB53C2CF28CCCB/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=AABAA09FA1A81E45A4FB53C2CF28CCCB/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=AABAA09FA1A81E45A4FB53C2CF28CCCB/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=AABAA09FA1A81E45A4FB53C2CF28CCCB/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=AABAA09FA1A81E45A4FB53C2CF28CCCB/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String></wpf:ResourceDictionary>
