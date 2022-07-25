@@ -2,8 +2,7 @@ vector<int> dep(n), sz(n), top(n), par(n), idx(n);
 vector<vector<int>> g2(n);
 int num = 0;
 
-dep[0] = 0;
-sz[0] = 0;
+dep[0] = 0; sz[0] = 0;
 auto dfs = [&](auto&& self, int cur, int p) -> void {
     for(int nxt : g[cur]) {
         if(nxt == p) continue;
