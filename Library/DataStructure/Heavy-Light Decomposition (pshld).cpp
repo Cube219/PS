@@ -2,7 +2,8 @@ vector<int> dep(n), sz(n), top(n), par(n), idx(n);
 vector<vector<int>> g2(n);
 int num = 0;
 
-dep[0] = 0; sz[0] = 0;
+dep[0] = 0;
+sz[0] = 0;
 auto dfs = [&](auto&& self, int cur, int p) -> void {
     for(int nxt : g[cur]) {
         if(nxt == p) continue;
@@ -30,10 +31,11 @@ dfs2(dfs2, 0);
 top[0] = 0;
 auto hld = [&](auto&& self, int cur) -> void {
     idx[cur] = num++;
+    bool heavy = true;
     for(int nxt : g2[cur]) {
-        if(g2[cur][0] == nxt) top[nxt] = top[cur];
-        else top[nxt] = nxt;
+        top[nxt] = heavy ? top[cur] : nxt;
         self(self, nxt);
+        heavy = false;
     }
 };
 hld(hld, 0);
