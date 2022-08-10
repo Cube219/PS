@@ -1,22 +1,24 @@
 vector<vector<pair<int, int>>> bcc;
-vector<int> d(n, 0), isCut(n, false);
+vector<int> dep(n, 0), isCut(n, false);
 vector<pair<int, int>> st;
 int dNum;
 auto dfs = [&](auto&& self, int cur, int pre) -> int {
-    d[cur] = ++dNum;
+    dep[cur] = ++dNum;
 
-    int ret = d[cur];
+    int ret = dep[cur];
+    int cNum = 0;
     for(int nxt : g[cur]) {
         if(nxt == pre) continue;
 
-        if(d[nxt] == 0 || d[cur] > d[nxt]) {
+        if(dep[nxt] == 0 || dep[cur] > dep[nxt]) {
             st.push_back({ cur, nxt });
         }
 
-        if(d[nxt] == 0) {
+        if(dep[nxt] == 0) {
+            cNum++;
             int t = self(self, nxt, cur);
-            if(t >= d[cur]) {
-                if(d[cur] != 0 || d[nxt] > 1) isCut[cur] = true;
+            if(t >= dep[cur]) {
+                if(dep[cur] != 1) isCut[cur] = true;
 
                 bcc.push_back({});
                 vector<pair<int, int>>& cbcc = bcc.back();
@@ -29,13 +31,15 @@ auto dfs = [&](auto&& self, int cur, int pre) -> int {
                 }
             }
             ret = min(ret, t);
-        } else ret = min(ret, d[nxt]);
+        } else ret = min(ret, dep[nxt]);
     }
+
+    if(dep[cur] == 1 && cNum > 1) isCut[cur] = true;
 
     return ret;
 };
 for(int i = 0; i < n; ++i) {
-    if(d[i] == 0) {
+    if(dep[i] == 0) {
         dNum = 0;
         dfs(dfs, i, -1);
     }
