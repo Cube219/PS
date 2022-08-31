@@ -45,3 +45,7 @@ vector<ll> conv(vector<ll>& a, vector<ll>& b)
     }
     return res;
 }
+
+// NTT:
+// p = c*2^k+1 -> w = (rt^c)^(2^k / n)
+// p = 998244353 -> rt = 3

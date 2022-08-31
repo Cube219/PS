@@ -1,21 +1,20 @@
 // req: psbipartite
 auto cover = [&]() {
-    vector<char> visitL(n, true), visitR(m, false);
-    for(int i = 0; i < n; ++i) if(a[i] != -1) visitL[i] = false;
+    vector<char> visitA(n, false), visitB(m, false);
     queue<int> q;
-    for(int i = 0; i < n; ++i) if(visitL[i]) q.push(i);
+    for(int i = 0; i < n; ++i) if(a[i] == -1) q.push(i);
     while(!q.empty()) {
         int cur = q.front(); q.pop();
-        visitL[cur] = true;
+        visitA[cur] = true;
         for(int nxt : g[cur]) {
-            if(!visitR[nxt] && b[nxt] != -1) {
-                visitR[nxt] = true;
+            if(b[nxt] != -1 && !visitB[nxt]) {
+                visitB[nxt] = true;
                 q.push(b[nxt]);
             }
         }
     }
     vector<int> res;
-    for(int i = 0; i < n; ++i) if(!visitL[i]) res.push_back(i);
-    for(int i = 0; i < m; ++i) if(visitR[i]) res.push_back(i + n);
+    for(int i = 0; i < n; ++i) if(!visitA[i]) res.push_back(i);
+    for(int i = 0; i < m; ++i) if(visitB[i]) res.push_back(n + i);
     return res;
 };

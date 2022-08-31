@@ -1,85 +1,48 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Shortcut/@EntryValue">psinteractive</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Description/@EntryValue">Interactive Helper</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Text/@EntryValue">int qNum, maxQNum;&#xD;
-vector&lt;int&gt; d;&#xD;
-&#xD;
-void get_data(int n)&#xD;
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Shortcut/@EntryValue">psfenwickrange</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Description/@EntryValue">Fenwick Tree - Range Update</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Text/@EntryValue">struct FenwickRange&#xD;
 {&#xD;
-#ifdef CUBE_PS&#xD;
-    maxQNum = n;&#xD;
-    qNum = 0;&#xD;
+    int n;&#xD;
+    vector&lt;ll&gt; tmul, tadd;&#xD;
+    FenwickRange(int _n) : n(_n + 1), tmul(_n + 1, 0), tadd(_n + 1, 0) {}&#xD;
 &#xD;
-    // ----- Get data from cin -----&#xD;
-    d.resize(n);&#xD;
-    // -----------------------------&#xD;
-#endif&#xD;
-}&#xD;
-&#xD;
-int query()&#xD;
-{&#xD;
-    stringstream ss;&#xD;
-    // ----- Query -----&#xD;
-    ss &lt;&lt; "? ";&#xD;
-    // -----------------&#xD;
-&#xD;
-    int res;&#xD;
-#ifdef CUBE_PS&#xD;
-    cout &lt;&lt; "query: " &lt;&lt; ss.str() &lt;&lt; "\n";&#xD;
-    qNum++;&#xD;
-    if(qNum &gt; maxQNum) {&#xD;
-        cout &lt;&lt; "WA: Too many queries (" &lt;&lt; qNum &lt;&lt; ")\n";&#xD;
-        exit(1);&#xD;
+    void _udt(int pos, ll mul, ll add)&#xD;
+    {&#xD;
+        for(; pos &lt; n; pos += (pos &amp; -pos)) {&#xD;
+            tmul[pos] += mul;&#xD;
+            tadd[pos] += add;&#xD;
+        }&#xD;
     }&#xD;
 &#xD;
-    // ----- Get query result -----&#xD;
-    res = 0;&#xD;
-    // ----------------------------&#xD;
-&#xD;
-&#xD;
-    cout &lt;&lt; "  - result: " &lt;&lt; res &lt;&lt; "\n";&#xD;
-#else&#xD;
-    cout &lt;&lt; ss.str() &lt;&lt; endl;&#xD;
-    cin &gt;&gt; res;&#xD;
-#endif&#xD;
-&#xD;
-    return res;&#xD;
-}&#xD;
-&#xD;
-void answer()&#xD;
-{&#xD;
-    stringstream ss;&#xD;
-    // ----- Answer -----&#xD;
-    ss &lt;&lt; "! ";&#xD;
-    // ------------------&#xD;
-&#xD;
-#ifdef CUBE_PS&#xD;
-    cout &lt;&lt; "answer: " &lt;&lt; ss.str() &lt;&lt; "\n";&#xD;
-&#xD;
-    // ----- Check validate -----&#xD;
-    bool res = true;&#xD;
-&#xD;
-    // --------------------------&#xD;
-&#xD;
-    if(res == false) {&#xD;
-        cout &lt;&lt; "WA: the answer is incorrect\n";&#xD;
-        exit(1);&#xD;
-    } else {&#xD;
-        cout &lt;&lt; "Correct (" &lt;&lt; qNum &lt;&lt; " queries)\n";&#xD;
+    void update(int l, int r, ll v)&#xD;
+    {&#xD;
+        l++; r++;&#xD;
+        _udt(l, v, -v * (l - 1));&#xD;
+        _udt(r, -v, v * r);&#xD;
     }&#xD;
-#else&#xD;
-    cout &lt;&lt; ss.str() &lt;&lt; endl;&#xD;
-#endif&#xD;
-}&#xD;
+&#xD;
+    ll query(int pos)&#xD;
+    {&#xD;
+        pos++;&#xD;
+        ll mul = 0, add = 0;&#xD;
+        int st = pos;&#xD;
+        for(; pos &gt; 0; pos -= (pos &amp; -pos)) {&#xD;
+            mul += tmul[pos];&#xD;
+            add += tadd[pos];&#xD;
+        }&#xD;
+        return mul * st + add;&#xD;
+    }&#xD;
+};&#xD;
 </s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Categories/=Imported_00202022_002D07_002D25/@EntryIndexedValue">Imported 2022-07-25</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Categories/=Imported_00202022_002D07_002D25/@EntryIndexedValue">Imported 2022-07-25</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/Shortcut/@EntryValue">fori1</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/Description/@EntryValue">for loop pattern with integer index start 1</s:String>
@@ -217,75 +180,68 @@ struct TwoSat&#xD;
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0657C798C8A6324F8C79FC91DB4539FF/Description/@EntryValue">Ahocorasick</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0657C798C8A6324F8C79FC91DB4539FF/Text/@EntryValue">struct AhoCorasick&#xD;
 {&#xD;
-    constexpr static char BASE = 'A';&#xD;
-    constexpr static int NUM = 'Z' - 'A' + 1;&#xD;
-&#xD;
-    AhoCorasick* nxt[NUM];&#xD;
-    AhoCorasick* fail;&#xD;
-    bool has;&#xD;
-&#xD;
-    AhoCorasick()&#xD;
+    enum { BASE = 'a', NUM = 'z' - 'a' + 1 };&#xD;
+    struct Node&#xD;
     {&#xD;
-        for(int i = 0; i &lt; NUM; ++i) {&#xD;
-            nxt[i] = nullptr;&#xD;
+        int nxt[NUM], fail = 0;&#xD;
+        int num = 0;&#xD;
+        Node()&#xD;
+        {&#xD;
+            fill(nxt, nxt + NUM, -1);&#xD;
         }&#xD;
-        fail = nullptr;&#xD;
-        has = false;&#xD;
-    }&#xD;
+    };&#xD;
+    vector&lt;Node&gt; t;&#xD;
 &#xD;
-    ~AhoCorasick()&#xD;
+    AhoCorasick(vector&lt;string&gt;&amp; pat) : t(1)&#xD;
     {&#xD;
-        for(int i = 0; i &lt; NUM; ++i) {&#xD;
-            if(nxt[i] != nullptr) delete nxt[i];&#xD;
-        }&#xD;
-    }&#xD;
+        for(auto&amp; str : pat) insert(str);&#xD;
 &#xD;
-    void insert(const string&amp; str, int idx)&#xD;
-    {&#xD;
-        if(str.size() == idx) {&#xD;
-            has = true;&#xD;
-            return;&#xD;
-        }&#xD;
-        int ch = str[idx] - BASE;&#xD;
-        if(nxt[ch] == nullptr) nxt[ch] = new AhoCorasick();&#xD;
-        nxt[ch]-&gt;insert(str, idx + 1);&#xD;
-    }&#xD;
-&#xD;
-    void build()&#xD;
-    {&#xD;
-        fail = this;&#xD;
-        queue&lt;AhoCorasick*&gt; q;&#xD;
-        q.push(this);&#xD;
-        while(q.empty() == false) {&#xD;
-            AhoCorasick* cur = q.front();&#xD;
-            q.pop();&#xD;
+        queue&lt;int&gt; q; q.push(0);&#xD;
+        while(!q.empty()) {&#xD;
+            int cur = q.front(); q.pop();&#xD;
             for(int i = 0; i &lt; NUM; ++i) {&#xD;
-                if(cur-&gt;nxt[i] == nullptr) continue;&#xD;
-                AhoCorasick* nxt = cur-&gt;nxt[i];&#xD;
-                if(cur == this) nxt-&gt;fail = this;&#xD;
+                int nx = t[cur].nxt[i];&#xD;
+                if(nx == -1) continue;&#xD;
+&#xD;
+                if(cur == 0) t[nx].fail = 0;&#xD;
                 else {&#xD;
-                    AhoCorasick* k = cur-&gt;fail;&#xD;
-                    while(k != this &amp;&amp; k-&gt;nxt[i] == nullptr) k = k-&gt;fail;&#xD;
-                    if(k-&gt;nxt[i] != nullptr) k = k-&gt;nxt[i];&#xD;
-                    nxt-&gt;fail = k;&#xD;
+                    int pre = t[cur].fail;&#xD;
+                    while(pre != 0 &amp;&amp; t[pre].nxt[i] == -1) pre = t[pre].fail;&#xD;
+                    if(t[pre].nxt[i] != -1) pre = t[pre].nxt[i];&#xD;
+&#xD;
+                    t[nx].fail = pre;&#xD;
+                    t[nx].num += t[pre].num;&#xD;
                 }&#xD;
-                q.push(nxt);&#xD;
-                if(nxt-&gt;fail-&gt;has == true) nxt-&gt;has = true;&#xD;
+                q.push(nx);&#xD;
             }&#xD;
         }&#xD;
     }&#xD;
 &#xD;
-    bool process(const string&amp; str)&#xD;
+    void insert(string&amp; str)&#xD;
     {&#xD;
-        AhoCorasick* cur = this;&#xD;
+        int cur = 0;&#xD;
         for(int i = 0; i &lt; str.size(); ++i) {&#xD;
             int ch = str[i] - BASE;&#xD;
-            while(cur != this &amp;&amp; cur-&gt;nxt[ch] == nullptr) cur = cur-&gt;fail;&#xD;
-            if(cur-&gt;nxt[ch] != nullptr) cur = cur-&gt;nxt[ch];&#xD;
-&#xD;
-            if(cur-&gt;has == true) return true;&#xD;
+            if(t[cur].nxt[ch] == -1) {&#xD;
+                t[cur].nxt[ch] = t.size();&#xD;
+                t.emplace_back();&#xD;
+            }&#xD;
+            cur = t[cur].nxt[ch];&#xD;
         }&#xD;
-        return false;&#xD;
+        t[cur].num++;&#xD;
+    }&#xD;
+&#xD;
+    int search(string&amp; str)&#xD;
+    {&#xD;
+        int cur = 0, res = 0;&#xD;
+        for(int i = 0; i &lt; str.size(); ++i) {&#xD;
+            int ch = str[i] - BASE;&#xD;
+            while(cur != 0 &amp;&amp; t[cur].nxt[ch] == -1) cur = t[cur].fail;&#xD;
+            if(t[cur].nxt[ch] != -1) cur = t[cur].nxt[ch];&#xD;
+&#xD;
+            if(cur != 0) res += t[cur].num;&#xD;
+        }&#xD;
+        return res;&#xD;
     }&#xD;
 };&#xD;
 </s:String>
@@ -299,50 +255,45 @@ struct TwoSat&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Shortcut/@EntryValue">psbcc</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Description/@EntryValue">BCC</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Text/@EntryValue">vector&lt;vector&lt;pair&lt;int, int&gt;&gt;&gt; bcc;&#xD;
-vector&lt;int&gt; dep(n, 0), isCut(n, false);&#xD;
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0E8667EC5E72F44EBCC5BC75E4A21F96/Text/@EntryValue">vector&lt;vector&lt;pair&lt;int, int&gt;&gt;&gt; bccs;&#xD;
+vector&lt;int&gt; dep(n, -1); int dNum;&#xD;
+vector&lt;char&gt; isCut(n, false);&#xD;
 vector&lt;pair&lt;int, int&gt;&gt; st;&#xD;
-int dNum;&#xD;
-auto dfs = [&amp;](auto&amp;&amp; self, int cur, int pre) -&gt; int {&#xD;
-    dep[cur] = ++dNum;&#xD;
-&#xD;
+auto bcc_dfs = [&amp;](auto&amp;&amp; self, int cur, int pre) -&gt; int {&#xD;
+    dep[cur] = dNum++;&#xD;
     int ret = dep[cur];&#xD;
     int cNum = 0;&#xD;
+&#xD;
     for(int nxt : g[cur]) {&#xD;
         if(nxt == pre) continue;&#xD;
 &#xD;
-        if(dep[nxt] == 0 || dep[cur] &gt; dep[nxt]) {&#xD;
-            st.push_back({ cur, nxt });&#xD;
-        }&#xD;
-&#xD;
-        if(dep[nxt] == 0) {&#xD;
+        if(dep[nxt] == -1 || dep[nxt] &lt; dep[cur]) st.push_back({ cur, nxt });&#xD;
+        if(dep[nxt] == -1) {&#xD;
             cNum++;&#xD;
             int t = self(self, nxt, cur);&#xD;
             if(t &gt;= dep[cur]) {&#xD;
-                if(dep[cur] != 1) isCut[cur] = true;&#xD;
+                if(dep[cur] &gt; 0) isCut[cur] = true;&#xD;
 &#xD;
-                bcc.push_back({});&#xD;
-                vector&lt;pair&lt;int, int&gt;&gt;&amp; cbcc = bcc.back();&#xD;
+                bccs.push_back({});&#xD;
+                auto&amp; bcc = bccs.back();&#xD;
                 while(1) {&#xD;
-                    auto top = st.back();&#xD;
-                    st.pop_back();&#xD;
+                    auto eg = st.back(); st.pop_back();&#xD;
+                    bcc.push_back(eg);&#xD;
 &#xD;
-                    cbcc.push_back(top);&#xD;
-                    if(top.first == cur) break;&#xD;
+                    if(eg.first == cur) break;&#xD;
                 }&#xD;
             }&#xD;
-            ret = min(ret, t);&#xD;
         } else ret = min(ret, dep[nxt]);&#xD;
     }&#xD;
 &#xD;
-    if(dep[cur] == 1 &amp;&amp; cNum &gt; 1) isCut[cur] = true;&#xD;
-&#xD;
+    if(dep[cur] == 0 &amp;&amp; cNum &gt; 1) isCut[cur] = true;&#xD;
     return ret;&#xD;
 };&#xD;
+&#xD;
 for(int i = 0; i &lt; n; ++i) {&#xD;
-    if(dep[i] == 0) {&#xD;
+    if(dep[i] == -1) {&#xD;
         dNum = 0;&#xD;
-        dfs(dfs, i, -1);&#xD;
+        bcc_dfs(bcc_dfs, i, -1);&#xD;
     }&#xD;
 }&#xD;
 // bridges: bcc[i].size() == 1&#xD;
@@ -357,44 +308,37 @@ for(int i = 0; i &lt; n; ++i) {&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Shortcut/@EntryValue">psbcc_blockcuttree</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Description/@EntryValue">BCC - BlockCutTree</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Text/@EntryValue">vector&lt;int&gt; idx(n);&#xD;
-vector&lt;vector&lt;int&gt;&gt; g2;&#xD;
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=955F9B2D6DC76D4097C5B16213BB6512/Text/@EntryValue">vector&lt;vector&lt;int&gt;&gt; g2;&#xD;
+vector&lt;int&gt; idx(n);&#xD;
 for(int i = 0; i &lt; n; ++i) {&#xD;
     if(isCut[i]) {&#xD;
-        g2.emplace_back();&#xD;
-        idx[i] = g2.size() - 1;&#xD;
+        idx[i] = g2.size();&#xD;
+        g2.push_back({});&#xD;
     }&#xD;
 }&#xD;
-unordered_map&lt;ll, int&gt; bridges;&#xD;
-vector&lt;char&gt; isUse(n, 0);&#xD;
-for(auto&amp; b : bcc) {&#xD;
-    g2.emplace_back();&#xD;
-    int cur = g2.size() - 1;&#xD;
-    for(auto&amp; p : b) {&#xD;
-        if(!isUse[p.first]) {&#xD;
-            if(isCut[p.first]) {&#xD;
-                g2[cur].emplace_back(idx[p.first]);&#xD;
-                g2[idx[p.first]].emplace_back(cur);&#xD;
-            } else idx[p.first] = cur;&#xD;
-            isUse[p.first] = true;&#xD;
+vector&lt;char&gt; use(n, false);&#xD;
+for(auto&amp; bcc : bccs) {&#xD;
+    int cur = g2.size();&#xD;
+    g2.push_back({});&#xD;
+    for(auto [u, v] : bcc) {&#xD;
+        if(!use[u]) {&#xD;
+            if(isCut[u]) {&#xD;
+                g[idx[u]].push_back(cur);&#xD;
+                g[cur].push_back(idx[u]);&#xD;
+            } else idx[u] = cur;&#xD;
+            use[u] = true;&#xD;
         }&#xD;
-        if(!isUse[p.second]) {&#xD;
-            if(isCut[p.second]) {&#xD;
-                g2[cur].emplace_back(idx[p.second]);&#xD;
-                g2[idx[p.second]].emplace_back(cur);&#xD;
-            } else idx[p.second] = cur;&#xD;
-            isUse[p.second] = true;&#xD;
+        if(!use[v]) {&#xD;
+            if(isCut[v]) {&#xD;
+                g[idx[v]].push_back(cur);&#xD;
+                g[cur].push_back(idx[v]);&#xD;
+            } else idx[v] = cur;&#xD;
+            use[v] = true;&#xD;
         }&#xD;
     }&#xD;
-    if(b.size() == 1) {&#xD;
-        ll u = b[0].first;&#xD;
-        ll v = b[0].second;&#xD;
-        if(u &gt; v) swap(u, v);&#xD;
-        bridges.insert({ u &lt;&lt; 32 | v, cur });&#xD;
-    }&#xD;
-    for(auto&amp; p : b) {&#xD;
-        isUse[p.first] = false;&#xD;
-        isUse[p.second] = false;&#xD;
+    for(auto [u, v] : bcc) {&#xD;
+        use[u] = false;&#xD;
+        use[v] = false;&#xD;
     }&#xD;
 }&#xD;
 </s:String>
@@ -408,35 +352,19 @@ for(auto&amp; b : bcc) {&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5D641775FE88B84D9003F79A7AB3D63D/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5D641775FE88B84D9003F79A7AB3D63D/Shortcut/@EntryValue">psbcc_bridgetree</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5D641775FE88B84D9003F79A7AB3D63D/Description/@EntryValue">BCC - Bridge Tree</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5D641775FE88B84D9003F79A7AB3D63D/Text/@EntryValue">vector&lt;int&gt; par(n);&#xD;
-iota(par.begin(), par.end(), 0);&#xD;
-auto find = [&amp;](int a) {&#xD;
-    vector&lt;int&gt; st;&#xD;
-    while(par[a] != a) {&#xD;
-        st.push_back(a);&#xD;
-        a = par[a];&#xD;
-    }&#xD;
-    for(int v : st) par[v] = a;&#xD;
-    return a;&#xD;
-};&#xD;
-auto uni = [&amp;](int a, int b) {&#xD;
-    int ar = find(a);&#xD;
-    int br = find(b);&#xD;
-    if(ar == br) return;&#xD;
-    par[br] = ar;&#xD;
-};&#xD;
-for(auto&amp; bc : bcc) {&#xD;
-    if(bc.size() == 1) continue;&#xD;
-    for(auto&amp; p : bc) uni(p.first, p.second);&#xD;
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5D641775FE88B84D9003F79A7AB3D63D/Text/@EntryValue">DSU dsu(n);&#xD;
+for(auto&amp; bcc : bccs) {&#xD;
+    if(bcc.size() == 1) continue;&#xD;
+    for(auto [u, v] : bcc) dsu.uni(u, v);&#xD;
 }&#xD;
 vector&lt;vector&lt;int&gt;&gt; g2(n);&#xD;
-for(auto&amp; bc : bcc) {&#xD;
-    if(bc.size() != 1) continue;&#xD;
-    int a = find(bc[0].first);&#xD;
-    int b = find(bc[0].second);&#xD;
+for(auto&amp; bcc : bccs) {&#xD;
+    if(bcc.size() != 1) continue;&#xD;
+    auto [u, v] = bcc[0];&#xD;
+    u = dsu.find(u); v = dsu.find(v);&#xD;
 &#xD;
-    g2[a].push_back(b);&#xD;
-    g2[b].push_back(a);&#xD;
+    g[u].push_back(v);&#xD;
+    g[v].push_back(u);&#xD;
 }&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5D641775FE88B84D9003F79A7AB3D63D/Reformat/@EntryValue">True</s:Boolean>
@@ -504,39 +432,36 @@ struct BerlekampMassey&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Shortcut/@EntryValue">psbicoeff</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Description/@EntryValue">Binomial Coefficient</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Text/@EntryValue">template &lt;int mod&gt;&#xD;
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Text/@EntryValue">template &lt;ll mod&gt;&#xD;
 struct BiCoeff&#xD;
 {&#xD;
-    vector&lt;ll&gt; fact, invfact;&#xD;
-&#xD;
-    ll pw(ll a, ll b)&#xD;
+    vector&lt;ll&gt; f, invf;&#xD;
+    BiCoeff(int n) : f(n + 1), invf(n + 1)&#xD;
     {&#xD;
-        ll res = 1;&#xD;
-        while(b &gt; 0) {&#xD;
-            if(b &amp; 1) {&#xD;
-                res = res * a % mod;&#xD;
-            }&#xD;
-            a = a * a % mod;&#xD;
-            b &gt;&gt;= 1;&#xD;
-        }&#xD;
-        return res;&#xD;
-    }&#xD;
-&#xD;
-    void init(int n)&#xD;
-    {&#xD;
-        fact.resize(n + 1);&#xD;
-        invfact.resize(n + 1);&#xD;
-&#xD;
-        fact[0] = 1;&#xD;
-        for(int i = 1; i &lt;= n; ++i) fact[i] = fact[i - 1] * i % mod;&#xD;
-        invfact[n] = pw(fact[n], mod - 2);&#xD;
-        for(int i = n - 1; i &gt;= 0; --i) invfact[i] = invfact[i + 1] * (i + 1) % mod;&#xD;
+        f[0] = 1;&#xD;
+        for(int i = 1; i &lt;= n; ++i) f[i] = f[i - 1] * i % mod;&#xD;
+        auto pw = [](ll a, ll b) {&#xD;
+            ll res = 1;&#xD;
+            for(; b &gt; 0; b &gt;&gt;= 1, a = a * a % mod) if(b &amp; 1) res = res * a % mod;&#xD;
+            return res;&#xD;
+        };&#xD;
+        invf[n] = pw(f[n], mod - 2);&#xD;
+        for(int i = n - 1; i &gt;= 0; --i) invf[i] = invf[i + 1] * (i + 1) % mod;&#xD;
     }&#xD;
 &#xD;
     ll get(int n, int r)&#xD;
     {&#xD;
-        return fact[n] * (invfact[r] * invfact[n - r] % mod) % mod;&#xD;
-        // return fact[n] * pw(fact[r] * fact[n - r] % mod, mod - 2) % mod;&#xD;
+        return f[n] * (invf[r] * invf[n - r] % mod) % mod;&#xD;
+    }&#xD;
+&#xD;
+    // use BiCoeff bi(mod - 1);&#xD;
+    ll get_lucas(ll n, ll r)&#xD;
+    {&#xD;
+        ll res = 1;&#xD;
+        for(; n &gt; 0 || r &gt; 0; n /= mod, r /= mod) {&#xD;
+            res = res * get(n % mod, r % mod) % mod;&#xD;
+        }&#xD;
+        return mod;&#xD;
     }&#xD;
 };&#xD;
 </s:String>
@@ -547,72 +472,6 @@ struct BiCoeff&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=4024803E16C16A41B2744AC6CA2EE5B4/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/Shortcut/@EntryValue">psbicoeff_lucas</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/Description/@EntryValue">Binomial Coefficient - Lucas</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/Text/@EntryValue">template &lt;int mod&gt;&#xD;
-struct BiCoeff_Lucas&#xD;
-{&#xD;
-    vector&lt;ll&gt; fact, invfact;&#xD;
-&#xD;
-    ll pw(ll a, ll b)&#xD;
-    {&#xD;
-        ll res = 1;&#xD;
-        while(b &gt; 0) {&#xD;
-            if(b &amp; 1) {&#xD;
-                res = res * a % mod;&#xD;
-            }&#xD;
-            a = a * a % mod;&#xD;
-            b &gt;&gt;= 1;&#xD;
-        }&#xD;
-        return res;&#xD;
-    }&#xD;
-&#xD;
-    // O(mod)&#xD;
-    void init()&#xD;
-    {&#xD;
-        int n = mod - 1;&#xD;
-        fact.resize(n);&#xD;
-        invfact.resize(n);&#xD;
-&#xD;
-        fact[0] = 1;&#xD;
-        for(int i = 1; i &lt;= n; ++i) fact[i] = fact[i - 1] * i % mod;&#xD;
-        invfact[n] = pw(fact[n], mod - 2);&#xD;
-        for(int i = n - 1; i &gt;= 0; --i) invfact[i] = invfact[i + 1] * (i + 1) % mod;&#xD;
-    }&#xD;
-&#xD;
-    ll ncr(int n, int r)&#xD;
-    {&#xD;
-        if(n &lt; r) return 0;&#xD;
-        ll factn = fact[n];&#xD;
-        ll invrnr = invfact[r] * invfact[n - r] % mod;&#xD;
-        return factn * invrnr % mod;&#xD;
-    }&#xD;
-&#xD;
-    // O(logn + logr), Only use when MOD is prime&#xD;
-    ll get(ll n, ll r)&#xD;
-    {&#xD;
-        ll res = 1;&#xD;
-        while(n &gt; 0 || r &gt; 0) {&#xD;
-            ll a = n % mod;&#xD;
-            ll b = r % mod;&#xD;
-            res *= ncr(a, b);&#xD;
-            res %= mod;&#xD;
-&#xD;
-            n /= mod;&#xD;
-            r /= mod;&#xD;
-        }&#xD;
-        return res;&#xD;
-    }&#xD;
-};&#xD;
-</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/Categories/=Imported_00202022_002D07_002D25/@EntryIndexedValue">Imported 2022-07-25</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=44A144506BAD8544820BCED09792AB0D/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C19D3E468F4C894C85CFF270C068F59F/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C19D3E468F4C894C85CFF270C068F59F/Shortcut/@EntryValue">psbicoeff_primepower</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C19D3E468F4C894C85CFF270C068F59F/Description/@EntryValue">Binomial Coefficient - Prime Power</s:String>
@@ -1041,26 +900,19 @@ centroid(centroid, 0, -1);&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=989369DFEC937F4296CED0339028AAA1/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=989369DFEC937F4296CED0339028AAA1/Shortcut/@EntryValue">pscrt</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=989369DFEC937F4296CED0339028AAA1/Description/@EntryValue">Chinese Remainder Theorem</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=989369DFEC937F4296CED0339028AAA1/Text/@EntryValue">// x = v (mod m)&#xD;
-struct Con&#xD;
-{&#xD;
-    ll v, m;&#xD;
-};&#xD;
-&#xD;
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=989369DFEC937F4296CED0339028AAA1/Text/@EntryValue">// x = a (mod m)&#xD;
+struct Con { ll a, m; };&#xD;
 Con crt(Con c1, Con c2)&#xD;
 {&#xD;
     if(c1.m &lt; c2.m) swap(c1, c2);&#xD;
-    ENode en = eeuc(c1.m, c2.m);&#xD;
-    if((c1.v - c2.v) % en.g != 0) return { -1, -1 };&#xD;
+    ERes r = eeuc(c1.m, c2.m);&#xD;
+    if((c2.a - c1.a) % r.g) return { -1, -1 };&#xD;
 &#xD;
-    ll c = (c2.v - c1.v) % c2.m;&#xD;
-    if(c &lt; 0) c += c2.m;&#xD;
-&#xD;
-    ll resm = c1.m * c2.m / en.g;&#xD;
-    ll resv = (en.s * c) % c2.m / en.g * c1.m + c1.v;&#xD;
-    resv %= resm;&#xD;
-    if(resv &lt; 0) resv += resm;&#xD;
-    return { resv, resm };&#xD;
+    Con res;&#xD;
+    res.m = c1.m * c2.m / r.g;&#xD;
+    res.a = (c2.a - c1.a) % c2.m * r.x % c2.m / r.g * c1.m + c1.a;&#xD;
+    if(res.a &lt; 0) res.a += res.m;&#xD;
+    return res;&#xD;
 }&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=989369DFEC937F4296CED0339028AAA1/Reformat/@EntryValue">True</s:Boolean>
@@ -1127,8 +979,7 @@ Con crt(Con c1, Con c2)&#xD;
 &#xD;
     bool uni(int a, int b)&#xD;
     {&#xD;
-        a = find(a);&#xD;
-        b = find(b);&#xD;
+        a = find(a); b = find(b);&#xD;
         if(a == b) return false;&#xD;
         par[b] = a;&#xD;
         return true;&#xD;
@@ -1145,26 +996,19 @@ Con crt(Con c1, Con c2)&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BB64DECFDBA03D4BAECAEF4484F17662/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BB64DECFDBA03D4BAECAEF4484F17662/Shortcut/@EntryValue">pseeuc</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BB64DECFDBA03D4BAECAEF4484F17662/Description/@EntryValue">Extended Euclidean Algorithm</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BB64DECFDBA03D4BAECAEF4484F17662/Text/@EntryValue">struct ENode&#xD;
-{&#xD;
-    ll s;&#xD;
-    ll t;&#xD;
-    ll g;&#xD;
-};&#xD;
-&#xD;
-ENode eeuc(ll a, ll b)&#xD;
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BB64DECFDBA03D4BAECAEF4484F17662/Text/@EntryValue">struct ERes { ll x, y, g; };&#xD;
+ERes eeuc(ll a, ll b)&#xD;
 {&#xD;
     if(b == 0) return { 1, 0, a };&#xD;
 &#xD;
-    ll r = a % b;&#xD;
-    auto res = eeuc(b, r);&#xD;
-    ll x = res.t;&#xD;
-    ll y = res.s - a / b * res.t;&#xD;
+    ERes res = eeuc(b, a % b);&#xD;
+    ll x = res.y;&#xD;
+    ll y = res.x - a / b * res.y;&#xD;
     return { x, y, res.g };&#xD;
 }&#xD;
-// Ax+By=C, D=gcd(A, B)=g&#xD;
-// x0 = s * C/D       y0 = t * C/D&#xD;
-// s = x0 + k * B/D   t = y0 - k * A/D&#xD;
+// Ax+By=C, D=gcd(A,B)=g&#xD;
+// x0 = x * C/D       y0 = y * C/D&#xD;
+// s = x0 + t*B/D   t = y0 - t*A/D&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BB64DECFDBA03D4BAECAEF4484F17662/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=BB64DECFDBA03D4BAECAEF4484F17662/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
@@ -1228,20 +1072,17 @@ using hash_set = hash_map&lt;K, __gnu_pbds::null_type&gt;;&#xD;
 {&#xD;
     int n;&#xD;
     vector&lt;ll&gt; t;&#xD;
-    Fenwick(int _n) : n(_n + 1), t(_n + 1, 0)&#xD;
-    {}&#xD;
+    Fenwick(int _n) : n(_n + 1), t(_n + 1, 0) {}&#xD;
 &#xD;
     void update(int pos, ll dv)&#xD;
     {&#xD;
-        pos++;&#xD;
-        for(; pos &lt; n; pos += (pos &amp; -pos)) t[pos] += dv;&#xD;
+        for(pos++; pos &lt; n; pos += (pos &amp; -pos)) t[pos] += dv;&#xD;
     }&#xD;
 &#xD;
     ll query(int pos)&#xD;
     {&#xD;
-        pos++;&#xD;
         ll res = 0;&#xD;
-        for(; pos &gt; 0; pos -= (pos &amp; -pos)) res += t[pos];&#xD;
+        for(pos++; pos &gt; 0; pos -= (pos &amp; -pos)) res += t[pos];&#xD;
         return res;&#xD;
     }&#xD;
 };&#xD;
@@ -1253,51 +1094,6 @@ using hash_set = hash_map&lt;K, __gnu_pbds::null_type&gt;;&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DDD003E244310A44960EB65E345C55DF/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DDD003E244310A44960EB65E345C55DF/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DDD003E244310A44960EB65E345C55DF/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Shortcut/@EntryValue">psfenwickrange</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Description/@EntryValue">Fenwick Tree - Range Update</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Text/@EntryValue">struct FenwickRange&#xD;
-{&#xD;
-    int n;&#xD;
-    vector&lt;ll&gt; tmul, tadd;&#xD;
-    FenwickRange(int _n) : n(_n + 1), tmul(_n + 1, 0), tadd(_n + 1, 0)&#xD;
-    {}&#xD;
-&#xD;
-    void udtImpl(int pos, ll mul, ll add)&#xD;
-    {&#xD;
-        for(; pos &lt; n; pos += (pos &amp; -pos)) {&#xD;
-            tmul[pos] += mul;&#xD;
-            tadd[pos] += add;&#xD;
-        }&#xD;
-    }&#xD;
-&#xD;
-	void update(int l, int r, ll v)&#xD;
-    {&#xD;
-        l++; r++;&#xD;
-        udtImpl(l, v, -v * (l - 1));&#xD;
-        udtImpl(r, -v, v * r);&#xD;
-    }&#xD;
-&#xD;
-    ll query(int pos)&#xD;
-    {&#xD;
-        pos++;&#xD;
-        ll mul = 0, add = 0;&#xD;
-        int st = pos;&#xD;
-        for(; pos &gt; 0; pos -= (pos &amp; -pos)) {&#xD;
-            mul += tmul[pos];&#xD;
-            add += tadd[pos];&#xD;
-        }&#xD;
-        return mul * st + add;&#xD;
-    }&#xD;
-};&#xD;
-</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Categories/=Imported_00202022_002D07_002D25/@EntryIndexedValue">Imported 2022-07-25</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=58A7278ABA5870459491275FC80B8855/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=58A7278ABA5870459491275FC80B8855/Shortcut/@EntryValue">psfft</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=58A7278ABA5870459491275FC80B8855/Description/@EntryValue">Fast Fourier Transform</s:String>
@@ -1415,106 +1211,74 @@ struct FFT&#xD;
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F9F4C9342D29A247B834585E7097970C/Description/@EntryValue">Flow</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F9F4C9342D29A247B834585E7097970C/Text/@EntryValue">struct Flow&#xD;
 {&#xD;
-    using Type = ll;&#xD;
+    using T = int;&#xD;
+    const T T_INF = INF;&#xD;
 &#xD;
-    struct Edge&#xD;
+    struct Nxt&#xD;
     {&#xD;
-        int dst;&#xD;
-        Type c;&#xD;
-        Type f;&#xD;
-        int revIdx;&#xD;
+        int nxt, revIdx;&#xD;
+        T c, f;&#xD;
     };&#xD;
-&#xD;
-    vector&lt;vector&lt;Edge&gt;&gt; g;&#xD;
-    int n;&#xD;
-    vector&lt;int&gt; level, work;&#xD;
-&#xD;
-    Flow(int _n)&#xD;
+    vector&lt;vector&lt;Nxt&gt;&gt; g;&#xD;
+    vector&lt;int&gt; level, idx;&#xD;
+    Flow(int n) : g(n), level(n), idx(n) {}&#xD;
+    void addEdge(int u, int v, int c, bool biDir = false)&#xD;
     {&#xD;
-        n = _n;&#xD;
-        g.resize(n);&#xD;
-        level.resize(n);&#xD;
-        work.resize(n);&#xD;
+        Nxt uu = { v, -1, c, 0 };&#xD;
+        Nxt vv = { u, -1, 0, 0 };&#xD;
+        if(biDir) vv.c = c;&#xD;
+        uu.revIdx = g[v].size(); vv.revIdx = g[u].size();&#xD;
+        g[u].push_back(uu); g[v].push_back(vv);&#xD;
     }&#xD;
-&#xD;
-    void addEdge(int s, int e, Type c, bool biDir = false)&#xD;
-    {&#xD;
-        Edge e1 = { e, c, 0, -1 };&#xD;
-        Edge e2 = { s, 0, 0, -1 };&#xD;
-        if(biDir == true) e2.c = c;&#xD;
-        e1.revIdx = g[e].size();&#xD;
-        e2.revIdx = g[s].size();&#xD;
-        g[s].push_back(e1);&#xD;
-        g[e].push_back(e2);&#xD;
-    }&#xD;
-&#xD;
-    void addFlow(Edge&amp; e, Type f)&#xD;
+    void addFlow(Nxt&amp; e, T f)&#xD;
     {&#xD;
         e.f += f;&#xD;
-        g[e.dst][e.revIdx].f -= f;&#xD;
+        g[e.nxt][e.revIdx].f -= f;&#xD;
     }&#xD;
 &#xD;
     bool initLevel(int st, int ed)&#xD;
     {&#xD;
-        for(int i = 0; i &lt; n; ++i) {&#xD;
-            level[i] = -1;&#xD;
-        }&#xD;
+        fill(level.begin(), level.end(), -1);&#xD;
         level[st] = 0;&#xD;
         queue&lt;int&gt; q;&#xD;
         q.push(st);&#xD;
-        while(q.empty() == false) {&#xD;
-            int cur = q.front();&#xD;
-            q.pop();&#xD;
-            for(auto&amp; nx : g[cur]) {&#xD;
-                int nxt = nx.dst;&#xD;
-                Type c = nx.c;&#xD;
-                Type f = nx.f;&#xD;
+        while(!q.empty()) {&#xD;
+            int cur = q.front(); q.pop();&#xD;
+            for(auto [nxt, _, c, f] : g[cur]) {&#xD;
                 if(level[nxt] == -1 &amp;&amp; c &gt; f) {&#xD;
                     level[nxt] = level[cur] + 1;&#xD;
                     q.push(nxt);&#xD;
                 }&#xD;
             }&#xD;
         }&#xD;
-        if(level[ed] == -1) return false;&#xD;
-        return true;&#xD;
+        return level[ed] != -1;&#xD;
     }&#xD;
 &#xD;
-    Type flow(int cur, int ed, Type minFlow)&#xD;
+    T flow(int cur, int ed, T minFlow)&#xD;
     {&#xD;
         if(cur == ed) return minFlow;&#xD;
-&#xD;
-        for(int i = work[cur]; i &lt; g[cur].size(); ++i) {&#xD;
-            auto&amp; nx = g[cur][i];&#xD;
-            int nxt = nx.dst;&#xD;
-            Type c = nx.c;&#xD;
-            Type f = nx.f;&#xD;
+        for(int&amp; i = idx[cur]; i &lt; g[cur].size(); ++i) {&#xD;
+            auto [nxt, _, c, f] = g[cur][i];&#xD;
             if(level[nxt] == level[cur] + 1 &amp;&amp; c &gt; f) {&#xD;
-                Type res = flow(nxt, ed, min(minFlow, c - f));&#xD;
+                T res = flow(nxt, ed, min(minFlow, c - f));&#xD;
                 if(res &gt; 0) {&#xD;
-                    addFlow(nx, res);&#xD;
+                    addFlow(g[cur][i], res);&#xD;
                     return res;&#xD;
                 }&#xD;
             }&#xD;
-            work[cur]++;&#xD;
         }&#xD;
         return 0;&#xD;
     }&#xD;
 &#xD;
-    Type maxFlow(int st, int ed)&#xD;
+    T maxFlow(int st, int ed)&#xD;
     {&#xD;
-        Type res = 0;&#xD;
-        while(1) {&#xD;
-            if(initLevel(st, ed) == false) break;&#xD;
-            for(int i = 0; i &lt; n; ++i) {&#xD;
-                work[i] = 0;&#xD;
-            }&#xD;
-            while(1) {&#xD;
-                Type f = flow(st, ed, INF);&#xD;
-                if(f == 0) break;&#xD;
-                res += f;&#xD;
-            }&#xD;
+        T res = 0;&#xD;
+        while(initLevel(st, ed)) {&#xD;
+            fill(idx.begin(), idx.end(), 0);&#xD;
+            T f = flow(st, ed, T_INF);&#xD;
+            if(f == 0) break;&#xD;
+            res += f;&#xD;
         }&#xD;
-&#xD;
         return res;&#xD;
     }&#xD;
 };&#xD;
@@ -1526,110 +1290,6 @@ struct FFT&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F9F4C9342D29A247B834585E7097970C/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F9F4C9342D29A247B834585E7097970C/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F9F4C9342D29A247B834585E7097970C/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31016F487451944D96B12FBF7A66FA11/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31016F487451944D96B12FBF7A66FA11/Shortcut/@EntryValue">psflow_old</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31016F487451944D96B12FBF7A66FA11/Description/@EntryValue">Flow_old</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31016F487451944D96B12FBF7A66FA11/Text/@EntryValue">template &lt;int N&gt;&#xD;
-class Flow&#xD;
-{&#xD;
-public:&#xD;
-    using TYPE = ll;&#xD;
-&#xD;
-    struct Edge&#xD;
-    {&#xD;
-        int dst;&#xD;
-        TYPE c;&#xD;
-        TYPE f;&#xD;
-        int revIdx;&#xD;
-    };&#xD;
-&#xD;
-    vector&lt;Edge&gt; g[N + 1];&#xD;
-    int pre[N + 1];&#xD;
-    Edge* path[N + 1];&#xD;
-    int n;&#xD;
-&#xD;
-    void init(int _n)&#xD;
-    {&#xD;
-        n = _n;&#xD;
-        for(int i = 0; i &lt; n; ++i) {&#xD;
-            g[i].clear();&#xD;
-        }&#xD;
-    }&#xD;
-&#xD;
-    void addEdge(int s, int e, TYPE c, bool biDir = false)&#xD;
-    {&#xD;
-        Edge e1 = { e, c, 0, -1 };&#xD;
-        Edge e2 = { s, 0, 0, -1 };&#xD;
-        if(biDir == true) e2.c = c;&#xD;
-        e1.revIdx = g[e].size();&#xD;
-        e2.revIdx = g[s].size();&#xD;
-        g[s].push_back(e1);&#xD;
-        g[e].push_back(e2);&#xD;
-    }&#xD;
-&#xD;
-    void addFlow(Edge&amp; e, TYPE f)&#xD;
-    {&#xD;
-        e.f += f;&#xD;
-        g[e.dst][e.revIdx].f -= f;&#xD;
-    }&#xD;
-&#xD;
-    TYPE flow(int st, int ed)&#xD;
-    {&#xD;
-        for(int i = 0; i &lt;= n; ++i) {&#xD;
-            pre[i] = -1;&#xD;
-        }&#xD;
-        queue&lt;int&gt; q;&#xD;
-        q.push(st);&#xD;
-        while(q.empty() == false &amp;&amp; pre[ed] == -1) {&#xD;
-            int cur = q.front();&#xD;
-            q.pop();&#xD;
-            for(auto&amp; nx : g[cur]) {&#xD;
-                int nxt = nx.dst;&#xD;
-                TYPE c = nx.c;&#xD;
-                TYPE f = nx.f;&#xD;
-                if(c &gt; f &amp;&amp; pre[nxt] == -1) {&#xD;
-                    pre[nxt] = cur;&#xD;
-                    path[nxt] = &amp;nx;&#xD;
-                    q.push(nxt);&#xD;
-                    if(nxt == ed) break;&#xD;
-                }&#xD;
-            }&#xD;
-        }&#xD;
-        if(pre[ed] == -1) return 0;&#xD;
-        TYPE flow = INF;&#xD;
-        int idx = ed;&#xD;
-        while(idx != st) {&#xD;
-            flow = min(flow, path[idx]-&gt;c - path[idx]-&gt;f);&#xD;
-            idx = pre[idx];&#xD;
-        }&#xD;
-        idx = ed;&#xD;
-        while(idx != st) {&#xD;
-            addFlow(*path[idx], flow);&#xD;
-            idx = pre[idx];&#xD;
-        }&#xD;
-        return flow;&#xD;
-    }&#xD;
-&#xD;
-    TYPE maxFlow(int st, int ed)&#xD;
-    {&#xD;
-        TYPE res = 0;&#xD;
-        while(1) {&#xD;
-            TYPE f = flow(st, ed);&#xD;
-            if(f == 0) break;&#xD;
-            res += f;&#xD;
-        }&#xD;
-&#xD;
-        return res;&#xD;
-    }&#xD;
-};&#xD;
-</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31016F487451944D96B12FBF7A66FA11/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31016F487451944D96B12FBF7A66FA11/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31016F487451944D96B12FBF7A66FA11/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31016F487451944D96B12FBF7A66FA11/Categories/=Imported_00202022_002D07_002D25/@EntryIndexedValue">Imported 2022-07-25</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31016F487451944D96B12FBF7A66FA11/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31016F487451944D96B12FBF7A66FA11/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31016F487451944D96B12FBF7A66FA11/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B08A220A3693E540A893ED70DAE5D357/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B08A220A3693E540A893ED70DAE5D357/Shortcut/@EntryValue">psfst</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B08A220A3693E540A893ED70DAE5D357/Description/@EntryValue">Fast Subset Transform</s:String>
@@ -1771,6 +1431,7 @@ void gauss(vector&lt;vector&lt;double&gt;&gt;&amp; mat, vector&lt;vector&lt;doub
     auto cross(P a, P b) { return a.x * b.y - a.y * b.x; }&#xD;
 &#xD;
     using Point = PointBase&lt;double&gt;;&#xD;
+    constexpr double eps = 1e-10;&#xD;
 }&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=CFEAC6375F78A644A308CF68E4F8E297/Reformat/@EntryValue">True</s:Boolean>
@@ -1839,61 +1500,33 @@ P getCircumcircle(P a, P b, P c)&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA39859238C1C4A86E4C6769764DF7C/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA39859238C1C4A86E4C6769764DF7C/Shortcut/@EntryValue">psgeo_convexhull</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA39859238C1C4A86E4C6769764DF7C/Description/@EntryValue">Convex Hull</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA39859238C1C4A86E4C6769764DF7C/Text/@EntryValue">template &lt;typename P&gt;&#xD;
-vector&lt;P&gt; convexHull(vector&lt;P&gt;&amp; poly, bool erase = false)&#xD;
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA39859238C1C4A86E4C6769764DF7C/Text/@EntryValue">vector&lt;Point&gt; getConvexHull(vector&lt;Point&gt; poly)&#xD;
 {&#xD;
     // line 위 포함 =&gt; while 안 cross 등호 빼고, 일자인 경우 예외처리&#xD;
-    if(poly.size() &lt;= 1) {&#xD;
-        auto newPoly = poly;&#xD;
-        if(erase) poly.clear();&#xD;
-        return newPoly;&#xD;
-    }&#xD;
-&#xD;
-    vector&lt;int&gt; eraseIdx;&#xD;
-&#xD;
+    if(poly.size() &lt;= 1) return poly;&#xD;
     sort(poly.begin(), poly.end());&#xD;
-    vector&lt;P&gt; up;&#xD;
-    for(int i = 0; i &lt; poly.size(); ++i) {&#xD;
-        int sz = up.size();&#xD;
-        auto&amp; p = poly[i];&#xD;
-        while(sz &gt;= 2 &amp;&amp; cross(up[sz - 1] - up[sz - 2], p - up[sz - 2]) &lt;= 0) {&#xD;
-            up.pop_back();&#xD;
-            eraseIdx.pop_back();&#xD;
-            sz--;&#xD;
-        }&#xD;
-        up.push_back(p);&#xD;
-        eraseIdx.push_back(i);&#xD;
-    }&#xD;
 &#xD;
-    vector&lt;P&gt; lo;&#xD;
-    for(int i = poly.size() - 1; i &gt;= 0; --i) {&#xD;
+    vector&lt;Point&gt; lo;&#xD;
+    for(int i = 0; i &lt; poly.size(); ++i) {&#xD;
         int sz = lo.size();&#xD;
-        auto&amp; p = poly[i];&#xD;
+        auto p = poly[i];&#xD;
         while(sz &gt;= 2 &amp;&amp; cross(lo[sz - 1] - lo[sz - 2], p - lo[sz - 2]) &lt;= 0) {&#xD;
-            lo.pop_back();&#xD;
-            eraseIdx.pop_back();&#xD;
-            sz--;&#xD;
+            lo.pop_back(); sz--;&#xD;
         }&#xD;
         lo.push_back(p);&#xD;
-        eraseIdx.push_back(i);&#xD;
     }&#xD;
-&#xD;
-    if(erase) {&#xD;
-        sort(eraseIdx.begin(), eraseIdx.end());&#xD;
-        eraseIdx.push_back(poly.size());&#xD;
-        vector&lt;P&gt; newPoly;&#xD;
-        int ei = 0;&#xD;
-        for(int i = 0; i &lt; poly.size(); ++i) {&#xD;
-            while(eraseIdx[ei] &lt; i) ei++;&#xD;
-            if(eraseIdx[ei] == i) ei++;&#xD;
-            else newPoly.push_back(poly[i]);&#xD;
+    vector&lt;Point&gt; hi;&#xD;
+    for(int i = poly.size() - 1; i &gt;= 0; --i) {&#xD;
+        int sz = hi.size();&#xD;
+        auto p = poly[i];&#xD;
+        while(sz &gt;= 2 &amp;&amp; cross(hi[sz - 1] - hi[sz - 2], p - hi[sz - 2]) &lt;= 0) {&#xD;
+            hi.pop_back(); sz--;&#xD;
         }&#xD;
-&#xD;
-        poly = newPoly;&#xD;
+        hi.push_back(p);&#xD;
     }&#xD;
 &#xD;
-    up.insert(up.end(), lo.begin() + 1, lo.end() - 1);&#xD;
-    return up;&#xD;
+    lo.insert(lo.end(), hi.begin() + 1, hi.end() - 1);&#xD;
+    return lo;&#xD;
 }&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA39859238C1C4A86E4C6769764DF7C/Reformat/@EntryValue">True</s:Boolean>
@@ -1906,11 +1539,10 @@ vector&lt;P&gt; convexHull(vector&lt;P&gt;&amp; poly, bool erase = false)&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2C20FEC0AFD8F9479031C8C5AC98E417/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2C20FEC0AFD8F9479031C8C5AC98E417/Shortcut/@EntryValue">psgeo_linedis</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2C20FEC0AFD8F9479031C8C5AC98E417/Description/@EntryValue">Line Distance</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2C20FEC0AFD8F9479031C8C5AC98E417/Text/@EntryValue">template &lt;typename P&gt;&#xD;
-double getLineDis(P a1, P a2, P p)&#xD;
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2C20FEC0AFD8F9479031C8C5AC98E417/Text/@EntryValue">double getLineDis(Point l1, Point l2, Point p)&#xD;
 {&#xD;
-    Point a = a2 - a1;&#xD;
-    return a.cross(p - a1) / a.dis();&#xD;
+    Point l = l2 - l1;&#xD;
+    return (double)l.cross(p - l1) / l.dis();&#xD;
 }&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2C20FEC0AFD8F9479031C8C5AC98E417/Reformat/@EntryValue">True</s:Boolean>
@@ -1922,22 +1554,18 @@ double getLineDis(P a1, P a2, P p)&#xD;
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2C20FEC0AFD8F9479031C8C5AC98E417/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Shortcut/@EntryValue">psgeo_lineinter</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Description/@EntryValue">Line Interaction</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Text/@EntryValue">// num=0: no inter / num=1: has inter / num=2: inf inter&#xD;
-template &lt;typename P&gt;&#xD;
-P getLineInter(P a1, P a2, P b1, P b2, int&amp; num)&#xD;
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Description/@EntryValue">Line Intersection</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Text/@EntryValue">// 0: no inter / 1: has inter / 2: inf inter&#xD;
+pair&lt;int, Point&gt; getLineInter(Point a1, Point a2, Point b1, Point b2)&#xD;
 {&#xD;
-    P a = a2 - a1, b = b2 - b1;&#xD;
+    Point a = a2 - a1, b = b2 - b1;&#xD;
     auto d = a.cross(b);&#xD;
     if(d == 0) {&#xD;
-        if(a.cross(b1 - a1) == 0) num = 2;&#xD;
-        else num = 0;&#xD;
-        return { 0, 0 };&#xD;
+        return { (a.cross(b1 - a1) == 0 ? 2 : 0), { 0, 0 } };&#xD;
     }&#xD;
     auto p = (a2 - b1).cross(b);&#xD;
     auto q = b.cross(a1 - b1);&#xD;
-    num = 1;&#xD;
-    return (a1 * p + a2 * q) / d;&#xD;
+    return { 1, (a1 * p + a2 * q) / d };&#xD;
 }&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Reformat/@EntryValue">True</s:Boolean>
@@ -1947,53 +1575,121 @@ P getLineInter(P a1, P a2, P b1, P b2, int&amp; num)&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=861B6EDE7AE44D489B80466F28A053DB/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=98FB919D3A11944794C3A9EEEA95E9F7/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=98FB919D3A11944794C3A9EEEA95E9F7/Shortcut/@EntryValue">psgeo_rotatingcalipers</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=98FB919D3A11944794C3A9EEEA95E9F7/Description/@EntryValue">Rotating Calipers</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=98FB919D3A11944794C3A9EEEA95E9F7/Text/@EntryValue">pair&lt;Point, Point&gt; rotatingCalipers(vector&lt;Point&gt;&amp; cvx)&#xD;
+{&#xD;
+    pair&lt;Point, Point&gt; res = { cvx[0], cvx[0] };&#xD;
+    int n = cvx.size(), a = 0, b = 0;&#xD;
+    for(int i = 0; i &lt; n * 2; ++i) {&#xD;
+        if((res.first - res.second).dis2() &lt; (cvx[a] - cvx[b]).dis2()) {&#xD;
+            res = { cvx[a], cvx[b] };&#xD;
+        }&#xD;
+        Point av = cvx[(a + 1) % n] - cvx[a];&#xD;
+        Point bv = cvx[b] - cvx[(b + 1) % n];&#xD;
+        if(av.cross(bv) &gt; 0) a = (a + 1) % n;&#xD;
+        else b = (b + 1) % n;&#xD;
+    }&#xD;
+    return res;&#xD;
+}&#xD;
+</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=98FB919D3A11944794C3A9EEEA95E9F7/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=98FB919D3A11944794C3A9EEEA95E9F7/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=98FB919D3A11944794C3A9EEEA95E9F7/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=98FB919D3A11944794C3A9EEEA95E9F7/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=98FB919D3A11944794C3A9EEEA95E9F7/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B308248BFE8ED8489F86E5D2372216D0/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B308248BFE8ED8489F86E5D2372216D0/Shortcut/@EntryValue">psgeo_segdis</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B308248BFE8ED8489F86E5D2372216D0/Description/@EntryValue">Segment Distance</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B308248BFE8ED8489F86E5D2372216D0/Text/@EntryValue">double getSegDis(Point s1, Point s2, Point p)&#xD;
+{&#xD;
+    if(s1 == s2) return (p - s1).dis();&#xD;
+    Point s = s2 - s1;&#xD;
+    Point sp = p - s1;&#xD;
+    auto d = s.dis2();&#xD;
+    auto t = min(d, max(0.0, sp.dot(s)));&#xD;
+    return (sp * d - s * t).dis() / d;&#xD;
+}&#xD;
+</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B308248BFE8ED8489F86E5D2372216D0/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B308248BFE8ED8489F86E5D2372216D0/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B308248BFE8ED8489F86E5D2372216D0/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B308248BFE8ED8489F86E5D2372216D0/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B308248BFE8ED8489F86E5D2372216D0/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=1A5AE681C99A704F987C26E7D7739C86/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=1A5AE681C99A704F987C26E7D7739C86/Shortcut/@EntryValue">psgeo_seginter</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=1A5AE681C99A704F987C26E7D7739C86/Description/@EntryValue">Segment Intersection</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=1A5AE681C99A704F987C26E7D7739C86/Text/@EntryValue">vector&lt;Point&gt; getSegInter(Point a1, Point a2, Point b1, Point b2)&#xD;
+{&#xD;
+    Point a = a2 - a1, b = b2 - b1;&#xD;
+    auto ab1 = a.cross(b1 - a1), ab2 = a.cross(b2 - a1);&#xD;
+    auto ba1 = b.cross(a1 - b1), ba2 = b.cross(a2 - b1);&#xD;
+    auto sgn = [](auto x) { return x &gt; 0 ? 1 : (x &lt; 0 ? -1 : 0); };&#xD;
+    if(sgn(ab1) * sgn(ab2) &lt; 0 &amp;&amp; sgn(ba1) * sgn(ba2) &lt; 0) {&#xD;
+        return { (a1 * ba2 - a2 * ba1) / (ba2 - ba1) };&#xD;
+    }&#xD;
+    set&lt;Point&gt; s;&#xD;
+    if(isOnSeg(a1, a2, b1)) s.insert(b1);&#xD;
+    if(isOnSeg(a1, a2, b2)) s.insert(b2);&#xD;
+    if(isOnSeg(b1, b2, a1)) s.insert(a1);&#xD;
+    if(isOnSeg(b1, b2, a2)) s.insert(a2);&#xD;
+    return { s.begin(), s.end() };&#xD;
+}&#xD;
+</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=1A5AE681C99A704F987C26E7D7739C86/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=1A5AE681C99A704F987C26E7D7739C86/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=1A5AE681C99A704F987C26E7D7739C86/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=1A5AE681C99A704F987C26E7D7739C86/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=1A5AE681C99A704F987C26E7D7739C86/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAD52DAFA9AA9242920316F1B1CB1493/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAD52DAFA9AA9242920316F1B1CB1493/Shortcut/@EntryValue">psget_onseg</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAD52DAFA9AA9242920316F1B1CB1493/Description/@EntryValue">On Segment</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAD52DAFA9AA9242920316F1B1CB1493/Text/@EntryValue">bool isOnSeg(Point s1, Point s2, Point p)&#xD;
+{&#xD;
+    return (s2 - s1).cross(p - s1) == 0 &amp;&amp; (p - s1).dot(p - s2) &lt;= 0;&#xD;
+    // return getSegDis(s1, s2, p) &lt; eps; // Use if double&#xD;
+}&#xD;
+</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAD52DAFA9AA9242920316F1B1CB1493/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAD52DAFA9AA9242920316F1B1CB1493/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAD52DAFA9AA9242920316F1B1CB1493/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAD52DAFA9AA9242920316F1B1CB1493/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EAD52DAFA9AA9242920316F1B1CB1493/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E4D9B44B9B02114AA5E103EC6DDCE4D4/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E4D9B44B9B02114AA5E103EC6DDCE4D4/Shortcut/@EntryValue">pshashstr</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E4D9B44B9B02114AA5E103EC6DDCE4D4/Description/@EntryValue">Hash String</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E4D9B44B9B02114AA5E103EC6DDCE4D4/Text/@EntryValue">template &lt;ll h1 = 3137, ll m1 = 998244353, ll h2 = 53, ll m2 = 1610612741&gt;&#xD;
 struct HashStr&#xD;
 {&#xD;
-    vector&lt;ll&gt; hv, hpow;&#xD;
-    vector&lt;ll&gt; hv2, hpow2;&#xD;
+    vector&lt;ll&gt; v1, pw1, v2, pw2;&#xD;
 &#xD;
     HashStr(const string&amp; str)&#xD;
     {&#xD;
         int n = str.size();&#xD;
-        hv.resize(n);&#xD;
-        hpow.resize(n);&#xD;
-&#xD;
-        hv[0] = str[0];&#xD;
-        hpow[0] = 1;&#xD;
+        v1.resize(n); pw1.resize(n);&#xD;
+        v2.resize(n); pw2.resize(n);&#xD;
+        v1[0] = v2[0] = str[0];&#xD;
+        pw1[0] = pw2[0] = 1;&#xD;
         for(int i = 1; i &lt; n; ++i) {&#xD;
-            hv[i] = (hv[i - 1] * h1 + str[i]) % m1;&#xD;
-            hpow[i] = (hpow[i - 1] * h1) % m1;&#xD;
-        }&#xD;
-&#xD;
-        hv2.resize(n);&#xD;
-        hpow2.resize(n);&#xD;
-&#xD;
-        hv2[0] = str[0];&#xD;
-        hpow2[0] = 1;&#xD;
-        for(int i = 1; i &lt; n; ++i) {&#xD;
-            hv2[i] = (hv2[i - 1] * h2 + str[i]) % m2;&#xD;
-            hpow2[i] = (hpow2[i - 1] * h2) % m2;&#xD;
+            v1[i] = (v1[i - 1] * h1 + str[i]) % m1;&#xD;
+            pw1[i] = pw1[i - 1] * h1 % m1;&#xD;
+            v2[i] = (v2[i - 1] * h2 + str[i]) % m2;&#xD;
+            pw2[i] = pw2[i - 1] * h2 % m2;&#xD;
         }&#xD;
     }&#xD;
 &#xD;
     // [l, r]&#xD;
     ll substr(int l, int r)&#xD;
     {&#xD;
-        ll res = hv[r];&#xD;
+        ll res1 = v1[r], res2 = v2[r];&#xD;
         if(l &gt; 0) {&#xD;
-            res -= hv[l - 1] * hpow[r - l + 1];&#xD;
-            res = ((res % m1) + m1) % m1;&#xD;
+            ll t = v1[l - 1] * pw1[r - l + 1] % m1;&#xD;
+            res1 = (res1 - t + m1) % m1;&#xD;
+            t = v2[l - 1] * pw2[r - l + 1] % m2;&#xD;
+            res2 = (res2 - t + m2) % m2;&#xD;
         }&#xD;
-        ll res2 = hv2[r];&#xD;
-        if(l &gt; 0) {&#xD;
-            res2 -= hv2[l - 1] * hpow2[r - l + 1];&#xD;
-            res2 = ((res2 % m2) + m2) % m2;&#xD;
-        }&#xD;
-        return res &lt;&lt; 32 | res2;&#xD;
+        return res1 &lt;&lt; 32 | res2;&#xD;
     }&#xD;
 };&#xD;
 </s:String>
@@ -2089,6 +1785,87 @@ hld(hld, 0);&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5F7180B802AE1F42BD81F32D838EF159/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5F7180B802AE1F42BD81F32D838EF159/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5F7180B802AE1F42BD81F32D838EF159/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Shortcut/@EntryValue">psinteractive</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Description/@EntryValue">Interactive Helper</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Text/@EntryValue">int qNum, maxQNum;&#xD;
+vector&lt;int&gt; d;&#xD;
+&#xD;
+void get_data(int n)&#xD;
+{&#xD;
+#ifdef CUBE_PS&#xD;
+    maxQNum = n;&#xD;
+    qNum = 0;&#xD;
+&#xD;
+    // ----- Get data from cin -----&#xD;
+    d.resize(n);&#xD;
+    // -----------------------------&#xD;
+#endif&#xD;
+}&#xD;
+&#xD;
+int query()&#xD;
+{&#xD;
+    stringstream ss;&#xD;
+    // ----- Query -----&#xD;
+    ss &lt;&lt; "? ";&#xD;
+    // -----------------&#xD;
+&#xD;
+    int res;&#xD;
+#ifdef CUBE_PS&#xD;
+    cout &lt;&lt; "query: " &lt;&lt; ss.str() &lt;&lt; "\n";&#xD;
+    qNum++;&#xD;
+    if(qNum &gt; maxQNum) {&#xD;
+        cout &lt;&lt; "WA: Too many queries (" &lt;&lt; qNum &lt;&lt; ")\n";&#xD;
+        exit(1);&#xD;
+    }&#xD;
+&#xD;
+    // ----- Get query result -----&#xD;
+    res = 0;&#xD;
+    // ----------------------------&#xD;
+&#xD;
+&#xD;
+    cout &lt;&lt; "  - result: " &lt;&lt; res &lt;&lt; "\n";&#xD;
+#else&#xD;
+    cout &lt;&lt; ss.str() &lt;&lt; endl;&#xD;
+    cin &gt;&gt; res;&#xD;
+#endif&#xD;
+&#xD;
+    return res;&#xD;
+}&#xD;
+&#xD;
+void answer()&#xD;
+{&#xD;
+    stringstream ss;&#xD;
+    // ----- Answer -----&#xD;
+    ss &lt;&lt; "! ";&#xD;
+    // ------------------&#xD;
+&#xD;
+#ifdef CUBE_PS&#xD;
+    cout &lt;&lt; "answer: " &lt;&lt; ss.str() &lt;&lt; "\n";&#xD;
+&#xD;
+    // ----- Check validate -----&#xD;
+    bool res = true;&#xD;
+&#xD;
+    // --------------------------&#xD;
+&#xD;
+    if(res == false) {&#xD;
+        cout &lt;&lt; "WA: the answer is incorrect\n";&#xD;
+        exit(1);&#xD;
+    } else {&#xD;
+        cout &lt;&lt; "Correct (" &lt;&lt; qNum &lt;&lt; " queries)\n";&#xD;
+    }&#xD;
+#else&#xD;
+    cout &lt;&lt; ss.str() &lt;&lt; endl;&#xD;
+#endif&#xD;
+}&#xD;
+</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Categories/=Imported_00202022_002D07_002D25/@EntryIndexedValue">Imported 2022-07-25</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=947BE736DAC75B4E993FF076FD7F657B/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=298D24E2B0C6D2478A34EB7D5073B7FF/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=298D24E2B0C6D2478A34EB7D5073B7FF/Shortcut/@EntryValue">psiscross</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=298D24E2B0C6D2478A34EB7D5073B7FF/Description/@EntryValue">Is Cross_old</s:String>
@@ -2250,46 +2027,29 @@ struct Kitamasa&#xD;
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7B99A65AAD0EBA4E913C9CD71F39E15E/Text/@EntryValue">struct KMP&#xD;
 {&#xD;
     vector&lt;int&gt; fail;&#xD;
-&#xD;
-    void init_fail(const string&amp; w)&#xD;
+    string w;&#xD;
+    KMP(string&amp; _w) : w(_w), fail(_w.size(), 0)&#xD;
     {&#xD;
-        int wn = w.size();&#xD;
-        fail.clear();&#xD;
-        fail.resize(wn, 0);&#xD;
-&#xD;
         int j = 0;&#xD;
-        for(int i = 1; i &lt; wn; ++i) {&#xD;
-            while(j &gt; 0 &amp;&amp; w[i] != w[j]) {&#xD;
-                j = fail[j - 1];&#xD;
-            }&#xD;
-            if(w[i] == w[j]) {&#xD;
-                fail[i] = j + 1;&#xD;
-                j++;&#xD;
-            }&#xD;
+        for(int i = 1; i &lt; w.size(); ++i) {&#xD;
+            while(j &gt; 0 &amp;&amp; w[i] != w[j]) j = fail[j - 1];&#xD;
+            if(w[i] == w[j]) fail[i] = ++j;&#xD;
         }&#xD;
     }&#xD;
 &#xD;
-    void get(const string&amp; s, const string&amp; w, vector&lt;int&gt;&amp; res)&#xD;
+    vector&lt;int&gt; match(string&amp; str)&#xD;
     {&#xD;
-        init_fail(w);&#xD;
-        res.clear();&#xD;
-&#xD;
-        int sn = s.size();&#xD;
-        int wn = w.size();&#xD;
-&#xD;
+        vector&lt;int&gt; res;&#xD;
         int j = 0;&#xD;
-        for(int i = 0; i &lt; sn; ++i) {&#xD;
-            while(j &gt; 0 &amp;&amp; s[i] != w[j]) {&#xD;
-                j = fail[j - 1];&#xD;
-            }&#xD;
-            if(s[i] == w[j]) {&#xD;
-                j++;&#xD;
-            }&#xD;
-            if(j == wn) {&#xD;
-                res.push_back(i - wn + 1);&#xD;
+        for(int i = 0; i &lt; str.size(); ++i) {&#xD;
+            while(j &gt; 0 &amp;&amp; str[i] != w[j]) j = fail[j - 1];&#xD;
+            if(str[i] == w[j]) j++;&#xD;
+            if(j == w.size()) {&#xD;
+                res.push_back(i - j + 1);&#xD;
                 j = fail[j - 1];&#xD;
             }&#xD;
         }&#xD;
+        return res;&#xD;
     }&#xD;
 };&#xD;
 </s:String>
@@ -2333,62 +2093,58 @@ struct Kitamasa&#xD;
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7A4071738C621644B33FE9A862C59FFF/Description/@EntryValue">Lazy Segment Tree</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7A4071738C621644B33FE9A862C59FFF/Text/@EntryValue">struct SegTree&#xD;
 {&#xD;
-    using Type = int;&#xD;
-&#xD;
-    Type merge(Type l, Type r)&#xD;
+    using T = int;&#xD;
+    T merge(T l, T r)&#xD;
     {&#xD;
         return l + r;&#xD;
     }&#xD;
+    const T emptyNode = 0;&#xD;
 &#xD;
-    const Type emptyNode = 0;&#xD;
-&#xD;
-    vector&lt;Type&gt; t;&#xD;
+    vector&lt;T&gt; t;&#xD;
     vector&lt;int&gt; lazy;&#xD;
-    int stLeaf, n;&#xD;
+    int n;&#xD;
 &#xD;
-    SegTree(int n)&#xD;
+    SegTree(int _n)&#xD;
     {&#xD;
-        stLeaf = 1;&#xD;
-        while(stLeaf &lt; n) stLeaf *= 2;&#xD;
+        n = 1;&#xD;
+        while(n &lt; _n) n &lt;&lt;= 1;&#xD;
 &#xD;
-        t.resize(stLeaf * 2, emptyNode);&#xD;
-        lazy.resize(stLeaf * 2, 0);&#xD;
+        t.resize(n &lt;&lt; 1, emptyNode);&#xD;
+        lazy.resize(n &lt;&lt; 1, 0);&#xD;
     }&#xD;
 &#xD;
-    void initv(int idx, Type v)&#xD;
+    void initv(int idx, T v)&#xD;
     {&#xD;
-        t[stLeaf + idx] = v;&#xD;
+        t[n + idx] = v;&#xD;
     }&#xD;
 &#xD;
     void build()&#xD;
     {&#xD;
-        for(int i = stLeaf - 1; i &gt; 0; --i) {&#xD;
-            t[i] = merge(t[i * 2], t[i * 2 + 1]);&#xD;
-        }&#xD;
+        for(int i = n - 1; i &gt; 0; --i) t[i] = merge(t[i &lt;&lt; 1], t[i &lt;&lt; 1 | 1]);&#xD;
     }&#xD;
 &#xD;
     void push(int l, int r, int node)&#xD;
     {&#xD;
         if(lazy[node] == 0) return;&#xD;
 &#xD;
-        if(node &lt; stLeaf) {&#xD;
-            lazy[node * 2] += lazy[node];&#xD;
-            lazy[node * 2 + 1] += lazy[node];&#xD;
+        if(node &lt; n) {&#xD;
+            lazy[node &lt;&lt; 1] += lazy[node];&#xD;
+            lazy[node &lt;&lt; 1 | 1] += lazy[node];&#xD;
         }&#xD;
         t[node] += (r - l + 1) * lazy[node];&#xD;
         lazy[node] = 0;&#xD;
     }&#xD;
 &#xD;
-    Type queryImpl(int cl, int cr, int l, int r, int node)&#xD;
+    T _qry(int cl, int cr, int l, int r, int node)&#xD;
     {&#xD;
         push(cl, cr, node);&#xD;
         if(cr &lt; l || r &lt; cl) return emptyNode;&#xD;
         if(l &lt;= cl &amp;&amp; cr &lt;= r) return t[node];&#xD;
-        int m = (cl + cr) / 2;&#xD;
-        return merge(queryImpl(cl, m, l, r, node * 2), queryImpl(m + 1, cr, l, r, node * 2 + 1));&#xD;
+        int m = (cl + cr) &gt;&gt; 1;&#xD;
+        return merge(_qry(cl, m, l, r, node &lt;&lt; 1), _qry(m + 1, cr, l, r, node &lt;&lt; 1 | 1));&#xD;
     }&#xD;
 &#xD;
-    void udtImpl(int cl, int cr, int l, int r, int node, Type v)&#xD;
+    void _udt(int cl, int cr, int l, int r, int node, T v)&#xD;
     {&#xD;
         push(cl, cr, node);&#xD;
         if(cr &lt; l || r &lt; cl) return;&#xD;
@@ -2397,20 +2153,20 @@ struct Kitamasa&#xD;
             push(cl, cr, node);&#xD;
             return;&#xD;
         }&#xD;
-        int m = (cl + cr) / 2;&#xD;
-        udtImpl(cl, m, l, r, node * 2, v);&#xD;
-        udtImpl(m + 1, cr, l, r, node * 2 + 1, v);&#xD;
-        t[node] = merge(t[node * 2], t[node * 2 + 1]);&#xD;
+        int m = (cl + cr) &gt;&gt; 1;&#xD;
+        _udt(cl, m, l, r, node &lt;&lt; 1, v);&#xD;
+        _udt(m + 1, cr, l, r, node &lt;&lt; 1 | 1, v);&#xD;
+        t[node] = merge(t[node &lt;&lt; 1], t[node &lt;&lt; 1 | 1]);&#xD;
     }&#xD;
 &#xD;
-    Type query(int l, int r)&#xD;
+    T query(int l, int r)&#xD;
     {&#xD;
-        return queryImpl(0, stLeaf - 1, l, r, 1);&#xD;
+        return _qry(0, n - 1, l, r, 1);&#xD;
     }&#xD;
 &#xD;
-    void update(int l, int r, Type v)&#xD;
+    void update(int l, int r, T v)&#xD;
     {&#xD;
-        udtImpl(0, stLeaf - 1, l, r, 1, v);&#xD;
+        _udt(0, n - 1, l, r, 1, v);&#xD;
     }&#xD;
 };&#xD;
 </s:String>
@@ -2681,109 +2437,74 @@ pair&lt;vector&lt;int&gt;, vector&lt;int&gt;&gt; manacher(const string&amp; str)
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8E3BF7E55A5A6D4A91216C2F93C0B6A7/Description/@EntryValue">Min-Cost Max-Flow</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8E3BF7E55A5A6D4A91216C2F93C0B6A7/Text/@EntryValue">struct MCMF&#xD;
 {&#xD;
-    using Type = ll;&#xD;
-    constexpr Type TINF = LNF;&#xD;
-&#xD;
-    struct Edge&#xD;
+    using T = ll;&#xD;
+    const T T_INF = LNF;&#xD;
+    struct Nxt&#xD;
     {&#xD;
-        int dst;&#xD;
-        Type c;&#xD;
-        Type f;&#xD;
-        Type cost;&#xD;
-        int revIdx;&#xD;
+        int nxt, revIdx;&#xD;
+        T c, f, cost;&#xD;
     };&#xD;
-&#xD;
-    vector&lt;vector&lt;Edge&gt;&gt; g;&#xD;
+    vector&lt;vector&lt;Nxt&gt;&gt; g;&#xD;
     vector&lt;int&gt; pre;&#xD;
-    vector&lt;Edge*&gt; path;&#xD;
+    vector&lt;T&gt; dis;&#xD;
+    vector&lt;Nxt*&gt; eg;&#xD;
     vector&lt;char&gt; inQ;&#xD;
-    vector&lt;Type&gt; dis;&#xD;
-    int n;&#xD;
-&#xD;
-    MCMF(int _n)&#xD;
+    MCMF(int n) : g(n), pre(n), dis(n), eg(n), inQ(n) {}&#xD;
+    void addEdge(int u, int v, T c, T cost)&#xD;
     {&#xD;
-        n = _n;&#xD;
-        g.resize(n);&#xD;
-        pre.resize(n);&#xD;
-        path.resize(n);&#xD;
-        inQ.resize(n);&#xD;
-        dis.resize(n);&#xD;
+        Nxt uu = { v, -1, c, 0, cost };&#xD;
+        Nxt vv = { u, -1, 0, 0, -cost };&#xD;
+        uu.revIdx = g[v].size(); vv.revIdx = g[u].size();&#xD;
+        g[u].push_back(uu); g[v].push_back(vv);&#xD;
     }&#xD;
-&#xD;
-    void addEdge(int s, int e, Type c, Type cost)&#xD;
-    {&#xD;
-        Edge e1 = { e, c, 0, cost, -1 };&#xD;
-        Edge e2 = { s, 0, 0, -cost, -1 };&#xD;
-        e1.revIdx = g[e].size();&#xD;
-        e2.revIdx = g[s].size();&#xD;
-        g[s].push_back(e1);&#xD;
-        g[e].push_back(e2);&#xD;
-    }&#xD;
-&#xD;
-    void addFlow(Edge&amp; e, Type f)&#xD;
+    void addFlow(Nxt&amp; e, T f)&#xD;
     {&#xD;
         e.f += f;&#xD;
-        g[e.dst][e.revIdx].f -= f;&#xD;
+        g[e.nxt][e.revIdx].f -= f;&#xD;
     }&#xD;
 &#xD;
-    pair&lt;Type, Type&gt; flow(int st, int ed)&#xD;
+    pair&lt;T, T&gt; flow(int st, int ed)&#xD;
     {&#xD;
-        for(int i = 0; i &lt; n; ++i) {&#xD;
-            pre[i] = -1;&#xD;
-            inQ[i] = false;&#xD;
-            dis[i] = INF;&#xD;
-        }&#xD;
+        fill(pre.begin(), pre.end(), -1);&#xD;
+        fill(dis.begin(), dis.end(), T_INF);&#xD;
+        fill(inQ.begin(), inQ.end(), true);&#xD;
         queue&lt;int&gt; q;&#xD;
-        q.push(st);&#xD;
-        inQ[st] = true;&#xD;
+        q.push(st); inQ[st] = true;&#xD;
         dis[st] = 0;&#xD;
-        while(q.empty() == false) {&#xD;
-            int cur = q.front();&#xD;
-            q.pop();&#xD;
-            inQ[cur] = false;&#xD;
+        while(!q.empty()) {&#xD;
+            int cur = q.front(); q.pop(); inQ[cur] = false;&#xD;
             for(auto&amp; nx : g[cur]) {&#xD;
-                int nxt = nx.dst;&#xD;
-                Type c = nx.c;&#xD;
-                Type f = nx.f;&#xD;
-                Type cost = nx.cost;&#xD;
+                auto [nxt, _, c, f, cost] = nx;&#xD;
                 if(c &gt; f &amp;&amp; dis[nxt] &gt; dis[cur] + cost) {&#xD;
                     dis[nxt] = dis[cur] + cost;&#xD;
                     pre[nxt] = cur;&#xD;
-                    path[nxt] = &amp;nx;&#xD;
-                    if(inQ[nxt] == false) {&#xD;
-                        q.push(nxt);&#xD;
-                        inQ[nxt] = true;&#xD;
+                    eg[nxt] = &amp;nx;&#xD;
+                    if(!inQ[nxt]) {&#xD;
+                        q.push(nxt); inQ[nxt] = true;&#xD;
                     }&#xD;
                 }&#xD;
             }&#xD;
         }&#xD;
         if(pre[ed] == -1) return { 0, 0 };&#xD;
-        Type flow = TINF;&#xD;
-        int idx = ed;&#xD;
-        while(idx != st) {&#xD;
-            flow = min(flow, path[idx]-&gt;c - path[idx]-&gt;f);&#xD;
-            idx = pre[idx];&#xD;
+        T minF = T_INF;&#xD;
+        for(int i = ed; i != st; i = pre[i]) minF = min(minF, eg[i]-&gt;c - eg[i]-&gt;f);&#xD;
+        T cost = 0;&#xD;
+        for(int i = ed; i != st; i = pre[i]) {&#xD;
+            addFlow(*eg[i], minF);&#xD;
+            cost += minF * eg[i]-&gt;cost;&#xD;
         }&#xD;
-        idx = ed;&#xD;
-        Type cost = 0;&#xD;
-        while(idx != st) {&#xD;
-            addFlow(*path[idx], flow);&#xD;
-            cost += path[idx]-&gt;cost * flow;&#xD;
-            idx = pre[idx];&#xD;
-        }&#xD;
-        return { flow, cost };&#xD;
+        return { minF, cost };&#xD;
     }&#xD;
 &#xD;
-    pair&lt;Type, Type&gt; mcmf(int st, int ed)&#xD;
+    pair&lt;T, T&gt; maxFlow(int st, int ed)&#xD;
     {&#xD;
-        pair&lt;Type, Type&gt; res = { 0, 0 };&#xD;
+        pair&lt;T, T&gt; res = { 0, 0 };&#xD;
         while(1) {&#xD;
-            pair&lt;Type, Type&gt; f = flow(st, ed);&#xD;
+            auto f = flow(st, ed);&#xD;
             if(f.first == 0) break;&#xD;
             res.first += f.first;&#xD;
             res.second += f.second;&#xD;
         }&#xD;
-&#xD;
         return res;&#xD;
     }&#xD;
 };&#xD;
@@ -3132,39 +2853,33 @@ int getRandom() { return distribution(rng); }&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/Shortcut/@EntryValue">psscc</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/Description/@EntryValue">SCC</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/Text/@EntryValue">vector&lt;int&gt; dep(n, 0), st, finish(n, false), sccIdx(n);&#xD;
-vector&lt;vector&lt;int&gt;&gt; sccs;&#xD;
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/Text/@EntryValue">vector&lt;vector&lt;int&gt;&gt; sccs;&#xD;
+vector&lt;int&gt; dep(n, -1), st, sccIdx(n);&#xD;
+vector&lt;char&gt; finish(n, false);&#xD;
 int dNum = 0;&#xD;
-&#xD;
 auto scc_dfs = [&amp;](auto&amp;&amp; self, int cur) -&gt; int {&#xD;
-	dep[cur] = ++dNum;&#xD;
-	st.push_back(cur);&#xD;
+    dep[cur] = dNum++;&#xD;
+    st.push_back(cur);&#xD;
 &#xD;
-	int ret = dep[cur];&#xD;
-	for(int nxt : g[cur]) {&#xD;
-		if(dep[nxt] == 0) ret = min(ret, self(self, nxt));&#xD;
-		else if(finish[nxt] == false) ret = min(ret, dep[nxt]);&#xD;
-	}&#xD;
-&#xD;
-	if(ret == dep[cur]) {&#xD;
-		sccs.push_back({});&#xD;
-		auto&amp; scc = sccs.back();&#xD;
-		while(1) {&#xD;
-			int top = st.back();&#xD;
-			st.pop_back();&#xD;
-&#xD;
-			scc.push_back(top);&#xD;
-			sccIdx[top] = (int)sccs.size() - 1;&#xD;
-			finish[top] = true;&#xD;
-&#xD;
-			if(top == cur) break;&#xD;
-		}&#xD;
-	}&#xD;
-	return ret;&#xD;
+    int ret = dep[cur];&#xD;
+    for(int nxt : g[cur]) {&#xD;
+        if(dep[nxt] == -1) ret = min(ret, self(self, nxt));&#xD;
+        else if(!finish[nxt]) ret = min(ret, dep[nxt]);&#xD;
+    }&#xD;
+    if(ret == dep[cur]) {&#xD;
+        sccs.push_back({});&#xD;
+        auto&amp; scc = sccs.back();&#xD;
+        while(1) {&#xD;
+            int top = st.back(); st.pop_back();&#xD;
+            scc.push_back(top);&#xD;
+            sccIdx[top] = sccs.size() - 1;&#xD;
+            finish[top] = true;&#xD;
+            if(top == cur) break;&#xD;
+        }&#xD;
+    }&#xD;
+    return ret;&#xD;
 };&#xD;
-for(int i = 0; i &lt; n; ++i) {&#xD;
-	if(dep[i] == 0) scc_dfs(scc_dfs, i);&#xD;
-}&#xD;
+for(int i = 0; i &lt; n; ++i) if(dep[i] == -1) scc_dfs(scc_dfs, i);&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C36C6199B9ACDF45AA9D5CF03AD74623/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
@@ -3249,58 +2964,38 @@ for(int i = 0; i &lt; n; ++i) {&#xD;
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8B274826E3468847800F795624F1BF92/Description/@EntryValue">Segment Tree</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=8B274826E3468847800F795624F1BF92/Text/@EntryValue">struct SegTree&#xD;
 {&#xD;
-    using Type = ll;&#xD;
-&#xD;
-    Type merge(Type l, Type r)&#xD;
+    using T = ll;&#xD;
+    T merge(T l, T r)&#xD;
     {&#xD;
         return l + r;&#xD;
     }&#xD;
-&#xD;
-    const Type emptyNode = 0;&#xD;
+    const T empty = 0;&#xD;
 &#xD;
     int n;&#xD;
-    vector&lt;Type&gt; t;&#xD;
-&#xD;
-    SegTree(int _n)&#xD;
-    {&#xD;
-        n = _n;&#xD;
-        t.resize(n * 2, emptyNode);&#xD;
-    }&#xD;
-&#xD;
-    void initv(int idx, Type v)&#xD;
+    vector&lt;T&gt; t;&#xD;
+    SegTree(int _n) : n(_n), t(n * 2, empty) {}&#xD;
+    void initv(int idx, T v)&#xD;
     {&#xD;
         t[n + idx] = v;&#xD;
     }&#xD;
-&#xD;
     void build()&#xD;
     {&#xD;
-        for(int i = n - 1; i &gt; 0; --i) {&#xD;
-            t[i] = merge(t[i &lt;&lt; 1], t[i &lt;&lt; 1 | 1]);&#xD;
-        }&#xD;
+        for(int i = n - 1; i &gt; 0; --i) t[i] = merge(t[i &lt;&lt; 1], t[i &lt;&lt; 1 | 1]);&#xD;
     }&#xD;
 &#xD;
-    void update(int idx, Type v)&#xD;
+    void update(int idx, T v)&#xD;
     {&#xD;
         idx += n;&#xD;
         t[idx] = v;&#xD;
-        idx &gt;&gt;= 1;&#xD;
-        while(idx &gt; 0) {&#xD;
-            t[idx] = merge(t[idx &lt;&lt; 1], t[idx &lt;&lt; 1 | 1]);&#xD;
-            idx &gt;&gt;= 1;&#xD;
-        }&#xD;
+        for(idx &gt;&gt;= 1; idx &gt; 0; idx &gt;&gt;= 1) merge(t[idx &lt;&lt; 1], t[idx &lt;&lt; 1 | 1]);&#xD;
     }&#xD;
 &#xD;
-    Type query(int l, int r)&#xD;
+    T query(int l, int r)&#xD;
     {&#xD;
-        l += n;&#xD;
-        r += n + 1;&#xD;
-        Type resl = emptyNode;&#xD;
-        Type resr = emptyNode;&#xD;
-        while(l &lt; r) {&#xD;
+        T resl = empty, resr = empty;&#xD;
+        for(l += n, r += n + 1; l &lt; r; l &gt;&gt;= 1, r &gt;&gt;= 1) {&#xD;
             if(l &amp; 1) resl = merge(resl, t[l++]);&#xD;
             if(r &amp; 1) resr = merge(t[--r], resr);&#xD;
-            l &gt;&gt;= 1;&#xD;
-            r &gt;&gt;= 1;&#xD;
         }&#xD;
         return merge(resl, resr);&#xD;
     }&#xD;
@@ -3468,20 +3163,14 @@ struct SuffixArray&#xD;
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=524CB0AEC16B0B40BDB0A4A3E50F5088/Text/@EntryValue">struct Treap&#xD;
 {&#xD;
     Treap* l, * r;&#xD;
-    int pri, sz;&#xD;
-    int v;&#xD;
-&#xD;
+    int sz, pri;&#xD;
+    ll v;&#xD;
     Treap() = default;&#xD;
-    Treap(int _v)&#xD;
-    {&#xD;
-        l = r = nullptr;&#xD;
-        pri = getRandom();&#xD;
-        v = _v;&#xD;
-        sz = 1;&#xD;
-    }&#xD;
+    Treap(ll _v) : l(0), r(0), sz(1), pri(getRandom()), v(_v) {}&#xD;
     ~Treap()&#xD;
     {&#xD;
-        delete l; delete r;&#xD;
+        delete l;&#xD;
+        delete r;&#xD;
     }&#xD;
 &#xD;
     void update()&#xD;
@@ -3491,37 +3180,33 @@ struct SuffixArray&#xD;
         if(r) sz += r-&gt;sz;&#xD;
         push();&#xD;
     }&#xD;
-&#xD;
-    void push()&#xD;
-    {&#xD;
-    }&#xD;
+    void push() {}&#xD;
 };&#xD;
 &#xD;
-// sz == left treap size&#xD;
-pair&lt;Treap*, Treap*&gt; split(Treap* rt, int sz)&#xD;
+// sz -&gt; left tree size&#xD;
+pair&lt;Treap*, Treap*&gt; split(Treap* cur, int sz)&#xD;
 {&#xD;
-    if(!rt) return { 0, 0 };&#xD;
+    if(!cur) return { 0, 0 };&#xD;
+    cur-&gt;push();&#xD;
 &#xD;
-    rt-&gt;push();&#xD;
-&#xD;
-    int lsz = rt-&gt;l ? rt-&gt;l-&gt;sz : 0;&#xD;
+    int lsz = cur-&gt;l ? cur-&gt;l-&gt;sz : 0;&#xD;
     if(lsz + 1 &lt;= sz) {&#xD;
-        auto [l, r] = split(rt-&gt;r, sz - lsz - 1);&#xD;
-        rt-&gt;r = l;&#xD;
-        rt-&gt;update();&#xD;
-        return { rt, r };&#xD;
+        auto [l, r] = split(cur-&gt;r, sz - lsz - 1);&#xD;
+        cur-&gt;r = l;&#xD;
+        cur-&gt;update();&#xD;
+        return { cur, r };&#xD;
     } else {&#xD;
-        auto [l, r] = split(rt-&gt;l, sz);&#xD;
-        rt-&gt;l = r;&#xD;
-        rt-&gt;update();&#xD;
-        return { l, rt };&#xD;
+        auto [l, r] = split(cur-&gt;l, sz);&#xD;
+        cur-&gt;l = r;&#xD;
+        cur-&gt;update();&#xD;
+        return { l, cur };&#xD;
     }&#xD;
 }&#xD;
 &#xD;
 Treap* merge(Treap* l, Treap* r)&#xD;
 {&#xD;
-    if(!l) return r; if(!r) return l;&#xD;
-&#xD;
+    if(!l) return r;&#xD;
+    if(!r) return l;&#xD;
     l-&gt;push(); r-&gt;push();&#xD;
 &#xD;
     if(l-&gt;pri &lt; r-&gt;pri) {&#xD;
@@ -3584,23 +3269,22 @@ Treap* merge(Treap* l, Treap* r)&#xD;
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA792FA6933644EBD6F5B4BD6BBB853/Description/@EntryValue">Minimum Vertex Cover</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DA792FA6933644EBD6F5B4BD6BBB853/Text/@EntryValue">// req: psbipartite&#xD;
 auto cover = [&amp;]() {&#xD;
-    vector&lt;char&gt; visitL(n, true), visitR(m, false);&#xD;
-    for(int i = 0; i &lt; n; ++i) if(a[i] != -1) visitL[i] = false;&#xD;
+    vector&lt;char&gt; visitA(n, false), visitB(m, false);&#xD;
     queue&lt;int&gt; q;&#xD;
-    for(int i = 0; i &lt; n; ++i) if(visitL[i]) q.push(i);&#xD;
+    for(int i = 0; i &lt; n; ++i) if(a[i] == -1) q.push(i);&#xD;
     while(!q.empty()) {&#xD;
         int cur = q.front(); q.pop();&#xD;
-        visitL[cur] = true;&#xD;
+        visitA[cur] = true;&#xD;
         for(int nxt : g[cur]) {&#xD;
-            if(!visitR[nxt] &amp;&amp; b[nxt] != -1) {&#xD;
-                visitR[nxt] = true;&#xD;
+            if(b[nxt] != -1 &amp;&amp; !visitB[nxt]) {&#xD;
+                visitB[nxt] = true;&#xD;
                 q.push(b[nxt]);&#xD;
             }&#xD;
         }&#xD;
     }&#xD;
     vector&lt;int&gt; res;&#xD;
-    for(int i = 0; i &lt; n; ++i) if(!visitL[i]) res.push_back(i);&#xD;
-    for(int i = 0; i &lt; m; ++i) if(visitR[i]) res.push_back(i + n);&#xD;
+    for(int i = 0; i &lt; n; ++i) if(!visitA[i]) res.push_back(i);&#xD;
+    for(int i = 0; i &lt; m; ++i) if(visitB[i]) res.push_back(n + i);&#xD;
     return res;&#xD;
 };&#xD;
 </s:String>

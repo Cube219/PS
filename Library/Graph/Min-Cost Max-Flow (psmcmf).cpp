@@ -1,108 +1,73 @@
 struct MCMF
 {
-    using Type = ll;
-    constexpr Type TINF = LNF;
-
-    struct Edge
+    using T = ll;
+    const T T_INF = LNF;
+    struct Nxt
     {
-        int dst;
-        Type c;
-        Type f;
-        Type cost;
-        int revIdx;
+        int nxt, revIdx;
+        T c, f, cost;
     };
-
-    vector<vector<Edge>> g;
+    vector<vector<Nxt>> g;
     vector<int> pre;
-    vector<Edge*> path;
+    vector<T> dis;
+    vector<Nxt*> eg;
     vector<char> inQ;
-    vector<Type> dis;
-    int n;
-
-    MCMF(int _n)
+    MCMF(int n) : g(n), pre(n), dis(n), eg(n), inQ(n) {}
+    void addEdge(int u, int v, T c, T cost)
     {
-        n = _n;
-        g.resize(n);
-        pre.resize(n);
-        path.resize(n);
-        inQ.resize(n);
-        dis.resize(n);
+        Nxt uu = { v, -1, c, 0, cost };
+        Nxt vv = { u, -1, 0, 0, -cost };
+        uu.revIdx = g[v].size(); vv.revIdx = g[u].size();
+        g[u].push_back(uu); g[v].push_back(vv);
     }
-
-    void addEdge(int s, int e, Type c, Type cost)
-    {
-        Edge e1 = { e, c, 0, cost, -1 };
-        Edge e2 = { s, 0, 0, -cost, -1 };
-        e1.revIdx = g[e].size();
-        e2.revIdx = g[s].size();
-        g[s].push_back(e1);
-        g[e].push_back(e2);
-    }
-
-    void addFlow(Edge& e, Type f)
+    void addFlow(Nxt& e, T f)
     {
         e.f += f;
-        g[e.dst][e.revIdx].f -= f;
+        g[e.nxt][e.revIdx].f -= f;
     }
 
-    pair<Type, Type> flow(int st, int ed)
+    pair<T, T> flow(int st, int ed)
     {
-        for(int i = 0; i < n; ++i) {
-            pre[i] = -1;
-            inQ[i] = false;
-            dis[i] = INF;
-        }
+        fill(pre.begin(), pre.end(), -1);
+        fill(dis.begin(), dis.end(), T_INF);
+        fill(inQ.begin(), inQ.end(), true);
         queue<int> q;
-        q.push(st);
-        inQ[st] = true;
+        q.push(st); inQ[st] = true;
         dis[st] = 0;
-        while(q.empty() == false) {
-            int cur = q.front();
-            q.pop();
-            inQ[cur] = false;
+        while(!q.empty()) {
+            int cur = q.front(); q.pop(); inQ[cur] = false;
             for(auto& nx : g[cur]) {
-                int nxt = nx.dst;
-                Type c = nx.c;
-                Type f = nx.f;
-                Type cost = nx.cost;
+                auto [nxt, _, c, f, cost] = nx;
                 if(c > f && dis[nxt] > dis[cur] + cost) {
                     dis[nxt] = dis[cur] + cost;
                     pre[nxt] = cur;
-                    path[nxt] = &nx;
-                    if(inQ[nxt] == false) {
-                        q.push(nxt);
-                        inQ[nxt] = true;
+                    eg[nxt] = &nx;
+                    if(!inQ[nxt]) {
+                        q.push(nxt); inQ[nxt] = true;
                     }
                 }
             }
         }
         if(pre[ed] == -1) return { 0, 0 };
-        Type flow = TINF;
-        int idx = ed;
-        while(idx != st) {
-            flow = min(flow, path[idx]->c - path[idx]->f);
-            idx = pre[idx];
+        T minF = T_INF;
+        for(int i = ed; i != st; i = pre[i]) minF = min(minF, eg[i]->c - eg[i]->f);
+        T cost = 0;
+        for(int i = ed; i != st; i = pre[i]) {
+            addFlow(*eg[i], minF);
+            cost += minF * eg[i]->cost;
         }
-        idx = ed;
-        Type cost = 0;
-        while(idx != st) {
-            addFlow(*path[idx], flow);
-            cost += path[idx]->cost * flow;
-            idx = pre[idx];
-        }
-        return { flow, cost };
+        return { minF, cost };
     }
 
-    pair<Type, Type> mcmf(int st, int ed)
+    pair<T, T> maxFlow(int st, int ed)
     {
-        pair<Type, Type> res = { 0, 0 };
+        pair<T, T> res = { 0, 0 };
         while(1) {
-            pair<Type, Type> f = flow(st, ed);
+            auto f = flow(st, ed);
             if(f.first == 0) break;
             res.first += f.first;
             res.second += f.second;
         }
-
         return res;
     }
 };

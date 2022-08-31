@@ -1,45 +1,28 @@
 struct KMP
 {
     vector<int> fail;
-
-    void init_fail(const string& w)
+    string w;
+    KMP(string& _w) : w(_w), fail(_w.size(), 0)
     {
-        int wn = w.size();
-        fail.clear();
-        fail.resize(wn, 0);
-
         int j = 0;
-        for(int i = 1; i < wn; ++i) {
-            while(j > 0 && w[i] != w[j]) {
-                j = fail[j - 1];
-            }
-            if(w[i] == w[j]) {
-                fail[i] = j + 1;
-                j++;
-            }
+        for(int i = 1; i < w.size(); ++i) {
+            while(j > 0 && w[i] != w[j]) j = fail[j - 1];
+            if(w[i] == w[j]) fail[i] = ++j;
         }
     }
 
-    void get(const string& s, const string& w, vector<int>& res)
+    vector<int> match(string& str)
     {
-        init_fail(w);
-        res.clear();
-
-        int sn = s.size();
-        int wn = w.size();
-
+        vector<int> res;
         int j = 0;
-        for(int i = 0; i < sn; ++i) {
-            while(j > 0 && s[i] != w[j]) {
-                j = fail[j - 1];
-            }
-            if(s[i] == w[j]) {
-                j++;
-            }
-            if(j == wn) {
-                res.push_back(i - wn + 1);
+        for(int i = 0; i < str.size(); ++i) {
+            while(j > 0 && str[i] != w[j]) j = fail[j - 1];
+            if(str[i] == w[j]) j++;
+            if(j == w.size()) {
+                res.push_back(i - j + 1);
                 j = fail[j - 1];
             }
         }
+        return res;
     }
 };

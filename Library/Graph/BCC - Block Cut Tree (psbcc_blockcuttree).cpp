@@ -1,40 +1,33 @@
-vector<int> idx(n);
 vector<vector<int>> g2;
+vector<int> idx(n);
 for(int i = 0; i < n; ++i) {
     if(isCut[i]) {
-        g2.emplace_back();
-        idx[i] = g2.size() - 1;
+        idx[i] = g2.size();
+        g2.push_back({});
     }
 }
-unordered_map<ll, int> bridges;
-vector<char> isUse(n, 0);
-for(auto& b : bcc) {
-    g2.emplace_back();
-    int cur = g2.size() - 1;
-    for(auto& p : b) {
-        if(!isUse[p.first]) {
-            if(isCut[p.first]) {
-                g2[cur].emplace_back(idx[p.first]);
-                g2[idx[p.first]].emplace_back(cur);
-            } else idx[p.first] = cur;
-            isUse[p.first] = true;
+vector<char> use(n, false);
+for(auto& bcc : bccs) {
+    int cur = g2.size();
+    g2.push_back({});
+    for(auto [u, v] : bcc) {
+        if(!use[u]) {
+            if(isCut[u]) {
+                g[idx[u]].push_back(cur);
+                g[cur].push_back(idx[u]);
+            } else idx[u] = cur;
+            use[u] = true;
         }
-        if(!isUse[p.second]) {
-            if(isCut[p.second]) {
-                g2[cur].emplace_back(idx[p.second]);
-                g2[idx[p.second]].emplace_back(cur);
-            } else idx[p.second] = cur;
-            isUse[p.second] = true;
+        if(!use[v]) {
+            if(isCut[v]) {
+                g[idx[v]].push_back(cur);
+                g[cur].push_back(idx[v]);
+            } else idx[v] = cur;
+            use[v] = true;
         }
     }
-    if(b.size() == 1) {
-        ll u = b[0].first;
-        ll v = b[0].second;
-        if(u > v) swap(u, v);
-        bridges.insert({ u << 32 | v, cur });
-    }
-    for(auto& p : b) {
-        isUse[p.first] = false;
-        isUse[p.second] = false;
+    for(auto [u, v] : bcc) {
+        use[u] = false;
+        use[v] = false;
     }
 }

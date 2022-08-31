@@ -15,8 +15,7 @@ struct DSU
 
     bool uni(int a, int b)
     {
-        a = find(a);
-        b = find(b);
+        a = find(a); b = find(b);
         if(a == b) return false;
         par[b] = a;
         return true;

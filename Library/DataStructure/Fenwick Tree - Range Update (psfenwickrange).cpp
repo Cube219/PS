@@ -2,10 +2,9 @@ struct FenwickRange
 {
     int n;
     vector<ll> tmul, tadd;
-    FenwickRange(int _n) : n(_n + 1), tmul(_n + 1, 0), tadd(_n + 1, 0)
-    {}
+    FenwickRange(int _n) : n(_n + 1), tmul(_n + 1, 0), tadd(_n + 1, 0) {}
 
-    void udtImpl(int pos, ll mul, ll add)
+    void _udt(int pos, ll mul, ll add)
     {
         for(; pos < n; pos += (pos & -pos)) {
             tmul[pos] += mul;
@@ -16,8 +15,8 @@ struct FenwickRange
     void update(int l, int r, ll v)
     {
         l++; r++;
-        udtImpl(l, v, -v * (l - 1));
-        udtImpl(r, -v, v * r);
+        _udt(l, v, -v * (l - 1));
+        _udt(r, -v, v * r);
     }
 
     ll query(int pos)

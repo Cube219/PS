@@ -1,6 +1,5 @@
-template <typename P>
-double getLineDis(P a1, P a2, P p)
+double getLineDis(Point l1, Point l2, Point p)
 {
-    Point a = a2 - a1;
-    return a.cross(p - a1) / a.dis();
+    Point l = l2 - l1;
+    return (double)l.cross(p - l1) / l.dis();
 }

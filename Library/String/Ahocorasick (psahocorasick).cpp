@@ -1,73 +1,66 @@
 struct AhoCorasick
 {
-    constexpr static char BASE = 'A';
-    constexpr static int NUM = 'Z' - 'A' + 1;
-
-    AhoCorasick* nxt[NUM];
-    AhoCorasick* fail;
-    bool has;
-
-    AhoCorasick()
+    enum { BASE = 'a', NUM = 'z' - 'a' + 1 };
+    struct Node
     {
-        for(int i = 0; i < NUM; ++i) {
-            nxt[i] = nullptr;
+        int nxt[NUM], fail = 0;
+        int num = 0;
+        Node()
+        {
+            fill(nxt, nxt + NUM, -1);
         }
-        fail = nullptr;
-        has = false;
-    }
+    };
+    vector<Node> t;
 
-    ~AhoCorasick()
+    AhoCorasick(vector<string>& pat) : t(1)
     {
-        for(int i = 0; i < NUM; ++i) {
-            if(nxt[i] != nullptr) delete nxt[i];
-        }
-    }
+        for(auto& str : pat) insert(str);
 
-    void insert(const string& str, int idx)
-    {
-        if(str.size() == idx) {
-            has = true;
-            return;
-        }
-        int ch = str[idx] - BASE;
-        if(nxt[ch] == nullptr) nxt[ch] = new AhoCorasick();
-        nxt[ch]->insert(str, idx + 1);
-    }
-
-    void build()
-    {
-        fail = this;
-        queue<AhoCorasick*> q;
-        q.push(this);
-        while(q.empty() == false) {
-            AhoCorasick* cur = q.front();
-            q.pop();
+        queue<int> q; q.push(0);
+        while(!q.empty()) {
+            int cur = q.front(); q.pop();
             for(int i = 0; i < NUM; ++i) {
-                if(cur->nxt[i] == nullptr) continue;
-                AhoCorasick* nxt = cur->nxt[i];
-                if(cur == this) nxt->fail = this;
+                int nx = t[cur].nxt[i];
+                if(nx == -1) continue;
+
+                if(cur == 0) t[nx].fail = 0;
                 else {
-                    AhoCorasick* k = cur->fail;
-                    while(k != this && k->nxt[i] == nullptr) k = k->fail;
-                    if(k->nxt[i] != nullptr) k = k->nxt[i];
-                    nxt->fail = k;
+                    int pre = t[cur].fail;
+                    while(pre != 0 && t[pre].nxt[i] == -1) pre = t[pre].fail;
+                    if(t[pre].nxt[i] != -1) pre = t[pre].nxt[i];
+
+                    t[nx].fail = pre;
+                    t[nx].num += t[pre].num;
                 }
-                q.push(nxt);
-                if(nxt->fail->has == true) nxt->has = true;
+                q.push(nx);
             }
         }
     }
 
-    bool process(const string& str)
+    void insert(string& str)
     {
-        AhoCorasick* cur = this;
+        int cur = 0;
         for(int i = 0; i < str.size(); ++i) {
             int ch = str[i] - BASE;
-            while(cur != this && cur->nxt[ch] == nullptr) cur = cur->fail;
-            if(cur->nxt[ch] != nullptr) cur = cur->nxt[ch];
-
-            if(cur->has == true) return true;
+            if(t[cur].nxt[ch] == -1) {
+                t[cur].nxt[ch] = t.size();
+                t.emplace_back();
+            }
+            cur = t[cur].nxt[ch];
         }
-        return false;
+        t[cur].num++;
+    }
+
+    int search(string& str)
+    {
+        int cur = 0, res = 0;
+        for(int i = 0; i < str.size(); ++i) {
+            int ch = str[i] - BASE;
+            while(cur != 0 && t[cur].nxt[ch] == -1) cur = t[cur].fail;
+            if(t[cur].nxt[ch] != -1) cur = t[cur].nxt[ch];
+
+            if(cur != 0) res += t[cur].num;
+        }
+        return res;
     }
 };

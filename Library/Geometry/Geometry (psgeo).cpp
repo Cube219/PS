@@ -28,4 +28,5 @@ namespace geo
     auto cross(P a, P b) { return a.x * b.y - a.y * b.x; }
 
     using Point = PointBase<double>;
+    constexpr double eps = 1e-10;
 }
