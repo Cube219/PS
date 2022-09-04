@@ -5,11 +5,11 @@ struct SegTree
     {
         return l + r;
     }
-    const T empty = 0;
+    constexpr static T empty = 0;
 
     int n;
     vector<T> t;
-    SegTree(int _n) : n(_n), t(n * 2, empty) {}
+    SegTree(int _n) : n(_n), t(_n * 2, empty) {}
     void initv(int idx, T v)
     {
         t[n + idx] = v;
@@ -19,20 +19,20 @@ struct SegTree
         for(int i = n - 1; i > 0; --i) t[i] = merge(t[i << 1], t[i << 1 | 1]);
     }
 
-    void update(int idx, T v)
+    void update(int pos, T v)
     {
-        idx += n;
-        t[idx] = v;
-        for(idx >>= 1; idx > 0; idx >>= 1) merge(t[idx << 1], t[idx << 1 | 1]);
+        pos += n;
+        t[pos] = v;
+        for(pos >>= 1; pos > 0; pos >>= 1) t[pos] = merge(t[pos << 1], t[pos << 1 | 1]);
     }
 
     T query(int l, int r)
     {
-        T resl = empty, resr = empty;
+        T lres = empty, rres = empty;
         for(l += n, r += n + 1; l < r; l >>= 1, r >>= 1) {
-            if(l & 1) resl = merge(resl, t[l++]);
-            if(r & 1) resr = merge(t[--r], resr);
+            if(l & 1) lres = merge(lres, t[l++]);
+            if(r & 1) rres = merge(t[--r], rres);
         }
-        return merge(resl, resr);
+        return merge(lres, rres);
     }
 };

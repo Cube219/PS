@@ -1,48 +1,56 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Shortcut/@EntryValue">psfenwickrange</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Description/@EntryValue">Fenwick Tree - Range Update</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Text/@EntryValue">struct FenwickRange&#xD;
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Shortcut/@EntryValue">pskitamasa</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Description/@EntryValue">Kitamasa</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Text/@EntryValue">// https://gist.github.com/koosaga/d4afc4434dbaa348d5bef0d60ac36aa4#file-berlekamp_massey-cpp-L43&#xD;
+template &lt;ll mod = 998244353&gt;&#xD;
+struct Kitamasa&#xD;
 {&#xD;
-    int n;&#xD;
-    vector&lt;ll&gt; tmul, tadd;&#xD;
-    FenwickRange(int _n) : n(_n + 1), tmul(_n + 1, 0), tadd(_n + 1, 0) {}&#xD;
-&#xD;
-    void _udt(int pos, ll mul, ll add)&#xD;
+    int get_nth(const vector&lt;ll&gt;&amp; rec, const vector&lt;ll&gt;&amp; dp, ll n)&#xD;
     {&#xD;
-        for(; pos &lt; n; pos += (pos &amp; -pos)) {&#xD;
-            tmul[pos] += mul;&#xD;
-            tadd[pos] += add;&#xD;
+        int m = rec.size();&#xD;
+        vector&lt;ll&gt; s(m), t(m);&#xD;
+        s[0] = 1;&#xD;
+        if(m != 1) t[1] = 1;&#xD;
+        else t[0] = rec[0];&#xD;
+        auto mul = [&amp;rec](const vector&lt;ll&gt;&amp; v, const vector&lt;ll&gt;&amp; w) {&#xD;
+            int m = v.size();&#xD;
+            vector&lt;ll&gt; t(2 * m);&#xD;
+            for(int j = 0; j &lt; m; j++) {&#xD;
+                for(int k = 0; k &lt; m; k++) {&#xD;
+                    t[j + k] += 1ll * v[j] * w[k] % mod;&#xD;
+                    if(t[j + k] &gt;= mod) t[j + k] -= mod;&#xD;
+                }&#xD;
+            }&#xD;
+            for(int j = 2 * m - 1; j &gt;= m; j--) {&#xD;
+                for(int k = 1; k &lt;= m; k++) {&#xD;
+                    t[j - k] += 1ll * t[j] * rec[k - 1] % mod;&#xD;
+                    if(t[j - k] &gt;= mod) t[j - k] -= mod;&#xD;
+                }&#xD;
+            }&#xD;
+            t.resize(m);&#xD;
+            return t;&#xD;
+        };&#xD;
+        while(n) {&#xD;
+            if(n &amp; 1) s = mul(s, t);&#xD;
+            t = mul(t, t);&#xD;
+            n &gt;&gt;= 1;&#xD;
         }&#xD;
-    }&#xD;
-&#xD;
-    void update(int l, int r, ll v)&#xD;
-    {&#xD;
-        l++; r++;&#xD;
-        _udt(l, v, -v * (l - 1));&#xD;
-        _udt(r, -v, v * r);&#xD;
-    }&#xD;
-&#xD;
-    ll query(int pos)&#xD;
-    {&#xD;
-        pos++;&#xD;
-        ll mul = 0, add = 0;&#xD;
-        int st = pos;&#xD;
-        for(; pos &gt; 0; pos -= (pos &amp; -pos)) {&#xD;
-            mul += tmul[pos];&#xD;
-            add += tadd[pos];&#xD;
-        }&#xD;
-        return mul * st + add;&#xD;
+        ll ret = 0;&#xD;
+        for(int i = 0; i &lt; m; i++) ret += 1ll * s[i] * dp[i] % mod;&#xD;
+        return ret % mod;&#xD;
     }&#xD;
 };&#xD;
+// ex) a_i = a_{i-1} + 2*a_{i-2} / a_0 = 1, a_1 = 3&#xD;
+//     res = ki.get_nth({ 1, 2 }, { 1, 3 }, n);&#xD;
 </s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Categories/=Imported_00202022_002D07_002D25/@EntryIndexedValue">Imported 2022-07-25</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Categories/=Imported_00202022_002D07_002D25/@EntryIndexedValue">Imported 2022-07-25</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/Shortcut/@EntryValue">fori1</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43F7B61BC0E71B488A42444B09FF0689/Description/@EntryValue">for loop pattern with integer index start 1</s:String>
@@ -1094,6 +1102,50 @@ using hash_set = hash_map&lt;K, __gnu_pbds::null_type&gt;;&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DDD003E244310A44960EB65E345C55DF/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DDD003E244310A44960EB65E345C55DF/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DDD003E244310A44960EB65E345C55DF/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Shortcut/@EntryValue">psfenwickrange</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Description/@EntryValue">Fenwick Tree - Range Update</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Text/@EntryValue">struct FenwickRange&#xD;
+{&#xD;
+    int n;&#xD;
+    vector&lt;ll&gt; tmul, tadd;&#xD;
+    FenwickRange(int _n) : n(_n + 1), tmul(_n + 1, 0), tadd(_n + 1, 0) {}&#xD;
+&#xD;
+    void _udt(int pos, ll mul, ll add)&#xD;
+    {&#xD;
+        for(; pos &lt; n; pos += (pos &amp; -pos)) {&#xD;
+            tmul[pos] += mul;&#xD;
+            tadd[pos] += add;&#xD;
+        }&#xD;
+    }&#xD;
+&#xD;
+    void update(int l, int r, ll v)&#xD;
+    {&#xD;
+        l++; r++;&#xD;
+        _udt(l, v, -v * (l - 1));&#xD;
+        _udt(r, -v, v * r);&#xD;
+    }&#xD;
+&#xD;
+    ll query(int pos)&#xD;
+    {&#xD;
+        pos++;&#xD;
+        ll mul = 0, add = 0;&#xD;
+        int st = pos;&#xD;
+        for(; pos &gt; 0; pos -= (pos &amp; -pos)) {&#xD;
+            mul += tmul[pos];&#xD;
+            add += tadd[pos];&#xD;
+        }&#xD;
+        return mul * st + add;&#xD;
+    }&#xD;
+};&#xD;
+</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Categories/=Imported_00202022_002D07_002D25/@EntryIndexedValue">Imported 2022-07-25</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=EE54866180AC564FBD580B3C9FC70CAE/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=58A7278ABA5870459491275FC80B8855/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=58A7278ABA5870459491275FC80B8855/Shortcut/@EntryValue">psfft</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=58A7278ABA5870459491275FC80B8855/Description/@EntryValue">Fast Fourier Transform</s:String>
@@ -1969,58 +2021,6 @@ void answer()&#xD;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3846307F524FF4C9569C511D5E848B2/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3846307F524FF4C9569C511D5E848B2/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B3846307F524FF4C9569C511D5E848B2/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Shortcut/@EntryValue">pskitamasa</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Description/@EntryValue">Kitamasa</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Text/@EntryValue">// https://gist.github.com/koosaga/d4afc4434dbaa348d5bef0d60ac36aa4#file-berlekamp_massey-cpp-L43&#xD;
-template &lt;ll mod = 998244353&gt;&#xD;
-struct Kitamasa&#xD;
-{&#xD;
-    int get_nth(const vector&lt;ll&gt;&amp; rec, const vector&lt;ll&gt;&amp; dp, ll n)&#xD;
-    {&#xD;
-        int m = rec.size();&#xD;
-        vector&lt;ll&gt; s(m), t(m);&#xD;
-        s[0] = 1;&#xD;
-        if(m != 1) t[1] = 1;&#xD;
-        else t[0] = rec[0];&#xD;
-        auto mul = [&amp;rec](const vector&lt;ll&gt;&amp; v, const vector&lt;ll&gt;&amp; w) {&#xD;
-            int m = v.size();&#xD;
-            vector&lt;ll&gt; t(2 * m);&#xD;
-            for(int j = 0; j &lt; m; j++) {&#xD;
-                for(int k = 0; k &lt; m; k++) {&#xD;
-                    t[j + k] += 1ll * v[j] * w[k] % mod;&#xD;
-                    if(t[j + k] &gt;= mod) t[j + k] -= mod;&#xD;
-                }&#xD;
-            }&#xD;
-            for(int j = 2 * m - 1; j &gt;= m; j--) {&#xD;
-                for(int k = 1; k &lt;= m; k++) {&#xD;
-                    t[j - k] += 1ll * t[j] * rec[k - 1] % mod;&#xD;
-                    if(t[j - k] &gt;= mod) t[j - k] -= mod;&#xD;
-                }&#xD;
-            }&#xD;
-            t.resize(m);&#xD;
-            return t;&#xD;
-        };&#xD;
-        while(n) {&#xD;
-            if(n &amp; 1) s = mul(s, t);&#xD;
-            t = mul(t, t);&#xD;
-            n &gt;&gt;= 1;&#xD;
-        }&#xD;
-        ll ret = 0;&#xD;
-        for(int i = 0; i &lt; m; i++) ret += 1ll * s[i] * dp[i] % mod;&#xD;
-        return ret % mod;&#xD;
-    }&#xD;
-};&#xD;
-// ex) a_i = a_{i-1} + 2*a_{i-2} / a_0 = 1, a_1 = 3&#xD;
-//     res = ki.get_nth({ 1, 2 }, { 1, 3 }, n);&#xD;
-</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Categories/=Imported_00202022_002D07_002D10/@EntryIndexedValue">Imported 2022-07-10</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Categories/=Imported_00202022_002D07_002D25/@EntryIndexedValue">Imported 2022-07-25</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B526FB52E8EFDA46945548B1E930E126/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7B99A65AAD0EBA4E913C9CD71F39E15E/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7B99A65AAD0EBA4E913C9CD71F39E15E/Shortcut/@EntryValue">pskmp</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=7B99A65AAD0EBA4E913C9CD71F39E15E/Description/@EntryValue">KMP</s:String>
@@ -2895,60 +2895,45 @@ for(int i = 0; i &lt; n; ++i) if(dep[i] == -1) scc_dfs(scc_dfs, i);&#xD;
 {&#xD;
     struct Segment&#xD;
     {&#xD;
-        ll l, r;&#xD;
-        ll v; // Data&#xD;
+        ll l, r, v;&#xD;
     };&#xD;
-&#xD;
     map&lt;ll, Segment&gt; list;&#xD;
 &#xD;
-    SegmentList(ll st, ll ed)&#xD;
+    SegmentList(ll mn, ll mx, ll v)&#xD;
     {&#xD;
-        list.insert({ st, {st, ed, 0} });&#xD;
+        list.insert({ mn, { mn, mx, v } });&#xD;
     }&#xD;
 &#xD;
-    ll query(ll l, ll r, ll v)&#xD;
+    void insert(ll l, ll r, ll v)&#xD;
     {&#xD;
         auto stIt = prev(list.upper_bound(l));&#xD;
         if(stIt-&gt;second.l &lt; l) {&#xD;
-            Segment seg = stIt-&gt;second;&#xD;
+            Segment st = stIt-&gt;second;&#xD;
             list.erase(stIt);&#xD;
 &#xD;
-            Segment lSeg = seg;&#xD;
-            lSeg.r = l - 1;&#xD;
-            list.insert({ lSeg.l, lSeg });&#xD;
-            Segment rSeg = seg;&#xD;
-            rSeg.l = l;&#xD;
-            list.insert({ rSeg.l, rSeg }).first;&#xD;
+            Segment st1 = { st.l, l - 1, st.v };&#xD;
+            Segment st2 = { l, st.r, st.v };&#xD;
+            list.insert({ st1.l, st1 });&#xD;
+            list.insert({ st2.l, st2 });&#xD;
         }&#xD;
         auto edIt = prev(list.upper_bound(r));&#xD;
         if(r &lt; edIt-&gt;second.r) {&#xD;
-            Segment seg = edIt-&gt;second;&#xD;
+            Segment ed = edIt-&gt;second;&#xD;
             list.erase(edIt);&#xD;
 &#xD;
-            Segment lSeg = seg;&#xD;
-            lSeg.r = r;&#xD;
-            list.insert({ lSeg.l, lSeg }).first;&#xD;
-            Segment rSeg = seg;&#xD;
-            rSeg.l = r + 1;&#xD;
-            list.insert({ rSeg.l, rSeg });&#xD;
+            Segment ed1 = { ed.l, r, ed.v };&#xD;
+            Segment ed2 = { r + 1, ed.r, ed.v };&#xD;
+            list.insert({ ed1.l, ed1 });&#xD;
+            list.insert({ ed2.l, ed2 });&#xD;
         }&#xD;
         stIt = list.lower_bound(l);&#xD;
         edIt = list.upper_bound(r);&#xD;
 &#xD;
-        ll res = 0;&#xD;
-        for(auto it = stIt; it != edIt;) {&#xD;
-            Segment seg = it-&gt;second;&#xD;
+        for(auto it = stIt; it != edIt; it = list.erase(it)) {&#xD;
             // Do something&#xD;
-&#xD;
-            it = list.erase(it);&#xD;
         }&#xD;
-&#xD;
-        Segment seg;&#xD;
-        seg.l = l; seg.r = r;&#xD;
-        // seg.v = v; // Insert new value&#xD;
-        list.insert({ seg.l, seg });&#xD;
-&#xD;
-        return res;&#xD;
+        Segment s = { l, r, v };&#xD;
+        list.insert({ s.l, s });&#xD;
     }&#xD;
 };&#xD;
 </s:String>
@@ -2969,11 +2954,11 @@ for(int i = 0; i &lt; n; ++i) if(dep[i] == -1) scc_dfs(scc_dfs, i);&#xD;
     {&#xD;
         return l + r;&#xD;
     }&#xD;
-    const T empty = 0;&#xD;
+    constexpr static T empty = 0;&#xD;
 &#xD;
     int n;&#xD;
     vector&lt;T&gt; t;&#xD;
-    SegTree(int _n) : n(_n), t(n * 2, empty) {}&#xD;
+    SegTree(int _n) : n(_n), t(_n * 2, empty) {}&#xD;
     void initv(int idx, T v)&#xD;
     {&#xD;
         t[n + idx] = v;&#xD;
@@ -2983,21 +2968,21 @@ for(int i = 0; i &lt; n; ++i) if(dep[i] == -1) scc_dfs(scc_dfs, i);&#xD;
         for(int i = n - 1; i &gt; 0; --i) t[i] = merge(t[i &lt;&lt; 1], t[i &lt;&lt; 1 | 1]);&#xD;
     }&#xD;
 &#xD;
-    void update(int idx, T v)&#xD;
+    void update(int pos, T v)&#xD;
     {&#xD;
-        idx += n;&#xD;
-        t[idx] = v;&#xD;
-        for(idx &gt;&gt;= 1; idx &gt; 0; idx &gt;&gt;= 1) merge(t[idx &lt;&lt; 1], t[idx &lt;&lt; 1 | 1]);&#xD;
+        pos += n;&#xD;
+        t[pos] = v;&#xD;
+        for(pos &gt;&gt;= 1; pos &gt; 0; pos &gt;&gt;= 1) t[pos] = merge(t[pos &lt;&lt; 1], t[pos &lt;&lt; 1 | 1]);&#xD;
     }&#xD;
 &#xD;
     T query(int l, int r)&#xD;
     {&#xD;
-        T resl = empty, resr = empty;&#xD;
+        T lres = empty, rres = empty;&#xD;
         for(l += n, r += n + 1; l &lt; r; l &gt;&gt;= 1, r &gt;&gt;= 1) {&#xD;
-            if(l &amp; 1) resl = merge(resl, t[l++]);&#xD;
-            if(r &amp; 1) resr = merge(t[--r], resr);&#xD;
+            if(l &amp; 1) lres = merge(lres, t[l++]);&#xD;
+            if(r &amp; 1) rres = merge(t[--r], rres);&#xD;
         }&#xD;
-        return merge(resl, resr);&#xD;
+        return merge(lres, rres);&#xD;
     }&#xD;
 };&#xD;
 </s:String>
