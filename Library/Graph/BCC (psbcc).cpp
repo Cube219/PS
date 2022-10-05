@@ -26,6 +26,7 @@ auto bcc_dfs = [&](auto&& self, int cur, int pre) -> int {
                     if(eg.first == cur) break;
                 }
             }
+            ret = min(ret, t);
         } else ret = min(ret, dep[nxt]);
     }
 
