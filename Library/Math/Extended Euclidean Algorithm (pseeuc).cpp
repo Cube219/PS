@@ -10,4 +10,4 @@ ERes eeuc(ll a, ll b)
 }
 // Ax+By=C, D=gcd(A,B)=g
 // x0 = x * C/D       y0 = y * C/D
-// s = x0 + t*B/D   t = y0 - t*A/D
+// s = x0 + k*B/D   t = y0 - k*A/D   (k=임의의 정수)
