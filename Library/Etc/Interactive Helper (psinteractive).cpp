@@ -1,3 +1,5 @@
+#include <sstream>
+
 int qNum, maxQNum;
 vector<int> d;
 
@@ -7,7 +9,7 @@ void get_data(int n)
     maxQNum = n;
     qNum = 0;
 
-    // ----- Get data from cin -----
+    // ----- Get the data from cin -----
     d.resize(n);
     // -----------------------------
 #endif
@@ -29,10 +31,9 @@ int query()
         exit(1);
     }
 
-    // ----- Get query result -----
+    // ----- Generate a query result -----
     res = 0;
     // ----------------------------
-
 
     cout << "  - result: " << res << "\n";
 #else
@@ -53,7 +54,7 @@ void answer()
 #ifdef CUBE_PS
     cout << "answer: " << ss.str() << "\n";
 
-    // ----- Check validate -----
+    // ----- Check the answer -----
     bool res = true;
 
     // --------------------------
